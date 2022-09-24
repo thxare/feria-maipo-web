@@ -10,7 +10,8 @@ module.exports = {
         sans: ['"Open Sans"', "sans-serif"],
       },
       colors: {
-        green: "#A2A62E",
+        green: "#7BBD5B",
+        darkGreen:"#527D3C",
         yellow: "#D99923",
         orange: "#D97218",
         orangeSmooth: "#FA996C",
