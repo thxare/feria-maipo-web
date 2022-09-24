@@ -16,37 +16,37 @@ export const Login = () => {
         {/* <h1 className="text-3xl leading-tight font-medium mb-2 text-orange font-sans w-fit mx-auto">
           Bienvenido
         </h1> */}
-        <div class="my-4">
+        <div className="my-4">
           <label
-            class="block text-gray-700 text-sm mb-2 font-sans"
-            for="username"
+            className="block text-gray-700 text-sm mb-2 font-sans"
+            htmlFor="username"
           >
             Usuario
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline outline-green focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline outline-green focus:shadow-outline"
             id="username"
             type="text"
             placeholder="usuario123"
           />
-          <span class="text-bordeaux text-xs italic hidden">
+          <span className="text-bordeaux text-xs italic hidden">
             Por favor ingrese un usuario
           </span>
         </div>
-        <div class="mb-6">
+        <div className="mb-6">
           <label
-            class="block text-gray-700 text-sm mb-2 font-sans"
-            for="password"
+            className="block text-gray-700 text-sm mb-2 font-sans"
+            htmlFor="password"
           >
             Password
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline outline-green focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline outline-green focus:shadow-outline"
             id="password"
             type="password"
             placeholder="***********"
           />
-          <span class="text-bordeaux text-xs italic hidden">
+          <span className="text-bordeaux text-xs italic hidden">
             Por favor ingrese una contraseña
           </span>
         </div>
@@ -57,7 +57,7 @@ export const Login = () => {
           Ingresar
         </button>
         <a
-          class="inline-block align-baseline text-sm text-gray-500 hover:text-slate-700 underline open-sans w-fit mx-auto"
+          className="inline-block align-baseline text-sm text-gray-500 hover:text-slate-700 underline open-sans w-fit mx-auto"
           href="#"
         >
           Olvidé la contraseña
