@@ -3,8 +3,8 @@ import { Header } from "../../components/header/Header";
 
 export default function Index() {
   const funciones = [
-    { name: "Subastas", link: "/tranportista/" },
-    { name: "Mi Transporte", link: "/tranportista/mitransporte"},
+    { name: "Subastas", link: "/transportista/" },
+    { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
   return (
     <>
@@ -12,7 +12,6 @@ export default function Index() {
         <title>Maipo Grande - Transportista</title>
       </Head>
       <div>
-        {" "}
         <Header funciones={funciones} />
       </div>
     </>

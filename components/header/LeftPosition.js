@@ -32,9 +32,9 @@ mr-1
         </a>
         {props.funciones.map((funcion) => {
           return (
-            <Link href={funcion.link}>
+            <Link key={funcion.name} href={funcion.link}>
               <a
-                className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-2"
+                className="nav-link font-bold text-gray-500 hover:text-gray-700 p-2 hover:underline hover:decoration-gray-700 hover:decoration-2"
                 href="#"
               >
                 {funcion.name}

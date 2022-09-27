@@ -22,25 +22,25 @@ export const Header = (props) => {
     <>
       <nav
         className="
-  relative
+  navbar
+  navbar-expand-lg
+  navbar-light relative
+  flex
   w-full
-  flex flex-wrap
+  flex-wrap
   items-center
   justify-between
-  py-4
   bg-gray-100
+  py-4
   text-gray-500
-  hover:text-gray-700
-  focus:text-gray-700
-  shadow-lg
-  navbar navbar-expand-lg navbar-light
+  shadow-lg hover:text-gray-700 focus:text-gray-700
   "
       >
-        <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+        <div className="container-fluid flex w-full flex-wrap items-center justify-between px-6">
           <button
             onClick={handleButton}
             id="boton"
-            className="navbar-toggler text-green border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent lg:hidden focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
+            className="navbar-toggler border-0 bg-transparent py-2 px-2.5 text-green hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 lg:hidden"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -68,12 +68,16 @@ export const Header = (props) => {
           <RightPosition />
         </div>
         <div className={className} id="menu">
-          <ul className="navbar-nav flex flex-col sm:flex-row pl-0 list-style-none mr-auto">
+          <ul className="navbar-nav list-style-none mr-auto flex flex-col pl-0 sm:flex-row">
             {props.funciones.map((funcion) => {
               return (
-                <Link className="nav-item p-2" href={funcion.link}>
+                <Link
+                  key={funcion.name}
+                  className="nav-item p-2"
+                  href={funcion.link}
+                >
                   <a
-                    className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                    className="nav-link p-0 font-bold text-gray-500 hover:text-gray-700 hover:underline hover:decoration-gray-700 hover:decoration-2 focus:text-gray-700"
                     href="#"
                   >
                     {funcion.name}

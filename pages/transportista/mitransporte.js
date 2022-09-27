@@ -3,8 +3,8 @@ import { Header } from "../../components/header/Header";
 
 export default function MiTransporte() {
     const funciones = [
-        { name: "Subastas", link: "/tranportista/" },
-        { name: "Mi Transporte", link: "/tranportista/mitransporte"},
+        { name: "Subastas", link: "/transportista/" },
+        { name: "Mi Transporte", link: "/transportista/mitransporte"},
       ];
     return (
       <>
