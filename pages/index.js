@@ -3,6 +3,12 @@ import Head from "next/Head";
 import { Header } from "../components/header/Header";
 
 export default function Home() {
+  const funciones = [
+    { name: "Mis Productos" },
+    { name: "Ventas" },
+    { name: "Vendido" },
+    { name: "Perdido" },
+  ];
   return (
     <>
       <Head>
@@ -29,7 +35,7 @@ export default function Home() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <div>
-        <Header />
+        <Header funciones={funciones} />
       </div>
     </>
   );

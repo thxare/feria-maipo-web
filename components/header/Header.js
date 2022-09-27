@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { clearPreviewData } from "next/dist/server/api-utils";
 import { RightPosition } from "./RightPosition";
-import { LeftPositioin } from "./LeftPositioin";
+import { LeftPosition } from "./LeftPosition";
 
-export const Header = () => {
+export const Header = (props) => {
   const [change, setChange] = useState(true);
 
   let className = `collapse navbar-collapse flex-grow items-center lg:hidden`;
@@ -63,35 +63,23 @@ export const Header = () => {
               ></path>
             </svg>
           </button>
-          <LeftPositioin />
+          <LeftPosition funciones={props.funciones} />
           <RightPosition />
         </div>
         <div className={className} id="menu">
           <ul className="navbar-nav flex flex-col sm:flex-row pl-0 list-style-none mr-auto">
-            <li className="nav-item p-2">
-              <a
-                className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                href="#"
-              >
-                Mis Productos
-              </a>
-            </li>
-            <li className="nav-item p-2">
-              <a
-                className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                href="#"
-              >
-                Venta Externa
-              </a>
-            </li>
-            <li className="nav-item p-2">
-              <a
-                className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                href="#"
-              >
-                Venta Local
-              </a>
-            </li>
+            {props.funciones.map((funcion) => {
+              return (
+                <li className="nav-item p-2">
+                  <a
+                    className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+                    href="#"
+                  >
+                    {funcion.name}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </nav>
