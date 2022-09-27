@@ -2,8 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 export const LeftPosition = (props) => {
- 
-
   return (
     <div
       className="collapse navbar-collapse flex-grow items-center hidden lg:block"
