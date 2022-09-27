@@ -3,8 +3,8 @@ import { Header } from "../../components/header/Header";
 
 export default function Index() {
   const funciones = [
-    { name: "Mercado" },
-    { name: "Compras" },
+    { name: "Mercado", link:"/cliente-local/" },
+    { name: "Compras" , link:"/cliente-local/compras"},
   ];
   return (
     <>

@@ -1,15 +1,15 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
 
-export default function Index() {
+export default function Compras() {
   const funciones = [
-    { name: "Mercado", link:"/cliente-externo/" },
-    { name: "Compras" , link:"/cliente-externo/compras"},
+    { name: "Mercado", link:"/cliente-local/" },
+    { name: "Compras" , link:"/cliente-local/compras"},
   ];
   return (
     <>
       <Head>
-        <title>Maipo Grande - Cliente Externo</title>
+        <title>Maipo Grande - Cliente Local</title>
       </Head>
       <div>
         <Header funciones={funciones} />

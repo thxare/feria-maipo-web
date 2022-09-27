@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
 
-export default function Index() {
-  const funciones = [
-    { name: "Mis Productos", link:"/productor/"},
-    { name: "Venta Externa" , link:"/productor/ventaexterna"},
-    { name: "Venta Local" , link:"/productor/ventalocal"},
-  ];
+export default function VentaLocal() {
+    const funciones = [
+        { name: "Mis Productos", link:"/productor/"},
+        { name: "Venta Externa" , link:"/productor/ventaexterna"},
+        { name: "Venta Local" , link:"/productor/ventalocal"},
+      ];
   return (
     <>
       <Head>
