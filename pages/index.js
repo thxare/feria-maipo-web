@@ -1,6 +1,7 @@
-import Head from "next/head";
+import Head from "next/Head";
 
 export default function Home() {
+  
   return (
     <>
       <Head>
@@ -26,7 +27,9 @@ export default function Home() {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div>Index</div>
+      <div>
+        
+      </div>
     </>
   );
 }

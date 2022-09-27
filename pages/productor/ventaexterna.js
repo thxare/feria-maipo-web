@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
 
-export default function Index() {
+export default function VentaExterna() {
   const funciones = [
     { name: "Mis Productos", link:"/productor/"},
     { name: "Venta Externa" , link:"/productor/ventaexterna"},

@@ -1,18 +1,17 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
 
-export default function Index() {
+export default function Compras() {
   const funciones = [
-    { name: "Subastas", link: "/tranportista/" },
-    { name: "Mi Transporte", link: "/tranportista/mitransporte"},
+    { name: "Mercado", link:"/cliente-local/" },
+    { name: "Compras" , link:"/cliente-local/compras"},
   ];
   return (
     <>
       <Head>
-        <title>Maipo Grande - Transportista</title>
+        <title>Maipo Grande - Cliente Local</title>
       </Head>
       <div>
-        {" "}
         <Header funciones={funciones} />
       </div>
     </>
