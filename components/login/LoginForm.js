@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-import { validacion } from "./validacion";
+import { validacion } from "../../utils/validacion";
 
 export const LoginForm = () => {
   const [user, setUser] = useState({});
