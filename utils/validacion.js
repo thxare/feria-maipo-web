@@ -1,20 +1,20 @@
 import { router } from "next/router";
-export const validacion = (rol) => {
-  switch (rol) {
+export const validacion = async (rol) => {
+   switch (rol) {
     case 2:
-      router.push("/productor/");
+      await router.push("/productor/");
       break;
     case 3:
-      router.push("/cliente-externo/");
+      await router.push("/cliente-externo/");
       break;
     case 4:
-      router.push("/cliente-local/");
+      await router.push("/cliente-local/");
       break;
     case 5:
-      router.push("/transportista/");
+      await router.push("/transportista/");
       break;
     default:
-      console.log("Algo está mal");
+      await console.log("Algo está mal");
       break;
   }
 };
