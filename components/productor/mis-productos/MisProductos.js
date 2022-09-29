@@ -9,12 +9,12 @@ export const MisProductos = () => {
             <div className="text-2xl font-semibold">
                 Mis Productos
             </div>
-          <button className="m-2 mr-1 rounded bg-green py-2 px-4 font-bold text-white hover:bg-darkGreen shadow-lg">
+          <button className="m-2 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white hover:bg-green shadow-lg">
             Ingresar Productos
           </button>
         </div>
 
-        <div className=" rounded-sm bg-white shadow-lg">
+        <div>
           <Productos nombre="Papas" />
           <Productos nombre="Tomates" />
           <Productos nombre="Duraznos" />

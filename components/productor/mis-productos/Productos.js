@@ -3,12 +3,12 @@ import React from "react";
 
 export const Productos = ({nombre}) => {
   return (
-    <div className="m-4">
+    <div className="m-4 rounded-sm bg-white shadow-lg">
       <div className="flex flex-row justify-end">
-        <button className="m-4 mr-1 rounded bg-green py-2 px-4 font-bold text-white hover:bg-darkGreen shadow-lg">
+        <button className="m-4 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white hover:bg-green shadow-md">
           Modificar Producto
         </button>
-        <button className="m-4 ml-2 rounded bg-red py-2 px-4 font-bold text-white hover:bg-bordeaux shadow-lg">
+        <button className="m-4 ml-2 rounded bg-bordeaux py-2 px-4 font-bold text-white hover:bg-red shadow-md">
           Eliminar Producto
         </button>
       </div>
