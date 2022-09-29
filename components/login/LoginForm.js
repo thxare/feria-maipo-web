@@ -1,35 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+
+import { validacion } from "./validacion";
 
 export const LoginForm = () => {
+  const [user, setUser] = useState({});
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    const resp = await axios.post(
+      "https://api-feria-web-production.up.railway.app/api/auth/login",
+      data
+    );
+    if (resp.status === 200) {
+      setUser(resp);
+      try {
+        const rol = await user.data.id_rol;
+        validacion(rol);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("Usuario malo");
+    }
+  };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-4">
           <label
-            className="block text-gray-700 text-sm mb-2 font-sans"
+            className="mb-2 block font-sans text-sm text-gray-700"
             htmlFor="username"
           >
             Usuario
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline outline-green focus:shadow-outline"
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
             id="username"
-            {...register("user", { required: true })}
-            aria-invalid={errors.user ? "true" : "false"}
-            name="user"
+            {...register("nombre_usuario", { required: true })}
+            aria-invalid={errors.nombre_usuario ? "true" : "false"}
+            name="nombre_usuario"
             type="text"
             placeholder="usuario123"
           />
-          {errors.user?.type === "required" && (
-            <span className="text-bordeaux text-xs italic">
+          {errors.nombre_usuario?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
               Por favor ingrese un usuario
             </span>
           )}
@@ -37,22 +59,22 @@ export const LoginForm = () => {
 
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm mb-2 font-sans"
+            className="mb-2 block font-sans text-sm text-gray-700"
             htmlFor="password"
           >
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline outline-green focus:shadow-outline"
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
             id="password"
             {...register("password", { required: true })}
-            aria-invalid={errors.user ? "true" : "false"}
+            aria-invalid={errors.password ? "true" : "false"}
             name="password"
             type="password"
             placeholder="***********"
           />
           {errors.password?.type === "required" && (
-            <span className="text-bordeaux text-xs italic">
+            <span className="text-xs italic text-bordeaux">
               Por favor ingrese una contraseña
             </span>
           )}
@@ -60,13 +82,13 @@ export const LoginForm = () => {
 
         <button
           type="submit"
-          className="inline-block px-6 py-2.5 mb-3 bg-green shadow-xl tracking-wide text-white text-xs leading-tight uppercase rounded hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-full font-sans font-semibold"
+          className="mb-3 inline-block w-full rounded bg-green px-6 py-2.5 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
         >
           Ingresar
         </button>
 
         <a
-          className="inline-block align-baseline text-sm text-gray-500 hover:text-slate-700 underline open-sans w-fit mx-auto"
+          className="open-sans mx-auto inline-block w-fit align-baseline text-sm text-gray-500 underline hover:text-slate-700"
           href="#"
         >
           Olvidé la contraseña
