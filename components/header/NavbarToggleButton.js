@@ -1,6 +1,6 @@
 import React from "react";
 
-export const NavbarToggleButton = (handleButton) => {
+export const NavbarToggleButton = () => {
   return (
     <button
       onClick={handleButton}
