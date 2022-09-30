@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-export const Productos = ({nombre}) => {
+export const Productos = ({ nombre }) => {
   return (
-    <div className="m-4 rounded-lg bg-white shadow-lg pb-6">
+    <div className="m-4 rounded-lg bg-white pb-6 shadow-lg">
       <div className="flex flex-row justify-end">
-        <button className="m-4 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white hover:bg-green shadow-md">
+        <button className="m-4 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green">
           Modificar Producto
         </button>
-        <button className="m-4 ml-2 rounded bg-bordeaux py-2 px-4 font-bold text-white hover:bg-red shadow-md">
+        <button className="m-4 ml-2 rounded bg-bordeaux py-2 px-4 font-bold text-white shadow-md hover:bg-red">
           Eliminar Producto
         </button>
       </div>

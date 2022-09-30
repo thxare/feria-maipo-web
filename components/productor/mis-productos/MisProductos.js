@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Backdrop } from "../../ui/Backdrop";
+import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Modal } from "./Modal";
 import { Productos } from "./Productos";
 
@@ -9,9 +10,22 @@ export const MisProductos = () => {
     setShow(!show);
   };
 
+  useEffect(() => {
+    let scrollLeft;
+    if (show == true) {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
+        (window.onscroll = function () {
+          window.scrollTo(scrollLeft, scrollTop);
+        });
+    } else {
+      window.onscroll = function () {};
+    }
+  }, [show]);
+
   return (
     <>
-    {show && <Modal />}
+      {show && <ModalAndBackdrop closeModal={handleClick} />}
       <div className="mx-auto mt-8 h-fit w-11/12">
         <div className="flex flex-row justify-between">
           <div className="text-2xl font-semibold">Mis Productos</div>
