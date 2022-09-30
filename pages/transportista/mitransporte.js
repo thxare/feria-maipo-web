@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "../../components/header/Header";
+import { Header } from "../../components/header/Header";
 
 export default function MiTransporte() {
   const funciones = [
