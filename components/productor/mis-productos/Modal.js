@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
-export const Modal = ({closeModal}) => {
+export const Modal = ({ closeModal }) => {
+  const [pathImage, setPathImage] = useState("/papa.jpg");
+  const onFileChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file.type.includes("image")) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function load() {
+          setPathImage(reader.result);
+        };
+      }else{
+        console.log("No es una imagen")
+      }
+    }
+  };
   return (
     <>
-      <div className="mx-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12 absolute z-50 top-0 left-0 right-0 bottom-0 my-auto">
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
         <div className="flex w-full flex-row justify-end">
           <div className="h-8 w-8 hover:rounded-full hover:bg-zinc-200">
             <button className="m-1" onClick={closeModal}>
@@ -30,7 +45,7 @@ export const Modal = ({closeModal}) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src="/papa.jpg" width="150" height="150" />
+              <Image src={pathImage} width="150" height="150" />
             </div>
 
             <input
@@ -38,6 +53,7 @@ export const Modal = ({closeModal}) => {
               placeholder="File"
               className="my-auto ml-2 h-full rounded bg-zinc-300 p-2 text-sm font-semibold text-slate-800 shadow-lg"
               aria-label="Archivo"
+              onChange={onFileChange}
             />
           </div>
 
