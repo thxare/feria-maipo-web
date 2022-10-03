@@ -86,7 +86,7 @@ export const Modal = ({ closeModal, setProductos }) => {
           )}
           <label className="font-semibold">Precio: </label>
           <input
-            type="text"
+            type="number"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
             {...register("precio_producto", { required: true })}
             aria-invalid={errors.precio_producto ? "true" : "false"}
@@ -132,7 +132,7 @@ export const Modal = ({ closeModal, setProductos }) => {
       "
             id="exampleFormControlTextarea1"
             rows="3"
-            placeholder="Tú descripción"
+            placeholder="Kilos, uso, etc..."
             {...register("descripcion_producto", { required: true })}
             aria-invalid={errors.descripcion_producto ? "true" : "false"}
           ></textarea>
