@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Backdrop } from "../../ui/Backdrop";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
-import { Modal } from "./Modal";
 import { Productos } from "./Productos";
 
-export const MisProductos = () => {
+export const MisProductos = ({ productos, setProductos }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(!show);
@@ -25,7 +23,13 @@ export const MisProductos = () => {
 
   return (
     <>
-      {show && <ModalAndBackdrop closeModal={handleClick} />}
+      {show && (
+        <ModalAndBackdrop
+          closeModal={handleClick}
+          productos={productos}
+          setProductos={setProductos}
+        />
+      )}
       <div className="mx-auto mt-8 h-fit w-11/12">
         <div className="flex flex-row justify-between">
           <div className="text-2xl font-semibold">Mis Productos</div>
@@ -38,9 +42,22 @@ export const MisProductos = () => {
         </div>
 
         <div>
-          <Productos nombre="Papas" />
-          <Productos nombre="Tomates" />
-          <Productos nombre="Duraznos" />
+          <ul>
+            {productos.map((producto, index) => {
+              console.log(producto);
+              return (
+                <li key={index}>
+                  <Productos
+                    nombre={producto.nombre_producto}
+                    precio={producto.precio_producto}
+                    calidad={producto.calidad_producto}
+                    descripcion={producto.descripcion_producto}
+                    img={producto.pathImage}
+                  />
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </>

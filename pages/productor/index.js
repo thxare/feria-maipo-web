@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
 import { MisProductos } from "../../components/productor/mis-productos/MisProductos";
 
@@ -8,6 +9,9 @@ export default function Index() {
     { name: "Venta Externa", link: "/productor/ventaexterna" },
     { name: "Venta Local", link: "/productor/ventalocal" },
   ];
+  const [productos, setProductos] = useState([]);
+  useEffect(() => {}, [productos]);
+
   return (
     <>
       <Head>
@@ -15,7 +19,7 @@ export default function Index() {
       </Head>
       <div className="h-max bg-gray-200">
         <Header funciones={funciones} />
-        <MisProductos />
+        <MisProductos productos={productos} setProductos={setProductos} />
       </div>
     </>
   );

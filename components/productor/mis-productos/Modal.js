@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
 
-export const Modal = ({ closeModal }) => {
+export const Modal = ({ closeModal, setProductos }) => {
   const [pathImage, setPathImage] = useState("/papa.jpg");
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   const onFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -12,10 +21,16 @@ export const Modal = ({ closeModal }) => {
         reader.onload = function load() {
           setPathImage(reader.result);
         };
-      }else{
-        console.log("No es una imagen")
+      } else {
+        console.log("No es una imagen");
       }
     }
+  };
+
+  const onSubmit = (data) => {
+    const output = { ...data, pathImage };
+    setProductos((productos) => [output, ...productos]);
+    closeModal();
   };
   return (
     <>
@@ -41,7 +56,7 @@ export const Modal = ({ closeModal }) => {
           </div>
         </div>
 
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
@@ -61,18 +76,39 @@ export const Modal = ({ closeModal }) => {
           <input
             type="text"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("nombre_producto", { required: true })}
+            aria-invalid={errors.nombre_producto ? "true" : "false"}
           />
+          {errors.nombre_producto?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese el nombre del producto
+            </span>
+          )}
           <label className="font-semibold">Precio: </label>
           <input
             type="text"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("precio_producto", { required: true })}
+            aria-invalid={errors.precio_producto ? "true" : "false"}
           />
+          {errors.precio_producto?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese el precio del producto
+            </span>
+          )}
 
           <label className="font-semibold">Calidad: </label>
           <input
             type="text"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("calidad_producto", { required: true })}
+            aria-invalid={errors.calidad_producto ? "true" : "false"}
           />
+          {errors.calidad_producto?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese la calidad del producto
+            </span>
+          )}
           <label className="font-semibold">Descripción: </label>
           <textarea
             className="
@@ -97,7 +133,14 @@ export const Modal = ({ closeModal }) => {
             id="exampleFormControlTextarea1"
             rows="3"
             placeholder="Tú descripción"
+            {...register("descripcion_producto", { required: true })}
+            aria-invalid={errors.descripcion_producto ? "true" : "false"}
           ></textarea>
+          {errors.descripcion_producto?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese la descripcion del producto
+            </span>
+          )}
           <button className="mt-4 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green">
             Guardar
           </button>
