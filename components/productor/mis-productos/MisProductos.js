@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Productos } from "./Productos";
 
-export const MisProductos = ({ productos, setProductos, onDelete, onUpdate }) => {
+export const MisProductos = ({
+  productos,
+  setProductos,
+  onDelete,
+  onUpdate,
+}) => {
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(!show);

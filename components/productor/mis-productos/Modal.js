@@ -28,7 +28,6 @@ export const Modal = ({ closeModal, setProductos }) => {
   };
 
   const id = uuidv4();
-  
 
   const onSubmit = (data) => {
     const output = { ...data, pathImage, id };

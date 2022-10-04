@@ -28,7 +28,7 @@ export default function Home() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <div className="bg-black h-screen">
-        <Modal />
+        
       </div>
     </>
   );

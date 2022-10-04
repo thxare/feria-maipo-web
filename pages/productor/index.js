@@ -16,12 +16,10 @@ export default function Index() {
 
   const onDelete = (id) => {
     setProductos([...productos].filter((producto) => producto.id !== id));
-    console.log(id);
   };
 
   const onUpdate = (id) => {
     const find = [...productos].find((producto) => producto.id === id);
-    console.log(find);
   };
 
   return (
