@@ -23,7 +23,7 @@ export default function Index() {
       <Head>
         <title>Maipo Grande - Productor</title>
       </Head>
-      <div className="h-max bg-gray-200">
+      <div className="h-screen bg-gray-200">
         <Header funciones={funciones} />
         <MisProductos
           productos={productos}
