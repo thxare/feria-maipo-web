@@ -10,7 +10,13 @@ export default function Index() {
     { name: "Venta Local", link: "/productor/ventalocal" },
   ];
   const [productos, setProductos] = useState([]);
+
   useEffect(() => {}, [productos]);
+  console.log(productos);
+
+  const onDelete = (id) => {
+    setProductos([...productos].filter((producto) => producto.id !== id));
+  };
 
   return (
     <>
@@ -19,7 +25,11 @@ export default function Index() {
       </Head>
       <div className="h-max bg-gray-200">
         <Header funciones={funciones} />
-        <MisProductos productos={productos} setProductos={setProductos} />
+        <MisProductos
+          productos={productos}
+          setProductos={setProductos}
+          onDelete={onDelete}
+        />
       </div>
     </>
   );

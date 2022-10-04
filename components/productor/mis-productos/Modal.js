@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 
 export const Modal = ({ closeModal, setProductos }) => {
   const [pathImage, setPathImage] = useState("/papa.jpg");
@@ -8,7 +9,6 @@ export const Modal = ({ closeModal, setProductos }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -27,8 +27,11 @@ export const Modal = ({ closeModal, setProductos }) => {
     }
   };
 
+  const id = uuidv4();
+  
+
   const onSubmit = (data) => {
-    const output = { ...data, pathImage };
+    const output = { ...data, pathImage, id };
     setProductos((productos) => [output, ...productos]);
     closeModal();
   };
