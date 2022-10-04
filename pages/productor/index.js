@@ -18,17 +18,22 @@ export default function Index() {
     setProductos([...productos].filter((producto) => producto.id !== id));
   };
 
+  const onUpdate = (id) => {
+    console.log(id)
+  };
+
   return (
     <>
       <Head>
         <title>Maipo Grande - Productor</title>
       </Head>
-      <div className="h-screen bg-gray-200">
+      <div className="h-max bg-gray-200">
         <Header funciones={funciones} />
         <MisProductos
           productos={productos}
           setProductos={setProductos}
           onDelete={onDelete}
+          onUpdate={onUpdate}
         />
       </div>
     </>

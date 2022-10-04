@@ -9,11 +9,13 @@ export const Productos = ({
   descripcion,
   img = "/papa.jpg",
   onDelete,
+  onUpdate
 }) => {
   return (
     <div className="m-4 rounded-lg bg-white pb-6 shadow-lg" id={id}>
       <div className="flex flex-row justify-end">
-        <button className="m-4 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green">
+        <button className="m-4 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green"
+        onClick={() => onUpdate(id)}>
           Modificar Producto
         </button>
         <button

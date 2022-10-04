@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Productos } from "./Productos";
 
-export const MisProductos = ({ productos, setProductos, onDelete }) => {
+export const MisProductos = ({ productos, setProductos, onDelete, onUpdate }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(!show);
@@ -48,6 +48,7 @@ export const MisProductos = ({ productos, setProductos, onDelete }) => {
                 <li key={index}>
                   <Productos
                     onDelete={onDelete}
+                    onUpdate={onUpdate}
                     id={producto.id}
                     nombre={producto.nombre_producto}
                     precio={producto.precio_producto}
