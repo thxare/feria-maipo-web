@@ -16,7 +16,7 @@ export default function Index() {
 
   const onDelete = (id) => {
     setProductos([...productos].filter((producto) => producto.id !== id));
-    console.log(id)
+    console.log(id);
   };
 
   const onUpdate = (id) => {
@@ -30,13 +30,15 @@ export default function Index() {
         <title>Maipo Grande - Productor</title>
       </Head>
       <div className="h-screen bg-gray-200">
-        <Header funciones={funciones} />
-        <MisProductos
-          productos={productos}
-          setProductos={setProductos}
-          onDelete={onDelete}
-          onUpdate={onUpdate}
-        />
+        <div className="h-max bg-gray-200">
+          <Header funciones={funciones} />
+          <MisProductos
+            productos={productos}
+            setProductos={setProductos}
+            onDelete={onDelete}
+            onUpdate={onUpdate}
+          />
+        </div>
       </div>
     </>
   );
