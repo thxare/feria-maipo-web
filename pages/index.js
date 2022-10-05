@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Modal } from "../components/productor/mis-productos/Modal";
 
 export default function Home() {
   return (
