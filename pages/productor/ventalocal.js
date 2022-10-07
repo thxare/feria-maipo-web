@@ -15,6 +15,9 @@ export default function VentaLocal() {
       <div>
         <Header funciones={funciones} />
       </div>
+      <div className="p-5 mt-4"> 
+          <h1 className="text-4xl font-bold text-center mb-3">Solicitud de compras</h1>
+      </div>
     </>
   );
 }
