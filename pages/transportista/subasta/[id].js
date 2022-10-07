@@ -38,7 +38,7 @@ export default function DetalleSubasta({
                   Fecha inicio
                 </label>
                 <input
-                  className="mx-auto w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
+                  className="right-4 w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
                   disabled
                   type="datetime"
                   name="fechaInicio"
@@ -51,7 +51,7 @@ export default function DetalleSubasta({
                   Fecha término
                 </label>
                 <input
-                  className="mx-auto w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
+                  className="right-4 w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
                   disabled
                   type="datetime"
                   name="fechaTermino"
@@ -64,7 +64,7 @@ export default function DetalleSubasta({
                   Fecha inicio
                 </label>
                 <input
-                  className="mx-auto w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
+                  className="right-4 w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
                   disabled
                   type="datetime"
                   name="fechaInicio"
@@ -77,7 +77,7 @@ export default function DetalleSubasta({
                   Fecha inicio
                 </label>
                 <input
-                  className="mx-auto w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
+                  className="right-4 w-2/3 px-2 rounded-md border border-green text-center disabled:bg-white md:w-1/3"
                   disabled
                   type="datetime"
                   name="fechaInicio"
