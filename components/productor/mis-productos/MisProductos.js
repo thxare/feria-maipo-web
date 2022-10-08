@@ -57,7 +57,7 @@ export const MisProductos = ({
               } else {
                 valorTxt = "Segunda";
               }
-
+              console.log(productos)
               return (
                 <li key={index}>
                   <Productos

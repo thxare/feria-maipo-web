@@ -30,8 +30,6 @@ export const Modal = ({ closeModal, setProductos }) => {
     }
   };
 
- // const id = uuidv4();
-
   const onSubmit = async(data) => {
     const id_calidad = calidad.id_calidad
     const output = { ...data, imagen, id_calidad };  

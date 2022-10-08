@@ -21,12 +21,7 @@ export default function Index() {
   const onDelete = (id) => {
     axios
       .delete(
-        `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        `https://api-feria-web-production.up.railway.app/api/productos/${id}`
       )
       .then((res) => {
         setProductos(
