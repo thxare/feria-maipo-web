@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { stringify } from "postcss";
 import { Header } from "../../components/header/Header";
 import { CardList } from "../../components/transportista/CardList";
 
@@ -8,7 +7,7 @@ export default function Index(props) {
     { name: "Subastas", link: "/transportista/" },
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
-  console.log(props)
+ 
   return (
     <>
       <Head>

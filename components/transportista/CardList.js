@@ -32,53 +32,29 @@ export const CardList = (props) => {
   );
 };
 
-{
-  /* <Card title="Hola" />
-<Card title="Mundo" />
-<Card title="Chao" />
-<Card title="Todos" />
-<Card title="Todos" />
-<Card title="Todos" />
-<Card title="Todos" />
-<Card title="Todos" /> 
-
-  const subastas = [
-    {
-      id: 1,
-      title: "Hola",
-    },
-    {
-      id: 2,
-      title: "Chao",
-    },
-    {
-      id: 3,
-      title: "Chao",
-    },
-    {
-      id: 4,
-      title: "Chao",
-    },
-    {
-      id: 5,
-      title: "Chao",
-    },
-  ];*/
-}
 
 // Data fetching en el servidor
 export async function getServerSideProps(context) {
   // Api en railway
-  const api = `https://api-feria-web-production.up.railway.app/api/subastas/`;
-  const { params, res } = context;
+  // const api =  https://api-feria-web-production.up.railway.app/api/subastas/
+  const { res } = context;
+  const data = await axios.get(
+    `https://api-feria-web-production.up.railway.app/api/subastas/`
+  );
+  console.log(data.data)
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/transportista",
+        permanent: false,
+      },
+    };
+  }
+  const props = await data.data;
+  console.log(props);
+  return { props };
 
-  const apiResponse = await fetch(api);
-  if (apiResponse.ok) {
-    const props = await apiResponse.json();
-    console.log(props);
-    return { props: props };
-  }
-  if (res) {
-    res.writeHead(301, { Location: "/transportista" }.end());
-  }
+  // if (res) {
+  //   res.writeHead(301, { Location: "/transportista" }).end();
+  // }
 }
