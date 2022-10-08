@@ -49,17 +49,27 @@ export const MisProductos = ({
         <div>
           <ul>
             {productos.map((producto, index) => {
+              const valorTxt = "";
+              if (producto.id_calidad == 1) {
+                valorTxt = "Extra";
+              } else if (producto.id_calidad == 2) {
+                valorTxt = "Primera";
+              } else {
+                valorTxt = "Segunda";
+              }
+              console.log(productos)
               return (
                 <li key={index}>
                   <Productos
                     onDelete={onDelete}
                     onUpdate={onUpdate}
-                    id={producto.id}
-                    nombre={producto.nombre_producto}
-                    precio={producto.precio_producto}
-                    calidad={producto.calidad_producto}
-                    descripcion={producto.descripcion_producto}
-                    img={producto.pathImage}
+                    setProductos={setProductos}
+                    id={producto.id_producto}
+                    nombre={producto.nombre}
+                    precio={producto.precio}
+                    calidad={valorTxt}
+                    descripcion={producto.observaciones}
+                    img={producto.imagen}
                   />
                 </li>
               );

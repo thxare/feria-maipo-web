@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 export const Modal = ({ closeModal, setProductos }) => {
-  const [pathImage, setPathImage] = useState("/papa.jpg");
+  const [imagen, setImagen] = useState("/papa.jpg");
+  const [active, setActive] = useState(false);
+  const [calidad, setCalidad] = useState({nombreCa: "", id_calidad:0});
 
   const {
     register,
@@ -19,7 +22,7 @@ export const Modal = ({ closeModal, setProductos }) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function load() {
-          setPathImage(reader.result);
+          setImagen(reader.result);
         };
       } else {
         console.log("No es una imagen");
@@ -27,13 +30,23 @@ export const Modal = ({ closeModal, setProductos }) => {
     }
   };
 
-  const id = uuidv4();
 
-  const onSubmit = (data) => {
-    const output = { ...data, pathImage, id };
-    setProductos((productos) => [output, ...productos]);
+  const onSubmit = async(data) => {
+    const id_calidad = calidad.id_calidad
+    const output = { ...data, imagen, id_calidad };  
     closeModal();
+    setProductos((productos) => [output, ...productos]);
+    if (!calidad == "") {
+      const resp = await axios.post(
+        "https://api-feria-web-production.up.railway.app/api/productos",
+        output
+      );
+      
+    }else{
+      console.log("Ingrese")
+    }  
   };
+
   return (
     <>
       <div className="absolute top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
@@ -62,7 +75,7 @@ export const Modal = ({ closeModal, setProductos }) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src={pathImage} width="150" height="150" />
+              <Image src={imagen} width="150" height="150" />
             </div>
 
             <input
@@ -78,39 +91,169 @@ export const Modal = ({ closeModal, setProductos }) => {
           <input
             type="text"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
-            {...register("nombre_producto", { required: true })}
-            aria-invalid={errors.nombre_producto ? "true" : "false"}
+            {...register("nombre", { required: true })}
+            aria-invalid={errors.nombre ? "true" : "false"}
           />
-          {errors.nombre_producto?.type === "required" && (
+          {errors.nombre?.type === "required" && (
             <span className="text-xs italic text-bordeaux">
               Por favor ingrese el nombre del producto
             </span>
           )}
           <label className="font-semibold">Precio: </label>
-          <input
-            type="number"
-            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
-            {...register("precio_producto", { required: true })}
-            aria-invalid={errors.precio_producto ? "true" : "false"}
-          />
-          {errors.precio_producto?.type === "required" && (
-            <span className="text-xs italic text-bordeaux">
-              Por favor ingrese el precio del producto
-            </span>
-          )}
+          <div className="flex justify-between">
+            <input
+              type="number"
+              className="focus:shadow-outline w-3/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+              {...register("precio", { required: true })}
+              aria-invalid={errors.precio ? "true" : "false"}
+            />
+            {errors.precio?.type === "required" && (
+              <span className="text-xs italic text-bordeaux">
+                Por favor ingrese el precio del producto
+              </span>
+            )}
+            <div className="flex">
+              <div>
+                <div
+                  className="dropdown relative"
+                  onClick={() => setActive(!active)}
+                >
+                  <div
+                    className="
+          dropdown-toggle
+          flex
+          items-center
+          whitespace-nowrap
+          rounded
+          bg-darkGreen
+          px-8
+          py-3
+          text-xs
+          font-medium
+          uppercase
+          leading-tight text-white
+          shadow-md transition duration-150 ease-in-out
+          hover:bg-green hover:shadow-lg focus:bg-green
+          focus:shadow-lg
+          focus:outline-none
+          focus:ring-0
+          active:bg-green
+          active:text-white
+          active:shadow-lg
+        "
+                    type="button"
+                    id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {calidad.nombreCa ? calidad.nombreCa : "Calidad"}
+                    
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="caret-down"
+                      className="ml-2 w-2"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 320 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                      ></path>
+                    </svg>
+                  </div>
+                  {active && (
+                    <ul
+                      className="
+          dropdown-menu
+          absolute
+          z-50
+          float-left
+          m-0
+          mt-1
+          w-full
+          min-w-max
+          list-none
+          rounded-lg
+          border-none
+          bg-white
+          bg-clip-padding
+          py-2
+          text-left
+          text-base
+          shadow-lg
+        "
+                      aria-labelledby="dropdownMenuButton2"
+                    >
+                      <li>
+                        <div
+                          className="
+              dropdown-item
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              py-2
+              px-4
+              text-sm
+              font-normal
+              text-gray-700
+              hover:bg-gray-100
+            "
+                          onClick={() => setCalidad({nombreCa: "Extra", id_calidad:1})}
+                        >
+                          Extra
+                        </div>
+                      </li>
+                      <li>
+                        <div
+                          className="
+              dropdown-item
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              py-2
+              px-4
+              text-sm
+              font-normal
+              text-gray-700
+              hover:bg-gray-100
+            "
+                          onClick={() => setCalidad({nombreCa: "Primera", id_calidad:2})}
+                        >
+                          Primera
+                        </div>
+                      </li>
+                      <li>
+                        <div
+                          className="
+              dropdown-item
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              py-2
+              px-4
+              text-sm
+              font-normal
+              text-gray-700
+              hover:bg-gray-100
+            "
+                          onClick={() => setCalidad({nombreCa: "Segunda", id_calidad:3})}
+                        >
+                          Segunda
+                        </div>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <label className="font-semibold">Calidad: </label>
-          <input
-            type="text"
-            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
-            {...register("calidad_producto", { required: true })}
-            aria-invalid={errors.calidad_producto ? "true" : "false"}
-          />
-          {errors.calidad_producto?.type === "required" && (
-            <span className="text-xs italic text-bordeaux">
-              Por favor ingrese la calidad del producto
-            </span>
-          )}
           <label className="font-semibold">Descripción: </label>
           <textarea
             className="
@@ -135,10 +278,10 @@ export const Modal = ({ closeModal, setProductos }) => {
             id="exampleFormControlTextarea1"
             rows="3"
             placeholder="Kilos, uso, etc..."
-            {...register("descripcion_producto", { required: true })}
-            aria-invalid={errors.descripcion_producto ? "true" : "false"}
+            {...register("observaciones", { required: true })}
+            aria-invalid={errors.observaciones ? "true" : "false"}
           ></textarea>
-          {errors.descripcion_producto?.type === "required" && (
+          {errors.observaciones?.type === "required" && (
             <span className="text-xs italic text-bordeaux">
               Por favor ingrese la descripcion del producto
             </span>
