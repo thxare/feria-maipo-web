@@ -30,6 +30,7 @@ export const Modal = ({ closeModal, setProductos }) => {
     }
   };
 
+
   const onSubmit = async(data) => {
     const id_calidad = calidad.id_calidad
     const output = { ...data, imagen, id_calidad };  
@@ -43,8 +44,7 @@ export const Modal = ({ closeModal, setProductos }) => {
       
     }else{
       console.log("Ingrese")
-    }
-    
+    }  
   };
 
   return (
