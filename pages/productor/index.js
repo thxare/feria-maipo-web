@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
@@ -11,17 +12,33 @@ export default function Index() {
   ];
   const [productos, setProductos] = useState([]);
 
-  useEffect(() => {}, [productos]);
-  console.log(productos);
+  useEffect(() => {
+    axios
+      .get("https://api-feria-web-production.up.railway.app/api/productos")
+      .then((res) => setProductos(res.data));
+  }, []);
 
   const onDelete = (id) => {
-    setProductos([...productos].filter((producto) => producto.id !== id));
-    console.log(id);
+    axios
+      .delete(
+        `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setProductos(
+          [...productos].filter((producto) => producto.id_producto !== id)
+        );
+      });
   };
 
-  const onUpdate = (id) => {
-    const find = [...productos].find((producto) => producto.id === id);
+  const onUpdate = (id, callback) => {
+    const find = [...productos].find((producto) => producto.id_producto === id);
     console.log(find);
+    callback();
   };
 
   return (
