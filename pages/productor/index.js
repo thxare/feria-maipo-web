@@ -31,11 +31,21 @@ export default function Index() {
   };
 
   const onUpdate = (id, callback) => {
+    const valueText = "Actualizar"
     const find = [...productos].find((producto) => producto.id_producto === id);
-    console.log(find);
     callback();
+    return valueText, find;
+
 
   };
+
+  const onSave = async (output)=>{
+    const resp = await axios.post(
+      "https://api-feria-web-production.up.railway.app/api/productos",
+      output
+    );
+    closeModal();
+  }
 
   return (
     <>
@@ -50,6 +60,7 @@ export default function Index() {
             setProductos={setProductos}
             onDelete={onDelete}
             onUpdate={onUpdate}
+            onSave={onSave}
           />
         </div>
       </div>

@@ -7,6 +7,7 @@ export const MisProductos = ({
   setProductos,
   onDelete,
   onUpdate,
+  onSubmit
 }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => {
@@ -33,6 +34,8 @@ export const MisProductos = ({
           closeModal={handleClick}
           productos={productos}
           setProductos={setProductos}
+          valueText="Guardar"
+          onSubmit={onSubmit}
         />
       )}
       <div className="mx-auto mt-8 h-fit w-11/12">

@@ -12,6 +12,7 @@ export const Productos = ({
   onDelete,
   onUpdate,
   setProductos,
+  valueText
 }) => {
   const [show, setShow] = useState(false);
 
@@ -21,6 +22,7 @@ export const Productos = ({
         <ModalAndBackdrop
           closeModal={() => setShow(!show)}
           setProductos={setProductos}
+          valueText="Modificar"
         />
       )}
       <div className="m-4 rounded-lg bg-white pb-6 shadow-lg" id={id}>

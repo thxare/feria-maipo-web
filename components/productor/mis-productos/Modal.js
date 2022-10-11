@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-export const Modal = ({ closeModal, setProductos }) => {
+export const Modal = ({ closeModal, setProductos, valueText, onSave }) => {
   const [imagen, setImagen] = useState("/papa.jpg");
   const [active, setActive] = useState(false);
-  const [calidad, setCalidad] = useState({nombreCa: "", id_calidad:0});
+  const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
 
   const {
     register,
@@ -30,21 +30,16 @@ export const Modal = ({ closeModal, setProductos }) => {
     }
   };
 
-
-  const onSubmit = async(data) => {
-    const id_calidad = calidad.id_calidad
-    const output = { ...data, imagen, id_calidad };  
+  const onSubmit = async (data) => {
+    const id_calidad = calidad.id_calidad;
+    const output = { ...data, imagen, id_calidad };
     closeModal();
     setProductos((productos) => [output, ...productos]);
     if (!calidad == "") {
-      const resp = await axios.post(
-        "https://api-feria-web-production.up.railway.app/api/productos",
-        output
-      );
-      
-    }else{
-      console.log("Ingrese")
-    }  
+      onSave(output);
+    } else {
+      console.log("Ingrese");
+    }
   };
 
   return (
@@ -147,7 +142,7 @@ export const Modal = ({ closeModal, setProductos }) => {
                     aria-expanded="false"
                   >
                     {calidad.nombreCa ? calidad.nombreCa : "Calidad"}
-                    
+
                     <svg
                       aria-hidden="true"
                       focusable="false"
@@ -202,7 +197,9 @@ export const Modal = ({ closeModal, setProductos }) => {
               text-gray-700
               hover:bg-gray-100
             "
-                          onClick={() => setCalidad({nombreCa: "Extra", id_calidad:1})}
+                          onClick={() =>
+                            setCalidad({ nombreCa: "Extra", id_calidad: 1 })
+                          }
                         >
                           Extra
                         </div>
@@ -222,7 +219,9 @@ export const Modal = ({ closeModal, setProductos }) => {
               text-gray-700
               hover:bg-gray-100
             "
-                          onClick={() => setCalidad({nombreCa: "Primera", id_calidad:2})}
+                          onClick={() =>
+                            setCalidad({ nombreCa: "Primera", id_calidad: 2 })
+                          }
                         >
                           Primera
                         </div>
@@ -242,7 +241,9 @@ export const Modal = ({ closeModal, setProductos }) => {
               text-gray-700
               hover:bg-gray-100
             "
-                          onClick={() => setCalidad({nombreCa: "Segunda", id_calidad:3})}
+                          onClick={() =>
+                            setCalidad({ nombreCa: "Segunda", id_calidad: 3 })
+                          }
                         >
                           Segunda
                         </div>
@@ -287,7 +288,7 @@ export const Modal = ({ closeModal, setProductos }) => {
             </span>
           )}
           <button className="mt-4 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green">
-            Guardar
+            {valueText}
           </button>
         </form>
       </div>
