@@ -1,26 +1,36 @@
 import axios from "axios";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Header } from "../../../components/header/Header";
 import { Postulacion } from "../../../components/transportista/Postulacion";
+import { Spinner } from "../../../components/transportista/Spinner";
+import { useState, useEffect } from "react";
+import { getOneSubasta } from "../../../utils/fetching";
 
-export default function DetalleSubasta({
-  id_subasta,
-  ganador,
-  fecha_ter,
-  fecha_inicio,
-  cargo,
-  total,
-  estado,
-  id_venta,
-}) {
+export default function DetalleSubasta() {
   const funciones = [
     { name: "Subastas", link: "/transportista/" },
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
-  const dateInicio = new Date(fecha_inicio);
+  const [subasta, setSubasta] = useState(null);
+  const router = useRouter();
+  console.log(router.query)
+  useEffect(() => {
+    const fetchingPost = async () => {
+      const data = await getOneSubasta(router.query.id);
+      //console.log(data);
+      setSubasta(await data);
+    };
+    fetchingPost();
+  }, [router.query.id]);
+
+  if (!subasta) return <Spinner />;
+
+  const dateInicio = new Date(subasta.fecha_inicio);
   const fechaInicio = dateInicio.toLocaleDateString();
-  const dateTermino = new Date(fecha_ter);
+  const dateTermino = new Date(subasta.fecha_ter);
   const fechaTermino = dateTermino.toLocaleDateString();
+
   return (
     <>
       <Head>
@@ -29,7 +39,7 @@ export default function DetalleSubasta({
       <div className="h-full min-h-screen bg-gray-200">
         <Header funciones={funciones} />
         <h1 className="mt-10 mb-2 text-center text-2xl font-bold md:text-4xl">
-          {`Subasta ${id_subasta} ${fechaInicio}`}
+          {`Subasta ${subasta.id_subasta} ${fechaInicio}`}
         </h1>
         <div className="mx-auto mt-8 mb-7 grid w-3/4 grid-cols-1 place-content-center rounded-lg bg-slate-100 md:grid-cols-5">
           <div className="col-span-1 p-3 md:col-span-3">
@@ -72,33 +82,65 @@ export default function DetalleSubasta({
               <div className="my-2 text-center md:flex">
                 <label
                   className="mr-auto mb-2 block font-semibold"
-                  htmlFor="fechaInicio"
+                  htmlFor="ganador"
                 >
-                  Fecha inicio
+                  Ganador
                 </label>
                 <input
                   className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
                   disabled
-                  type="datetime"
-                  name="fechaInicio"
-                  id="fechaInicio"
-                  value={fechaInicio}
+                  type="text"
+                  name="ganador"
+                  id="ganador"
+                  value={subasta.ganador}
                 />
               </div>
               <div className="my-2 text-center md:flex">
                 <label
                   className="mr-auto mb-2 block font-semibold"
-                  htmlFor="fechaInicio"
+                  htmlFor="estado"
                 >
-                  Fecha inicio
+                  Estado
                 </label>
                 <input
                   className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
                   disabled
-                  type="datetime"
-                  name="fechaInicio"
-                  id="fechaInicio"
-                  value={fechaInicio}
+                  type="text"
+                  name="estado"
+                  id="estado"
+                  value={subasta.estado}
+                />
+              </div>
+              <div className="my-2 text-center md:flex">
+                <label
+                  className="mr-auto mb-2 block font-semibold"
+                  htmlFor="cargo"
+                >
+                  Cargo
+                </label>
+                <input
+                  className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
+                  disabled
+                  type="text"
+                  name="cargo"
+                  id="cargo"
+                  value={subasta.cargo != 0 ? subasta.cargo : "Por definir"}
+                />
+              </div>
+              <div className="my-2 text-center md:flex">
+                <label
+                  className="mr-auto mb-2 block font-semibold"
+                  htmlFor="total"
+                >
+                  Total
+                </label>
+                <input
+                  className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
+                  disabled
+                  type="text"
+                  name="total"
+                  id="total"
+                  value={subasta.total != 0 ? subasta.total : "Por definir"}
                 />
               </div>
             </div>
@@ -113,60 +155,47 @@ export default function DetalleSubasta({
   );
 }
 
-// DetalleSubasta.defaultProps = {
-//   id_subasta: 1,
-//   ganador: "Luciano",
-//   fecha_ter: `03/10/12`,
-//   fecha_inicio: `03/10/12`,
-//   cargo: 1000,
-//   total: 25000,
-//   estado: "activo",
-//   id_venta: 1,
-// };
+// Data fetching en tiempo de buildtime, generando páginas staticas 
 
-// Data fetching en tiempo de buildtime, generando páginas staticas ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}
+export const getStaticProps = async (context) => {
+  const { params } = context;
 
-// Data fetching en el servidor
-export async function getServerSideProps(context) {
-  // Api en railway
-  // const api =  https://api-feria-web-production.up.railway.app/api/subastas/
-  const { params, res } = context;
-  console.log(params)
   const { id } = params;
   const data = await axios.get(
     `https://api-feria-web-production.up.railway.app/api/subastas/${id}`
   );
-  console.log(data.data)
-  
   if (!data) {
     return {
       redirect: {
-        destination: "/transportista",
+        destination: "/",
         permanent: false,
       },
     };
   }
-  //const props = data.data;
-  
-  return { props : data.data };
+  return {
+    props: data.data,
+  };
+};
 
-  // if (res) {
-  //   res.writeHead(301, { Location: "/transportista" }).end();
-  // }
-}
+export const getStaticPaths = async () => {
+  const data = await axios.get(
+    `https://api-feria-web-production.up.railway.app/api/subastas/`
+  );
+  const subastas = data.data;
 
-// export async function getServerSideProps(context) {
-// const { params, res } = context;
-// const { id } = params;
+  return {
+    paths: subastas.map((subasta) => {
+      return { params: { id: toString(subasta.id_subasta) } };
+    }),
+    fallback: true,
+  };
+};
 
-// const apiResponse = await fetch(
-// `https://api-feria-web-production.up.railway.app/api/subastas/${id}`
-// );
-// if (apiResponse.ok) {
-// const props = await apiResponse.json();
-// return { props };
-// }
-// if (res) {
-// res.writeHead(301, { Location: " /transportista " }).end();
-// }
-// }
+// id_subasta,
+// ganador = "Sin definir",
+// fecha_ter,
+// fecha_inicio,
+// cargo = 0,
+// total = 0,
+// estado = "Pendiente",
+// id_venta,

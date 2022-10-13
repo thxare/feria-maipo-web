@@ -4,10 +4,10 @@ import { useRef, useEffect } from "react";
 
 export const Card = ({ ganador, fechaTermino, fechaInicio, id, estado }) => {
   const dateInicio = new Date(fechaInicio);
-  fechaInicio = dateInicio.toLocaleDateString();
   const dateTermino = new Date(fechaTermino);
-  fechaTermino = dateTermino.toLocaleDateString();
 
+  fechaInicio = dateInicio.toLocaleDateString();
+  fechaTermino = dateTermino.toLocaleDateString();
 
   return (
     <div className="col-span-8 mx-auto overflow-hidden rounded-lg bg-white pt-4 text-center shadow-lg md:col-span-4 xl:col-span-2">
