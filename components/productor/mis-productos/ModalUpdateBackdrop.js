@@ -2,12 +2,14 @@ import React from "react";
 import { Backdrop } from "../../ui/Backdrop";
 import { ModalUpdate } from "./ModalUpdate";
 
+
 export const ModalUpdateBackdrop = ({
   closeModal,
   setProductos,
   productos,
-  id
+  id,
 }) => {
+  
   return (
     <div>
       <ModalUpdate

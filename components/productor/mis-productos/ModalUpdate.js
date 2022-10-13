@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -34,7 +34,9 @@ export const ModalUpdate = ({ closeModal, setProductos, productos, id }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad };
-    setProductos(prev => prev.map(producto => (producto.id_producto === id ? output : find)));
+    setProductos((prev) =>
+      prev.map((producto) => (producto.id_producto === id ? output : find))
+    );
     closeModal();
     const resp = await axios.put(
       `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
@@ -47,13 +49,9 @@ export const ModalUpdate = ({ closeModal, setProductos, productos, id }) => {
         id_producto: id,
       }
     );
-
-    console.log(find);
-    console.log(output);
-    console.log(resp);
-    console.log(data);
   };
 
+  
   return (
     <>
       <div className="absolute top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
