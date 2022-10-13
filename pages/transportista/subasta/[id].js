@@ -157,39 +157,39 @@ export default function DetalleSubasta() {
 
 // Data fetching en tiempo de buildtime, generando páginas staticas 
 
-export const getStaticProps = async (context) => {
-  const { params } = context;
+// export const getStaticProps = async (context) => {
+//   const { params } = context;
 
-  const { id } = params;
-  const data = await axios.get(
-    `https://api-feria-web-production.up.railway.app/api/subastas/${id}`
-  );
-  if (!data) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: data.data,
-  };
-};
+//   const { id } = params;
+//   const data = await axios.get(
+//     `https://api-feria-web-production.up.railway.app/api/subastas/${id}`
+//   );
+//   if (!data) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
+//   return {
+//     props: data.data,
+//   };
+// };
 
-export const getStaticPaths = async () => {
-  const data = await axios.get(
-    `https://api-feria-web-production.up.railway.app/api/subastas/`
-  );
-  const subastas = data.data;
+// export const getStaticPaths = async () => {
+//   const data = await axios.get(
+//     `https://api-feria-web-production.up.railway.app/api/subastas/`
+//   );
+//   const subastas = data.data;
 
-  return {
-    paths: subastas.map((subasta) => {
-      return { params: { id: toString(subasta.id_subasta) } };
-    }),
-    fallback: true,
-  };
-};
+//   return {
+//     paths: subastas.map((subasta) => {
+//       return { params: { id: toString(subasta.id_subasta) } };
+//     }),
+//     fallback: true,
+//   };
+// };
 
 // id_subasta,
 // ganador = "Sin definir",
