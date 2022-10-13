@@ -1,16 +1,20 @@
 import React from "react";
 import { Backdrop } from "../../ui/Backdrop";
-import { Modal } from "./Modal";
+import { ModalUpdate } from "./ModalUpdate";
 
-export const ModalAndBackdrop = ({
+export const ModalUpdateBackdrop = ({
   closeModal,
   setProductos,
+  productos,
+  id
 }) => {
   return (
     <div>
-      <Modal
+      <ModalUpdate
         closeModal={closeModal}
         setProductos={setProductos}
+        productos={productos}
+        id={id}
       />
       <Backdrop closeModal={closeModal} />
     </div>

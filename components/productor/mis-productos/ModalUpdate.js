@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-export const Modal = ({ closeModal, setProductos }) => {
+export const ModalUpdate = ({ closeModal, setProductos, productos, id }) => {
   const [imagen, setImagen] = useState("/papa.jpg");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
@@ -29,19 +29,29 @@ export const Modal = ({ closeModal, setProductos }) => {
     }
   };
 
+  const find = [...productos].find((producto) => producto.id_producto === id);
+
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad };
+    setProductos(prev => prev.map(producto => (producto.id_producto === id ? output : find)));
     closeModal();
-    setProductos((productos) => [output, ...productos]);
-    if (!calidad == "" && !id_calidad == 0) {
-      const resp = await axios.post(
-        "https://api-feria-web-production.up.railway.app/api/productos",
-        output
-      );
-    } else {
-      console.log("Ingrese");
-    }
+    const resp = await axios.put(
+      `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
+      {
+        observaciones: output.observaciones || find.observaciones,
+        id_calidad: output.id_calidad || find.id_calidad,
+        nombre: output.nombre || find.nombre,
+        imagen: "/papa.jpg",
+        precio: output.precio || find.precio,
+        id_producto: id,
+      }
+    );
+
+    console.log(find);
+    console.log(output);
+    console.log(resp);
+    console.log(data);
   };
 
   return (
@@ -87,6 +97,7 @@ export const Modal = ({ closeModal, setProductos }) => {
           <label className="font-semibold">Nombre: </label>
           <input
             type="text"
+            defaultValue={find.nombre}
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
             {...register("nombre", { required: true })}
             aria-invalid={errors.nombre ? "true" : "false"}
@@ -99,6 +110,7 @@ export const Modal = ({ closeModal, setProductos }) => {
           <label className="font-semibold">Precio: </label>
           <div className="flex justify-between">
             <input
+              defaultValue={find.precio}
               type="number"
               className="focus:shadow-outline w-3/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
               {...register("precio", { required: true })}
@@ -259,6 +271,7 @@ export const Modal = ({ closeModal, setProductos }) => {
 
           <label className="font-semibold">Descripción: </label>
           <textarea
+            defaultValue={find.observaciones}
             className="
         form-control
         m-0
@@ -290,7 +303,7 @@ export const Modal = ({ closeModal, setProductos }) => {
             </span>
           )}
           <button className="mt-4 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green">
-           Guardar
+            Modificar
           </button>
         </form>
       </div>

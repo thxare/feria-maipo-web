@@ -7,7 +7,6 @@ export const MisProductos = ({
   setProductos,
   onDelete,
   onUpdate,
-  onSubmit
 }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => {
@@ -34,8 +33,6 @@ export const MisProductos = ({
           closeModal={handleClick}
           productos={productos}
           setProductos={setProductos}
-          valueText="Guardar"
-          onSubmit={onSubmit}
         />
       )}
       <div className="mx-auto mt-8 h-fit w-11/12">
@@ -49,7 +46,7 @@ export const MisProductos = ({
           </button>
         </div>
 
-        <div>
+        <div className="pb-4">
           <ul>
             {productos.map((producto, index) => {
               const valorTxt = "";
@@ -60,7 +57,7 @@ export const MisProductos = ({
               } else {
                 valorTxt = "Segunda";
               }
-              console.log(productos)
+
               return (
                 <li key={index}>
                   <Productos
@@ -73,6 +70,7 @@ export const MisProductos = ({
                     calidad={valorTxt}
                     descripcion={producto.observaciones}
                     img={producto.imagen}
+                    productos={productos}
                   />
                 </li>
               );
