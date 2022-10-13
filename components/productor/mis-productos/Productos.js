@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import { ModalAndBackdrop } from "./ModalAndBackdrop";
+import { ModalUpdateBackdrop } from "./ModalUpdateBackdrop";
 
 export const Productos = ({
   id,
@@ -12,15 +12,19 @@ export const Productos = ({
   onDelete,
   onUpdate,
   setProductos,
+  productos
 }) => {
   const [show, setShow] = useState(false);
 
   return (
     <>
       {show && (
-        <ModalAndBackdrop
+        <ModalUpdateBackdrop
           closeModal={() => setShow(!show)}
           setProductos={setProductos}
+          onUpdate={onUpdate}
+          productos={productos}
+          id={id}
         />
       )}
       <div className="m-4 rounded-lg bg-white pb-6 shadow-lg" id={id}>
@@ -40,7 +44,7 @@ export const Productos = ({
         </div>
         <div className="flex flex-row">
           <div className="mx-8 pb-6">
-            <Image src={img} width="200" height="200" />
+            <Image src={img} width="250" height="250" />
           </div>
 
           <div className="w-9/12 px-4">

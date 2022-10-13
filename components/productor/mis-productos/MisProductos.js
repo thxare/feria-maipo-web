@@ -46,7 +46,7 @@ export const MisProductos = ({
           </button>
         </div>
 
-        <div>
+        <div className="pb-4">
           <ul>
             {productos.map((producto, index) => {
               const valorTxt = "";
@@ -57,7 +57,7 @@ export const MisProductos = ({
               } else {
                 valorTxt = "Segunda";
               }
-              console.log(productos)
+
               return (
                 <li key={index}>
                   <Productos
@@ -70,6 +70,7 @@ export const MisProductos = ({
                     calidad={valorTxt}
                     descripcion={producto.observaciones}
                     img={producto.imagen}
+                    productos={productos}
                   />
                 </li>
               );

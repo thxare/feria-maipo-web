@@ -15,8 +15,14 @@ export default function Index() {
   useEffect(() => {
     axios
       .get("https://api-feria-web-production.up.railway.app/api/productos")
-      .then((res) => setProductos(res.data));
-  }, []);
+      .then((res) => {
+        const data = res.data;
+        const filtrado = data
+          .filter((dato) => dato)
+          .sort((a, b) => b.id_producto - a.id_producto);
+        setProductos(filtrado)
+      });
+  }, [productos]);
 
   const onDelete = (id) => {
     axios
@@ -32,9 +38,8 @@ export default function Index() {
 
   const onUpdate = (id, callback) => {
     const find = [...productos].find((producto) => producto.id_producto === id);
-    console.log(find);
-    callback();
 
+    callback();
   };
 
   return (
