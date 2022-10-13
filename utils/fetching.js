@@ -19,7 +19,7 @@ export const getOneSubasta = async (id) => {
     return response.data;
   } catch (error) {
 
-    return error;
+    return null;
   }
 };
 
