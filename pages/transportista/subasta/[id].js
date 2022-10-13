@@ -14,7 +14,7 @@ export default function DetalleSubasta() {
   ];
   const [subasta, setSubasta] = useState(null);
   const router = useRouter();
-  console.log(router.query)
+  //console.log(router.query)
   useEffect(() => {
     const fetchingPost = async () => {
       const data = await getOneSubasta(router.query.id);
