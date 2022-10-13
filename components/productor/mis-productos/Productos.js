@@ -27,8 +27,8 @@ export const Productos = ({
           id={id}
         />
       )}
-      <div className="m-4 rounded-lg bg-white pb-6 shadow-lg" id={id}>
-        <div className="flex sm:flex-row justify-end flex-col">
+      <div className="m-4 rounded-lg bg-white pb-6 shadow-lg flex flex-col mx-auto" id={id}>
+        <div className="flex sm:flex-row justify-end flex-col order-1 sm:order-none">
           <button
             className="sm:m-4 my-2 mx-5 sm:mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green"
             onClick={() => onUpdate(id, () => setShow(!show))}
@@ -43,11 +43,11 @@ export const Productos = ({
           </button>
         </div>
         <div className="flex md:flex-row flex-col">
-          <div className="mx-8 pb-6">
+          <div className="sm:mx-8 py-6 sm:pb-6 sm:py-0 mx-auto">
             <Image src={img} width="250" height="250" />
           </div>
 
-          <div className="w-9/12 px-4">
+          <div className="sm:w-9/12 px-4 w-full mb-2">
             <div className="mb-4 text-2xl capitalize">{nombre}</div>
             <div className="capitalize">
               <span className="font-bold">Calidad: </span>
