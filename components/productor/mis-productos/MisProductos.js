@@ -13,18 +13,6 @@ export const MisProductos = ({
     setShow(!show);
   };
 
-  useEffect(() => {
-    let scrollLeft;
-    if (show == true) {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
-        (window.onscroll = function () {
-          window.scrollTo(scrollLeft, scrollTop);
-        });
-    } else {
-      window.onscroll = function () {};
-    }
-  }, [show]);
 
   return (
     <>

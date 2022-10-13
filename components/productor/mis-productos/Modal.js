@@ -46,7 +46,7 @@ export const Modal = ({ closeModal, setProductos }) => {
 
   return (
     <>
-      <div className="absolute top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
         <div className="flex w-full flex-row justify-end">
           <div className="h-8 w-8 hover:rounded-full hover:bg-zinc-200">
             <button className="m-1" onClick={closeModal}>
