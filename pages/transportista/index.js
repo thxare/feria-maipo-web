@@ -9,7 +9,8 @@ export default function Index(props) {
     { name: "Subastas", link: "/transportista/" },
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
-  const [subastas, setSubastas] = useState([])
+  const [subastas, setSubastas] = useState([]) 
+  
   useEffect(() => {
     setSubastas(props.subastas)
   }, [props.subastas]);
@@ -31,8 +32,6 @@ export default function Index(props) {
 }
 
 export const getServerSideProps = async () => {
-  // Api en railway
-  // const api =  https://api-feria-web-production.up.railway.app/api/subastas/
 
   const data = await axios.get(
     `https://api-feria-web-production.up.railway.app/api/subastas/`
@@ -46,14 +45,12 @@ export const getServerSideProps = async () => {
       },
     };
   }
-  //const subastas = await data.data;
+
   return {
     props: {
       subastas: data.data
     },
   };
 
-  // if (res) {
-  //   res.writeHead(301, { Location: "/transportista" }).end();
-  // }
+
 };

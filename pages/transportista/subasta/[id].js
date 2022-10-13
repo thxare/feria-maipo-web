@@ -1,4 +1,3 @@
-import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Header } from "../../../components/header/Header";
@@ -6,6 +5,8 @@ import { Postulacion } from "../../../components/transportista/Postulacion";
 import { Spinner } from "../../../components/transportista/Spinner";
 import { useState, useEffect } from "react";
 import { getOneSubasta } from "../../../utils/fetching";
+
+
 
 export default function DetalleSubasta() {
   const funciones = [
@@ -16,12 +17,12 @@ export default function DetalleSubasta() {
   const router = useRouter();
   //console.log(router.query)
   useEffect(() => {
-    const fetchingPost = async () => {
+    const fetchingSubasta = async () => {
       const data = await getOneSubasta(router.query.id);
       //console.log(data);
       setSubasta(await data);
     };
-    fetchingPost();
+    fetchingSubasta();
   }, [router.query.id]);
 
   if (!subasta) return <Spinner />;
@@ -142,6 +143,15 @@ export default function DetalleSubasta() {
                   id="total"
                   value={subasta.total != 0 ? subasta.total : "Por definir"}
                 />
+              </div>
+              <div className="my-2 text-center md:flex">
+                <label
+                  className="mr-auto mb-2 block font-semibold"
+                  htmlFor="total"
+                >
+                  Observaciones
+                </label>
+                <p className="left-3">{subasta.observaciones}</p>
               </div>
             </div>
           </div>

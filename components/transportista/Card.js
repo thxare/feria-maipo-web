@@ -2,7 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 
-export const Card = ({ ganador, fechaTermino, fechaInicio, id, estado }) => {
+export const Card = ({
+  ganador,
+  fechaTermino,
+  fechaInicio,
+  id,
+  estado,
+  observaciones,
+}) => {
   const dateInicio = new Date(fechaInicio);
   const dateTermino = new Date(fechaTermino);
 
@@ -27,7 +34,7 @@ export const Card = ({ ganador, fechaTermino, fechaInicio, id, estado }) => {
           Fecha término: <span>{fechaTermino}</span>
         </p>
         <p className="text-justify text-base font-bold text-gray-700">
-          Estado: <span className="font-normal">{estado}</span>
+          Estado: <span className={`font-semibold ${estado.toLowerCase() === "activo" ? "text-green" : "text-red"}`}>{estado}</span>
         </p>
       </div>
       <div className="px-6 pt-4 pb-4 text-center">
@@ -40,3 +47,4 @@ export const Card = ({ ganador, fechaTermino, fechaInicio, id, estado }) => {
     </div>
   );
 };
+
