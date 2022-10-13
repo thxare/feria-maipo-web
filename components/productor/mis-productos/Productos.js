@@ -28,21 +28,21 @@ export const Productos = ({
         />
       )}
       <div className="m-4 rounded-lg bg-white pb-6 shadow-lg" id={id}>
-        <div className="flex flex-row justify-end">
+        <div className="flex sm:flex-row justify-end flex-col">
           <button
-            className="m-4 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green"
+            className="sm:m-4 my-2 mx-5 sm:mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green"
             onClick={() => onUpdate(id, () => setShow(!show))}
           >
             Modificar Producto
           </button>
           <button
-            className="m-4 ml-2 rounded bg-bordeaux py-2 px-4 font-bold text-white shadow-md hover:bg-red"
+            className="sm:m-4 mb-2 mx-5 sm:ml-2 rounded bg-bordeaux py-2 px-4 font-bold text-white shadow-md hover:bg-red"
             onClick={() => onDelete(id)}
           >
             Eliminar Producto
           </button>
         </div>
-        <div className="flex flex-row">
+        <div className="flex md:flex-row flex-col">
           <div className="mx-8 pb-6">
             <Image src={img} width="250" height="250" />
           </div>
