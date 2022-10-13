@@ -13,18 +13,6 @@ export const MisProductos = ({
     setShow(!show);
   };
 
-  useEffect(() => {
-    let scrollLeft;
-    if (show == true) {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
-        (window.onscroll = function () {
-          window.scrollTo(scrollLeft, scrollTop);
-        });
-    } else {
-      window.onscroll = function () {};
-    }
-  }, [show]);
 
   return (
     <>
@@ -35,8 +23,8 @@ export const MisProductos = ({
           setProductos={setProductos}
         />
       )}
-      <div className="mx-auto mt-8 h-fit w-11/12">
-        <div className="flex flex-row justify-between">
+      <div className="mx-auto mt-8 h-fit w-10/12">
+        <div className="flex sm:flex-row flex-col justify-between mx-3 sm:mx-0">
           <div className="text-2xl font-semibold">Mis Productos</div>
           <button
             className="m-2 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green"

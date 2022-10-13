@@ -46,7 +46,7 @@ export const Modal = ({ closeModal, setProductos }) => {
 
   return (
     <>
-      <div className="absolute top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
         <div className="flex w-full flex-row justify-end">
           <div className="h-8 w-8 hover:rounded-full hover:bg-zinc-200">
             <button className="m-1" onClick={closeModal}>
@@ -97,10 +97,10 @@ export const Modal = ({ closeModal, setProductos }) => {
             </span>
           )}
           <label className="font-semibold">Precio: </label>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-col sm:flex-row">
             <input
               type="number"
-              className="focus:shadow-outline w-3/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+              className="focus:shadow-outline sm:w-3/5 w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline mb-4 sm:mb-0"
               {...register("precio", { required: true })}
               aria-invalid={errors.precio ? "true" : "false"}
             />
@@ -110,15 +110,17 @@ export const Modal = ({ closeModal, setProductos }) => {
               </span>
             )}
             <div className="flex">
-              <div>
+              <div className="w-full sm:w-auto">
                 <div
                   className="dropdown relative"
                   onClick={() => setActive(!active)}
                 >
                   <div
                     className="
+                    
           dropdown-toggle
           flex
+          justify-center
           items-center
           whitespace-nowrap
           rounded
