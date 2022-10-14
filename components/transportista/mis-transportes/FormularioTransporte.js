@@ -81,7 +81,7 @@ export const FormularioTransporte = ({
           </label>
           <div className="relative">
             <select
-              value={""}
+              defaultValue="NADA"
               name="refrigeracion"
               onChange={handleChange}
               type="text"
@@ -89,9 +89,9 @@ export const FormularioTransporte = ({
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
               id="grid-state"
             >
-              <option value="" hidden disabled></option>
-              <option>{"Si"}</option>
-              <option>{"No"}</option>
+              <option value="NADA" hidden disabled></option>
+              <option>Si</option>
+              <option>No</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -113,7 +113,7 @@ export const FormularioTransporte = ({
           </label>
           <div className="relative">
             <select
-              value={""}
+              defaultValue="NADA"
               name="tamano"
               onChange={handleChange}
               type="text"
@@ -121,7 +121,7 @@ export const FormularioTransporte = ({
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
               id="grid-state"
             >
-              <option value="" disabled hidden></option>
+              <option value="NADA" disabled hidden></option>
               <option>Extra grande</option>
               <option>Grande</option>
               <option>Mediano</option>
