@@ -1,26 +1,61 @@
-import { useState } from "react";
+import axios from "axios";
 
-export const FormularioTransporte = () => {
-  const [transporte, setTransporte] = useState({});
+export const FormularioTransporte = ({
+  transporte,
+  setTransporte,
+  setListaActualizada,
+}) => {
+  //const [transporte, setTransporte] = useState({});
   const handleChange = (e) => {
     setTransporte({
       ...transporte,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.name !== "capacidad_carga" && e.target.name !== "id_tipo"
+          ? e.target.value
+          : parseInt(e.target.value),
     });
   };
 
-  const handleSubmit = (e) => {
+  // Destructuring de transporte
+  // const {} = transporte
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //validación de los datos
+    //console.log(transporte);
+    //validación de los datos (que no estén vacíos)
+
+    const respuesta = await axios.post(
+      "https://api-feria-web-production.up.railway.app/api/transportes",
+      {
+        patente: transporte.patente,
+        tamano: transporte.tamano,
+        id_usuario: 5,
+        capacidad_carga: transporte.capacidad_carga,
+        refrigeracion: transporte.refrigeracion,
+        id_tipo: transporte.id_tipo,
+      }
+    );
+    console.log(respuesta);
+    //setListaActualizada(true);
+    setTransporte({
+      patente: "",
+      tamano: "",
+      id_usuario: 5,
+      capacidad_carga: 0,
+      refrigeracion: "",
+      id_tipo: 0,
+    });
   };
 
+  // Colocar en los inputus un value con valor del destructuring de transporte
+
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-100 p-10 mt-12 md:mx-16">
+    <form onSubmit={handleSubmit} className="mt-12 bg-gray-100 p-10 md:mx-16">
       <div className="-mx-3 mb-3 flex flex-wrap place-content-center">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <label
             htmlFor="patente"
-            className="grid-first-name mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
           >
             Patente:
           </label>
@@ -46,6 +81,7 @@ export const FormularioTransporte = () => {
           </label>
           <div className="relative">
             <select
+              value={""}
               name="refrigeracion"
               onChange={handleChange}
               type="text"
@@ -53,6 +89,7 @@ export const FormularioTransporte = () => {
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
               id="grid-state"
             >
+              <option value="" hidden disabled></option>
               <option>{"Si"}</option>
               <option>{"No"}</option>
             </select>
@@ -76,6 +113,7 @@ export const FormularioTransporte = () => {
           </label>
           <div className="relative">
             <select
+              value={""}
               name="tamano"
               onChange={handleChange}
               type="text"
@@ -83,10 +121,11 @@ export const FormularioTransporte = () => {
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
               id="grid-state"
             >
-              <option>{"Extra grande"}</option>
-              <option>{"Grande"}</option>
-              <option>{"Mediano"}</option>
-              <option>{"Pequeño"}</option>
+              <option value="" disabled hidden></option>
+              <option>Extra grande</option>
+              <option>Grande</option>
+              <option>Mediano</option>
+              <option>Pequeño</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -107,16 +146,17 @@ export const FormularioTransporte = () => {
           </label>
           <div className="relative">
             <select
-              name="tipo"
+              defaultValue={0}
+              name="id_tipo"
               onChange={handleChange}
               type="text"
-              tipo="tipo"
+              tipo="id_tipo"
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
-              id="grid-state"
             >
-              <option>{"terrestre"}</option>
-              <option>{"maritimo"}</option>
-              <option>{"aereo"}</option>
+              <option value={0} disabled hidden></option>
+              <option value={1}>terrestre</option>
+              <option value={2}>maritimo</option>
+              <option value={3}>aereo</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -133,15 +173,15 @@ export const FormularioTransporte = () => {
       <div className="-mx-3 mb-6 flex flex-wrap place-content-center">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <label
-            htmlFor="capacidad"
+            htmlFor="capacidad_carga"
             className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
           >
             Capacidad de carga:
           </label>
           <input
-            name="capacidad"
+            name="capacidad_carga"
             onChange={handleChange}
-            kilogramos="capacidad"
+            kilogramos="capacidad_carga"
             className="border-red-500 mb-3 block w-full appearance-none rounded border bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
             id="grid-first-name"
             type="number"

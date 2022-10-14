@@ -17,7 +17,7 @@ export const Card = ({
   fechaTermino = dateTermino.toLocaleDateString();
 
   return (
-    <div className="col-span-8 mx-auto w-full overflow-hidden rounded-lg bg-white pt-4 text-center shadow-lg md:col-span-4 md:w-3/4 xl:col-span-2">
+    <div className="col-span-8 mx-auto overflow-hidden rounded-lg bg-white pt-4 text-center shadow-lg md:col-span-4 xl:col-span-2">
       <Image
         className="w-full"
         src="/feria-logo.png"
@@ -27,17 +27,17 @@ export const Card = ({
       />
       <div className="px-6 py-4">
         <h2 className="mb-2 text-left text-xl font-bold">Subasta {id}</h2>
-        <p className="text-justify text-base text-gray-700">
-          Fecha inicio: <span>{fechaInicio}</span>
+        <p className="text-justify text-base font-semibold text-gray-700">
+          Fecha inicio: <span className="font-normal">{fechaInicio}</span>
         </p>
-        <p className="text-justify text-base text-gray-700">
-          Fecha término: <span>{fechaTermino}</span>
+        <p className="text-justify text-base font-semibold text-gray-700">
+          Fecha término: <span className="font-normal">{fechaTermino}</span>
         </p>
-        <p className="text-justify text-base font-bold text-gray-700">
+        <p className="text-justify text-base font-semibold text-gray-700">
           Estado:{" "}
           <span
-            className={`font-semibold ${
-              estado.toLowerCase() === "activo" ? "text-green" : "text-red"
+            className={`font-bold ${
+              estado.toLowerCase() === "activa" ? "text-green" : "text-red"
             }`}
           >
             {estado}

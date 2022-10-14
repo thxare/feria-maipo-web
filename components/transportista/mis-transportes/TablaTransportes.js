@@ -1,4 +1,4 @@
-export const TablaTransportes = ({ transportesFiltrados }) => {
+export const TablaTransportes = ({ tabla, setListaActualizada }) => {
   return (
     <div className="mt-10 h-max bg-gray-100 p-10 md:mx-16">
       <div className="overflow-auto rounded-lg shadow-sm ">
@@ -26,7 +26,7 @@ export const TablaTransportes = ({ transportesFiltrados }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {transportesFiltrados?.map((transporte) => (
+            {tabla?.map((transporte) => (
               <tr key={transporte.id_transporte}>
                 <td className="whitespace-nowrap p-3 text-sm text-gray-700">
                   <a className="font-bold text-lime-600 hover:underline">

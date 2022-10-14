@@ -3,14 +3,44 @@ import { Header } from "../../components/header/Header";
 import { TablaTransportes } from "../../components/transportista/mis-transportes/TablaTransportes";
 import axios from "axios";
 import { FormularioTransporte } from "../../components/transportista/mis-transportes/FormularioTransporte";
+import { useState, useEffect } from "react";
 
 var idUsuario = 5;
 
-export default function MiTransporte({ transportesFiltrados }) {
+export default function MiTransporte() {
   const funciones = [
     { name: "Subastas", link: "/transportista/" },
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
+
+  const [transporte, setTransporte] = useState({
+    patente: "",
+    tamano: "",
+    id_usuario: 5,
+    capacidad_carga: 0,
+    refrigeracion: "",
+    id_tipo: 0,
+  });
+  const [tabla, setTabla] = useState([]);
+
+  const [listaActulizada, setListaActulizada] = useState(false);
+
+  useEffect(() => {
+    const listarTabla = async () => {
+      const data = await axios.get(
+        `https://api-feria-web-production.up.railway.app/api/transportes/`
+      );
+      const datos = data.data;
+      const transportesFiltrados = datos.filter(
+        (transportes) => transportes.id_usuario === idUsuario
+      );
+      //console.log(transportesFiltrados);
+      setTabla(transportesFiltrados);
+    };
+    listarTabla();
+    setListaActulizada(false);
+  }, [tabla, listaActulizada]);
+
   return (
     <>
       <Head>
@@ -23,34 +53,41 @@ export default function MiTransporte({ transportesFiltrados }) {
           <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
             Mis Transportes
           </h1>
-          <TablaTransportes transportesFiltrados={transportesFiltrados} />
-          <FormularioTransporte />
+          <TablaTransportes
+            tabla={tabla}
+            setListaActulizada={setListaActulizada}
+          />
+          <FormularioTransporte
+            transporte={transporte}
+            setTransporte={setTransporte}
+            setListaActulizada={setListaActulizada}
+          />
         </div>
       </div>
     </>
   );
 }
 
-export const getServerSideProps = async () => {
-  const data = await axios.get(
-    `https://api-feria-web-production.up.railway.app/api/transportes/`
-  );
-  //console.log(data.data);
-  const transportesFiltrados = data.data.filter((transportes) => {
-    transportes.id_usuario == idUsuario;
-  });
-  if (!transportesFiltrados) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+// export const getServerSideProps = async () => {
+//   const data = await axios.get(
+//     `https://api-feria-web-production.up.railway.app/api/transportes/`
+//   );
+//   //console.log(data.data);
+//   const transportesFiltrados = data.data.filter((transportes) => {
+//     transportes.id_usuario == idUsuario;
+//   });
+//   if (!transportesFiltrados) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {
-      transportes: transportesFiltrados,
-    },
-  };
-};
+//   return {
+//     props: {
+//       transportes: transportesFiltrados,
+//     },
+//   };
+// };
