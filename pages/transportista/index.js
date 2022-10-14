@@ -20,12 +20,14 @@ export default function Index(props) {
       <Head>
         <title>Maipo Grande - Transportista</title>
       </Head>
-      <div className="h-full bg-gray-200">
-        <Header funciones={funciones} />
-        <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
-          Subastas
-        </h1>
-        <CardList subastas={subastas} />
+      <div className="h-screen">
+        <div className="h-full bg-gray-200">
+          <Header funciones={funciones} />
+          <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
+            Subastas
+          </h1>
+          <CardList subastas={subastas} />
+        </div>
       </div>
     </>
   );

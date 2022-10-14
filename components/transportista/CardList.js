@@ -14,7 +14,7 @@ export const CardList = ({subastas}) => {
   // }, []);
 
   return (
-    <div className="grid grid-cols-8 justify-center gap-10 px-14 py-14">
+    <div className="grid grid-cols-8 justify-center gap-5 md:gap-3 px-14 pt-14">
       {subastas?.map((subasta) => {
         return (
           <Card

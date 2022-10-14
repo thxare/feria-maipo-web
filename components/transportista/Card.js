@@ -17,7 +17,7 @@ export const Card = ({
   fechaTermino = dateTermino.toLocaleDateString();
 
   return (
-    <div className="col-span-8 mx-auto overflow-hidden rounded-lg bg-white pt-4 text-center shadow-lg md:col-span-4 xl:col-span-2">
+    <div className="col-span-8 mx-auto w-full overflow-hidden rounded-lg bg-white pt-4 text-center shadow-lg md:col-span-4 md:w-3/4 xl:col-span-2">
       <Image
         className="w-full"
         src="/feria-logo.png"
@@ -34,7 +34,14 @@ export const Card = ({
           Fecha término: <span>{fechaTermino}</span>
         </p>
         <p className="text-justify text-base font-bold text-gray-700">
-          Estado: <span className={`font-semibold ${estado.toLowerCase() === "activo" ? "text-green" : "text-red"}`}>{estado}</span>
+          Estado:{" "}
+          <span
+            className={`font-semibold ${
+              estado.toLowerCase() === "activo" ? "text-green" : "text-red"
+            }`}
+          >
+            {estado}
+          </span>
         </p>
       </div>
       <div className="px-6 pt-4 pb-4 text-center">
@@ -47,4 +54,3 @@ export const Card = ({
     </div>
   );
 };
-
