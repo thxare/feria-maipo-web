@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -6,30 +6,26 @@ import { validacion } from "../../utils/validacion";
 
 export const LoginForm = () => {
   const [user, setUser] = useState({});
-
+  const apiUrl = "https://api-feria-web-production.up.railway.app";
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    try {
-      const resp = await axios.post(
-        "https://api-feria-web-production.up.railway.app/api/auth/login",
-        data
-      );
-      console.log(resp);
-      setUser(resp);
-      if (resp.status === 200) {
-        const rol = await user.data?.id_rol;
-        await validacion(rol);
-      } else {
-        console.log("Usuario malo");
-      }
-    } catch (err) {
-      console.log(err);
+  const validation = async (userResponse) => {
+    if (userResponse.status === 200) {
+      return validacion(userResponse.data.id_rol);
+    } else {
+      console.log("Usuario malo");
     }
+  };
+
+  const onSubmit = async (data) => {
+    const userResponse = await axios.post(`${apiUrl}/api/auth/login`, data);
+    setUser(userResponse.data);
+    console.log(userResponse)
+    return await validation(userResponse);
   };
 
   return (
