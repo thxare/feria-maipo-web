@@ -1,29 +1,37 @@
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "../../components/header/Header";
-import Tabla from "../../components/cliente-local/Tabla";
-import Form from "../../components/cliente-local/Form";
+import { Tabla } from "../../components/cliente-local/Tabla";
+import { Form } from "../../components/cliente-local/Form";
+import axios from "axios";
 /* import Dropdown from "../../components/cliente-local/Dropdown"; */
 
 <link rel="shortcut icon" href="#"></link>;
 
 export default function Compras() {
-  const [tabli, setTabli] = useState({
+  const [peticion, setPeticion] = useState({
     nombre: "",
-    calidad: "",
     kilogramos: 0,
+    id_usuario: 4,
+    estado: "activo",
+    locacion: "extranjero"
   });
 
   const [tablaa, setTabla] = useState([]);
 
+  const [listaActulizada, setlistaActulizada] = useState(false);
+
   useEffect(() => {
-    const getTabla = () => {
-      fetch("http://localhost:3001/api/peticion")
-        .then((res) => res.json())
-        .then((res) => setTabla(res));
+    const getTabla = async () => {
+      const res = await axios.get(
+        "https://api-feria-web-production.up.railway.app/api/peticion"
+      );
+      const datos = res.data;
+      setTabla(datos);
     };
     getTabla();
-  }, []);
+    setlistaActulizada(false);
+  }, [listaActulizada, tablaa]);
 
   const funciones = [
     { name: "Mercado", link: "/cliente-local/" },
@@ -40,9 +48,13 @@ export default function Compras() {
       </div>
 
       <div>
-        <Tabla tablaa={tablaa} />
+        <Tabla
+          peticion={peticion}
+          tablaa={tablaa}
+          setlistaActulizada={setlistaActulizada}
+        />
 
-        <Form tabli={tabli} setTabli={setTabli} />
+        <Form peticion={peticion} setPeticion={setPeticion} />
       </div>
     </>
   );
