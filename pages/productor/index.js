@@ -22,7 +22,7 @@ export default function Index() {
           .sort((a, b) => b.id_producto - a.id_producto);
         setProductos(filtrado)
       });
-  }, [productos]);
+  }, []);
 
   const onDelete = (id) => {
     axios

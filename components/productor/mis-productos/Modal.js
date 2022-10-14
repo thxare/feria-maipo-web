@@ -72,7 +72,7 @@ export const Modal = ({ closeModal, setProductos }) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src={imagen} width="150" height="150" />
+              <Image src={imagen} width="150" height="150" alt=""/>
             </div>
 
             <input

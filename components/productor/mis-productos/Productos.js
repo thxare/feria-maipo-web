@@ -44,7 +44,7 @@ export const Productos = ({
         </div>
         <div className="flex md:flex-row flex-col">
           <div className="sm:mx-8 py-6 sm:pb-6 sm:py-0 mx-auto">
-            <Image src={img} width="250" height="250" />
+            <Image src={img} width="250" height="250" alt=""/>
           </div>
 
           <div className="sm:w-9/12 px-4 w-full mb-2">
