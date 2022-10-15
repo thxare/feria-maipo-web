@@ -23,7 +23,7 @@ export const ModalProductos = () => {
         return (
           <div
             className={
-              "mx-auto grid h-16 grid-cols-5 items-center gap-1 bg-slate-50 py-3 px-3 shadow"
+              "mx-auto grid h-16 grid-cols-5 items-center gap-1 bg-gray-50 py-3 px-3 border-b-2 border-solid"
             }
             key={producto.id_producto}
           >
