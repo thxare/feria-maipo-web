@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ProductosContext } from "../Context";
 
 export const ModalProductos = () => {
   const { productos } = useContext(ProductosContext);
-  console.log(productos);
+
   return (
     <div>
       {productos.map((producto) => {
+        const [checked, setChecked] = useState({
+          id: producto.id_producto,
+          checked: false,
+        });
+
         const valorTxt = "";
         if (producto.id_calidad == 1) {
           valorTxt = "Extra";
@@ -16,7 +21,12 @@ export const ModalProductos = () => {
           valorTxt = "Segunda";
         }
         return (
-          <div className="mx-auto grid h-auto grid-cols-4 items-center  gap-2 bg-slate-50 py-3 px-3 shadow">
+          <div
+            className={
+              "mx-auto grid h-16 grid-cols-5 items-center gap-1 bg-slate-50 py-3 px-3 shadow"
+            }
+            key={producto.id_producto}
+          >
             <div className="capitalize">
               <span className="font-semibold">Nombre:</span> {producto.nombre}
             </div>
@@ -24,17 +34,38 @@ export const ModalProductos = () => {
               <span className="font-semibold">Precio Kg:</span>
               {producto.precio}
             </div>
-            <div>
+            <div className={`${checked ? "col-span-2" : "col-span-1"}`}>
               <span className="font-semibold">Calidad:</span> {valorTxt}
             </div>
-            <div class="">
+            <div
+              className={`${checked ? "hidden" : "block"}`}
+              id={producto.id_producto}
+            >
               <label className="font-semibold">Cantidad: </label>
               <input
+                id={producto.id_producto}
                 type="number"
                 min="0"
                 max="9999"
                 placeholder="Kg"
-                className="focus:shadow-outline w-6/12 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+                className={
+                  "focus:shadow-outline w-6/12 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+                }
+              />
+            </div>
+            <div className="form-check mx-auto">
+              <input
+                id={producto.id_producto}
+                className={
+                  "form-check-input float-left mt-1 h-4 w-4 cursor-pointer appearance-none rounded-sm border bg-contain bg-center bg-no-repeat align-top transition duration-200 focus:outline-none" +
+                  `${
+                    checked
+                      ? " border-gray-300 bg-white"
+                      : " border-blue-600 bg-blue-600"
+                  }`
+                }
+                type="checkbox"
+                onClick={() => setChecked(!checked)}
               />
             </div>
           </div>

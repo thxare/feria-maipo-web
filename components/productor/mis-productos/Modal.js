@@ -5,7 +5,7 @@ import axios from "axios";
 import { ProductosContext } from "../Context";
 
 export const Modal = ({ closeModal }) => {
-  const [imagen, setImagen] = useState("/papa.jpg");
+  const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
 

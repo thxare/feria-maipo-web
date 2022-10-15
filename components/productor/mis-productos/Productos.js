@@ -11,7 +11,7 @@ export const Productos = ({
   onDelete,
   onUpdate,
   descripcion,
-  img = "/papa.jpg",
+  img = "/feria-logo.png",
 }) => {
   const [show, setShow] = useState(false);
 
