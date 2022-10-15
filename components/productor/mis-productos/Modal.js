@@ -34,7 +34,6 @@ export const Modal = ({ closeModal }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario: 2 };
-    console.log(output)
     closeModal();
     setProductos((productos) => [output, ...productos]);
     if (!calidad == "" && !id_calidad == 0) {

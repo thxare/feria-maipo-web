@@ -1,10 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
-import {
-  ProductosContext,
-  ProductosContextProvider,
-} from "../../components/productor/Context";
+import { ProductosContextProvider } from "../../components/productor/Context";
 import { MostrarProductos } from "../../components/productor/mis-productos/MostrarProductos";
 
 export default function Index() {
@@ -14,11 +11,6 @@ export default function Index() {
     { name: "Venta Local", link: "/productor/ventalocal" },
   ];
 
-
-
-  
-
- 
   return (
     <>
       <ProductosContextProvider>

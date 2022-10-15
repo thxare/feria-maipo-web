@@ -30,9 +30,6 @@ export const ModalParticipar = ({ closeModal }) => {
           <h1 className="inline-block text-xl font-semibold">Mis Productos</h1>
           <div className="mx-auto my-5 h-64 w-full overflow-auto rounded">
             <ModalProductos />
-            <ModalProductos />
-            <ModalProductos />
-            <ModalProductos />
           </div>
           <div className="mx-auto w-5/12">
             <button className="mx-auto w-full rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green">
