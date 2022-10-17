@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ProductosContext } from "../Context";
 import { ModalUpdateBackdrop } from "./ModalUpdateBackdrop";
 
 export const Productos = ({
@@ -7,36 +8,36 @@ export const Productos = ({
   nombre,
   calidad,
   precio,
-  descripcion,
-  img = "/papa.jpg",
   onDelete,
   onUpdate,
-  setProductos,
-  productos
+  descripcion,
+  img = "/feria-logo.png",
 }) => {
   const [show, setShow] = useState(false);
+
 
   return (
     <>
       {show && (
         <ModalUpdateBackdrop
           closeModal={() => setShow(!show)}
-          setProductos={setProductos}
           onUpdate={onUpdate}
-          productos={productos}
           id={id}
         />
       )}
-      <div className="m-4 rounded-lg bg-white pb-6 shadow-lg flex flex-col mx-auto" id={id}>
-        <div className="flex sm:flex-row justify-end flex-col order-1 sm:order-none">
+      <div
+        className="m-4 mx-auto flex flex-col rounded-lg bg-white pb-6 shadow-lg"
+        id={id}
+      >
+        <div className="order-1 flex flex-col justify-end sm:order-none sm:flex-row">
           <button
-            className="sm:m-4 my-2 mx-5 sm:mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green"
+            className="my-2 mx-5 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green sm:m-4 sm:mr-1"
             onClick={() => onUpdate(id, () => setShow(!show))}
           >
             Modificar Producto
           </button>
           <button
-            className="sm:m-4 mb-2 mx-5 sm:ml-2 rounded bg-bordeaux py-2 px-4 font-bold text-white shadow-md hover:bg-red"
+            className="mx-5 mb-2 rounded bg-bordeaux py-2 px-4 font-bold text-white shadow-md hover:bg-red sm:m-4 sm:ml-2"
             onClick={() => onDelete(id)}
           >
             Eliminar Producto
@@ -47,7 +48,7 @@ export const Productos = ({
             <Image src={img} width="250" height="250" alt=""/>
           </div>
 
-          <div className="sm:w-9/12 px-4 w-full mb-2">
+          <div className="mb-2 w-full px-4 sm:w-9/12">
             <div className="mb-4 text-2xl capitalize">{nombre}</div>
             <div className="capitalize">
               <span className="font-bold">Calidad: </span>
