@@ -43,9 +43,9 @@ export const Productos = ({
             Eliminar Producto
           </button>
         </div>
-        <div className="flex flex-col md:flex-row">
-          <div className="mx-auto py-6 sm:mx-8 sm:py-0 sm:pb-6">
-            <Image src={img} width="250" height="250" />
+        <div className="flex md:flex-row flex-col">
+          <div className="sm:mx-8 py-6 sm:pb-6 sm:py-0 mx-auto">
+            <Image src={img} width="250" height="250" alt=""/>
           </div>
 
           <div className="mb-2 w-full px-4 sm:w-9/12">
