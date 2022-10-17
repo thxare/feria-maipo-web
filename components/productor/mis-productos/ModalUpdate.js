@@ -5,7 +5,7 @@ import axios from "axios";
 import { ProductosContext } from "../Context";
 
 export const ModalUpdate = ({ closeModal, id }) => {
-  const [imagen, setImagen] = useState("/papa.jpg");
+  const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
   const { productos, setProductos } = useContext(ProductosContext);
@@ -49,7 +49,7 @@ export const ModalUpdate = ({ closeModal, id }) => {
         observaciones: output.observaciones || find.observaciones,
         id_calidad: output.id_calidad || find.id_calidad,
         nombre: output.nombre || find.nombre,
-        imagen: "/papa.jpg",
+        imagen: "/feria-logo.png",
         precio: output.precio || find.precio,
         id_producto: id,
       }

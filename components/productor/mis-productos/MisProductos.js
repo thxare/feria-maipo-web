@@ -45,7 +45,6 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
 
               return (
                 <li key={index}>
-                
                   <Productos
                     onDelete={onDelete}
                     onUpdate={onUpdate}

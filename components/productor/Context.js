@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
-import { Productos } from "./mis-productos/Productos";
 
 export const ProductosContext = createContext();
 
@@ -14,13 +13,9 @@ export const ProductosContextProvider = ({ children }) => {
         const filtrado = data
           .filter((dato) => dato)
           .sort((a, b) => b.id_producto - a.id_producto);
-          setProductos(filtrado);
-        
+        setProductos(filtrado);
       });
   }, []);
-
-  
-  console.log(productos)
 
   return (
     <ProductosContext.Provider value={{ productos, setProductos }}>

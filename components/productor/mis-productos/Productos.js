@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React, { useContext, useState } from "react";
-import { ProductosContext } from "../Context";
+import React, { useState } from "react";
 import { ModalUpdateBackdrop } from "./ModalUpdateBackdrop";
 
 export const Productos = ({
