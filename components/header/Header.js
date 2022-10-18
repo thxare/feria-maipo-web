@@ -68,7 +68,7 @@ export const Header = (props) => {
           <RightPosition />
         </div>
         <div className={className} id="menu">
-          <ul className="navbar-nav list-style-none mr-auto flex flex-col pl-0 sm:flex-row">
+          <ul className="navbar-nav list-style-none mr-auto ml-8 mt-2 flex flex-col pl-0 md:flex-row">
             {props.funciones.map((funcion) => {
               return (
                 <Link

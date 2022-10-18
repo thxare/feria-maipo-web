@@ -1,7 +1,7 @@
 import Head from "next/head";
+import { Modal } from "../components/productor/mis-productos/Modal";
 
 export default function Home() {
-  
   return (
     <>
       <Head>
@@ -27,9 +27,7 @@ export default function Home() {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div>
-        
-      </div>
+      <div></div>
     </>
   );
 }
