@@ -23,6 +23,11 @@ export const FormularioTransporte = ({
     e.preventDefault();
     //console.log(transporte);
     //validación de los datos (que no estén vacíos)
+    if (transporte.capacidad_carga === 0 || transporte.id_tipo === 0 ||
+        transporte.patente === "" || transporte.refrigeracion === "" 
+      ) {
+      return 
+    }
 
     const respuesta = await axios.post(
       "https://api-feria-web-production.up.railway.app/api/transportes",
@@ -61,6 +66,7 @@ export const FormularioTransporte = ({
           </label>
           <input
             name="patente"
+            value={transporte.patente}
             onChange={handleChange}
             nombre="patente"
             className="mb-3 block w-full appearance-none rounded border bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
@@ -82,6 +88,7 @@ export const FormularioTransporte = ({
           <div className="relative">
             <select
               defaultValue="NADA"
+
               name="refrigeracion"
               onChange={handleChange}
               type="text"
@@ -147,6 +154,7 @@ export const FormularioTransporte = ({
           <div className="relative">
             <select
               defaultValue={0}
+
               name="id_tipo"
               onChange={handleChange}
               type="text"
@@ -179,6 +187,7 @@ export const FormularioTransporte = ({
             Capacidad de carga:
           </label>
           <input
+            value={transporte.capacidad_carga}
             name="capacidad_carga"
             onChange={handleChange}
             kilogramos="capacidad_carga"

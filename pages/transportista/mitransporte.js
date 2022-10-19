@@ -3,7 +3,7 @@ import { Header } from "../../components/header/Header";
 import { TablaTransportes } from "../../components/transportista/mis-transportes/TablaTransportes";
 import axios from "axios";
 import { FormularioTransporte } from "../../components/transportista/mis-transportes/FormularioTransporte";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 var idUsuario = 5;
 
@@ -34,10 +34,10 @@ export default function MiTransporte() {
       const transportesFiltrados = datos.filter(
         (transportes) => transportes.id_usuario === idUsuario
       );
-      //console.log(transportesFiltrados);
       setTabla(transportesFiltrados);
     };
     listarTabla();
+
     setListaActulizada(false);
   }, [tabla, listaActulizada]);
 
