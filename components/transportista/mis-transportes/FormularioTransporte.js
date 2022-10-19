@@ -3,7 +3,7 @@ import axios from "axios";
 export const FormularioTransporte = ({
   transporte,
   setTransporte,
-  setListaActualizada,
+  setListaActulizada,
 }) => {
   //const [transporte, setTransporte] = useState({});
   const handleChange = (e) => {
@@ -23,10 +23,13 @@ export const FormularioTransporte = ({
     e.preventDefault();
     //console.log(transporte);
     //validación de los datos (que no estén vacíos)
-    if (transporte.capacidad_carga === 0 || transporte.id_tipo === 0 ||
-        transporte.patente === "" || transporte.refrigeracion === "" 
-      ) {
-      return 
+    if (
+      transporte.capacidad_carga === 0 ||
+      transporte.id_tipo === 0 ||
+      transporte.patente === "" ||
+      transporte.refrigeracion === ""
+    ) {
+      return;
     }
 
     const respuesta = await axios.post(
@@ -50,6 +53,7 @@ export const FormularioTransporte = ({
       refrigeracion: "",
       id_tipo: 0,
     });
+    setListaActulizada(true);
   };
 
   // Colocar en los inputus un value con valor del destructuring de transporte
@@ -88,7 +92,6 @@ export const FormularioTransporte = ({
           <div className="relative">
             <select
               defaultValue="NADA"
-
               name="refrigeracion"
               onChange={handleChange}
               type="text"
@@ -154,7 +157,6 @@ export const FormularioTransporte = ({
           <div className="relative">
             <select
               defaultValue={0}
-
               name="id_tipo"
               onChange={handleChange}
               type="text"

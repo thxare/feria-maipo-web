@@ -23,7 +23,7 @@ export default function MiTransporte() {
   });
   const [tabla, setTabla] = useState([]);
 
-  const [listaActulizada, setListaActulizada] = useState(false);
+  const [listaActulizada, setListaActulizada] = useState(true);
 
   useEffect(() => {
     const listarTabla = async () => {
@@ -36,7 +36,7 @@ export default function MiTransporte() {
       );
       setTabla(transportesFiltrados);
     };
-    listarTabla();
+    if (listaActulizada) listarTabla();
 
     setListaActulizada(false);
   }, [tabla, listaActulizada]);
@@ -55,7 +55,6 @@ export default function MiTransporte() {
           </h1>
           <TablaTransportes
             tabla={tabla}
-            setListaActulizada={setListaActulizada}
           />
           <FormularioTransporte
             transporte={transporte}
