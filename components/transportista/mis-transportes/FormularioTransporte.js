@@ -189,7 +189,7 @@ export const FormularioTransporte = ({
             Capacidad de carga:
           </label>
           <input
-            value={transporte.capacidad_carga}
+            value={transporte.capacidad_carga.toString()}
             name="capacidad_carga"
             onChange={handleChange}
             kilogramos="capacidad_carga"
