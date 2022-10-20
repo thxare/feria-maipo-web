@@ -3,9 +3,9 @@ import axios from "axios";
 import { ModalParticiparBackdrop } from "./venta/ModalParticiparBackdrop";
 import { SolicitudCard } from "./venta/SolicitudCard";
 
-export const Ventas = ({ tipo }) => {
+export const Ventas = ({ tipo, lugar }) => {
   const [show, setShow] = useState(false);
-  const [peticion, setPeticion] = useState({});
+  const [peticion, setPeticion] = useState([]);
   const handleClick = () => {
     setShow(!show);
   };
@@ -18,7 +18,6 @@ export const Ventas = ({ tipo }) => {
     });
   }, []);
 
-
   return (
     <div className="mx-auto mt-8 h-fit w-10/12">
       <div className="mx-3 flex flex-col justify-between sm:mx-0 sm:flex-row">
@@ -26,14 +25,17 @@ export const Ventas = ({ tipo }) => {
       </div>
       {show && <ModalParticiparBackdrop closeModal={handleClick} />}
       <div className="grid grid-cols-3">
-        {peticion.map((pet) => {
+        {peticion.map((pet, index) => {
+        if(pet.locacion === lugar)
           return (
-            <SolicitudCard
-              handleClick={handleClick}
-              nombre={pet.nombre}
-              kilogramos={pet.kilogramos}
-              estado={pet.estado}
-            />
+            <li key={index} className="list-none">
+              <SolicitudCard
+                handleClick={handleClick}
+                nombre={pet.nombre}
+                kilogramos={pet.kilogramos}
+                estado={pet.estado}
+              />
+            </li>
           );
         })}
       </div>
