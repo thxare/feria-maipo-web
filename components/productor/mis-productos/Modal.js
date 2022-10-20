@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { ProductosContext } from "../Context";
 
-export const Modal = ({ closeModal, setProductos }) => {
-  const [imagen, setImagen] = useState("/papa.jpg");
+export const Modal = ({ closeModal }) => {
+  const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
 
+  const { setProductos } = useContext(ProductosContext);
   const {
     register,
     handleSubmit,
@@ -31,7 +33,7 @@ export const Modal = ({ closeModal, setProductos }) => {
 
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
-    const output = { ...data, imagen, id_calidad };
+    const output = { ...data, imagen, id_calidad, id_usuario: 2 };
     closeModal();
     setProductos((productos) => [output, ...productos]);
     if (!calidad == "" && !id_calidad == 0) {
@@ -97,10 +99,10 @@ export const Modal = ({ closeModal, setProductos }) => {
             </span>
           )}
           <label className="font-semibold">Precio: </label>
-          <div className="flex justify-between flex-col sm:flex-row">
+          <div className="flex flex-col justify-between sm:flex-row">
             <input
               type="number"
-              className="focus:shadow-outline sm:w-3/5 w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline mb-4 sm:mb-0"
+              className="focus:shadow-outline mb-4 w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline sm:mb-0 sm:w-3/5"
               {...register("precio", { required: true })}
               aria-invalid={errors.precio ? "true" : "false"}
             />
@@ -120,8 +122,8 @@ export const Modal = ({ closeModal, setProductos }) => {
                     
           dropdown-toggle
           flex
-          justify-center
           items-center
+          justify-center
           whitespace-nowrap
           rounded
           bg-darkGreen
@@ -292,7 +294,7 @@ export const Modal = ({ closeModal, setProductos }) => {
             </span>
           )}
           <button className="mt-4 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green">
-           Guardar
+            Guardar
           </button>
         </form>
       </div>

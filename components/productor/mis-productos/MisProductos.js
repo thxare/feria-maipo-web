@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ProductosContext } from "../Context";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Productos } from "./Productos";
 
-export const MisProductos = ({
-  productos,
-  setProductos,
-  onDelete,
-  onUpdate,
-}) => {
+export const MisProductos = ({ onDelete, onUpdate }) => {
+  const { productos, setProductos } = useContext(ProductosContext);
+
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(!show);
   };
-
 
   return (
     <>
@@ -24,7 +21,7 @@ export const MisProductos = ({
         />
       )}
       <div className="mx-auto mt-8 h-fit w-10/12">
-        <div className="flex sm:flex-row flex-col justify-between mx-3 sm:mx-0">
+        <div className="mx-3 flex flex-col justify-between sm:mx-0 sm:flex-row">
           <div className="text-2xl font-semibold">Mis Productos</div>
           <button
             className="m-2 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green"
