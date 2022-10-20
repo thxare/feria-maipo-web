@@ -14,7 +14,6 @@ export const Productos = ({
 }) => {
   const [show, setShow] = useState(false);
 
-
   return (
     <>
       {show && (

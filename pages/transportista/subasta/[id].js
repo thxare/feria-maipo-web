@@ -6,14 +6,14 @@ import { Spinner } from "../../../components/transportista/Spinner";
 import { useState, useEffect } from "react";
 import { getOneSubasta } from "../../../utils/fetching";
 
-
-
 export default function DetalleSubasta() {
   const funciones = [
     { name: "Subastas", link: "/transportista/" },
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
   const [subasta, setSubasta] = useState(null);
+  const [isActive, setIsActive] = useState(true);
+
   const router = useRouter();
   //console.log(router.query)
   useEffect(() => {
@@ -21,6 +21,8 @@ export default function DetalleSubasta() {
       const data = await getOneSubasta(router.query.id);
       //console.log(data);
       setSubasta(await data);
+      const estado = data.estado.toLowerCase() !== "activa"
+      setIsActive(estado)
     };
     fetchingSubasta();
   }, [router.query.id]);
@@ -31,6 +33,7 @@ export default function DetalleSubasta() {
   const fechaInicio = dateInicio.toLocaleDateString();
   const dateTermino = new Date(subasta.fecha_ter);
   const fechaTermino = dateTermino.toLocaleDateString();
+  
 
   return (
     <>
@@ -157,7 +160,7 @@ export default function DetalleSubasta() {
           </div>
           <div className="col-span-1 p-3 md:col-span-2">
             <h2 className="text-center text-lg font-bold">Postulación</h2>
-            <Postulacion />
+            <Postulacion estado={isActive}/>
           </div>
         </div>
       </div>
@@ -165,7 +168,7 @@ export default function DetalleSubasta() {
   );
 }
 
-// Data fetching en tiempo de buildtime, generando páginas staticas 
+// Data fetching en tiempo de buildtime, generando páginas staticas
 
 // export const getStaticProps = async (context) => {
 //   const { params } = context;
