@@ -28,8 +28,9 @@ export const LoginForm = () => {
     setUser(userResponse.data);
     await validation(userResponse);
   };
-
-  window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(user));
+  useEffect(() => {
+    window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(user));
+  }, [user]);
 
   return (
     <>
