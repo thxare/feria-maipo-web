@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Header } from "../../components/header/Header";
 import { Ventas } from "../../components/productor/Ventas";
 import { ProductosContextProvider } from "../../components/productor/ContextProducto";
-import { useEffect, useState } from "react";
 
 export default function VentaExterna() {
   const funciones = [

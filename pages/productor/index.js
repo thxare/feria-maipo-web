@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter, withRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
-import { UserContextProvider } from "../../components/login/ContextUser";
 import { ProductosContextProvider } from "../../components/productor/ContextProducto";
 import { MostrarProductos } from "../../components/productor/mis-productos/MostrarProductos";
 

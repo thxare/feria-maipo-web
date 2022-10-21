@@ -313,3 +313,4 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
     </>
   );
 };
+
