@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ProductosContext } from "../ContextProducto";
 
-export const Modal = ({ closeModal }) => {
+export const Modal = ({ closeModal, user }) => {
   const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
@@ -31,9 +31,11 @@ export const Modal = ({ closeModal }) => {
     }
   };
 
+  const id_usuario = user?.id_usuario;
+
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
-    const output = { ...data, imagen, id_calidad };
+    const output = { ...data, imagen, id_calidad, id_usuario };
     closeModal();
     setProductos((productos) => [output, ...productos]);
     if (!calidad == "" && !id_calidad == 0) {
@@ -74,7 +76,7 @@ export const Modal = ({ closeModal }) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src={imagen} width="150" height="150" alt=""/>
+              <Image src={imagen} width="150" height="150" alt="" />
             </div>
 
             <input

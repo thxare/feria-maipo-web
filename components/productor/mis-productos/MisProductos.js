@@ -22,6 +22,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
     <>
       {show && (
         <ModalAndBackdrop
+          user={user}
           closeModal={handleClick}
           productos={productos}
           setProductos={setProductos}
@@ -56,6 +57,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
                     <Productos
                       onDelete={onDelete}
                       onUpdate={onUpdate}
+                      user={user}
                       setProductos={setProductos}
                       id={producto.id_producto}
                       nombre={producto.nombre}

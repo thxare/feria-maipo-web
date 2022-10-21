@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -27,8 +27,8 @@ export const LoginForm = () => {
     const userResponse = await axios.post(`${apiUrl}/api/auth/login`, data);
     setUser(userResponse.data);
     await validation(userResponse);
-    
   };
+
   window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(user));
 
   return (
