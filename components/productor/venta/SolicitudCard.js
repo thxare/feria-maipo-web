@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export const SolicitudCard = ({handleClick}) => {
+export const SolicitudCard = ({handleClick, nombre, kilogramos, estado}) => {
 
   return (
     <>
@@ -10,14 +10,14 @@ export const SolicitudCard = ({handleClick}) => {
         <div className="px-3">
           <div className="flex flex-col md:flex-row">
             <div className="mb-2 w-full px-4">
-              <div className="my-4 text-2xl capitalize">Manzana</div>
+              <div className="my-4 text-2xl capitalize">{nombre}</div>
               <div className="capitalize">
                 <span className="font-bold">Kilogramos: </span>
-                50kg
+                {kilogramos}kg
               </div>
               <div className="font-semibold text-darkGreen">
                 <span className="font-bold text-black">Estado: </span>
-                Activo
+                {estado}
               </div>
             </div>
           </div>

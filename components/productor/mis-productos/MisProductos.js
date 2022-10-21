@@ -1,20 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ProductosContext } from "../Context";
+import { UserContext } from "../../login/ContextUser";
+
+import { ProductosContext } from "../ContextProducto";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Productos } from "./Productos";
 
 export const MisProductos = ({ onDelete, onUpdate }) => {
   const { productos, setProductos } = useContext(ProductosContext);
-
+  const [user, setUser] = useState();
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(!show);
   };
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
+  }, []);
+
+  const id_usuario = user?.id_usuario;
 
   return (
     <>
       {show && (
         <ModalAndBackdrop
+          user={user}
           closeModal={handleClick}
           productos={productos}
           setProductos={setProductos}
@@ -45,18 +53,21 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
 
               return (
                 <li key={index}>
-                  <Productos
-                    onDelete={onDelete}
-                    onUpdate={onUpdate}
-                    setProductos={setProductos}
-                    id={producto.id_producto}
-                    nombre={producto.nombre}
-                    precio={producto.precio}
-                    calidad={valorTxt}
-                    descripcion={producto.observaciones}
-                    img={producto.imagen}
-                    productos={productos}
-                  />
+                  {producto.id_usuario == id_usuario && (
+                    <Productos
+                      onDelete={onDelete}
+                      onUpdate={onUpdate}
+                      user={user}
+                      setProductos={setProductos}
+                      id={producto.id_producto}
+                      nombre={producto.nombre}
+                      precio={producto.precio}
+                      calidad={valorTxt}
+                      descripcion={producto.observaciones}
+                      img={producto.imagen}
+                      productos={productos}
+                    />
+                  )}
                 </li>
               );
             })}

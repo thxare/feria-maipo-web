@@ -10,9 +10,11 @@ export const Productos = ({
   onDelete,
   onUpdate,
   descripcion,
+  user,
   img = "/feria-logo.png",
 }) => {
   const [show, setShow] = useState(false);
+
 
   return (
     <>
@@ -21,6 +23,7 @@ export const Productos = ({
           closeModal={() => setShow(!show)}
           onUpdate={onUpdate}
           id={id}
+          user={user}
         />
       )}
       <div

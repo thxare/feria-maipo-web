@@ -1,11 +1,11 @@
 import React from "react";
 import { Backdrop } from "../../ui/Backdrop";
-import { ProductosContext } from "../Context";
 import { ModalUpdate } from "./ModalUpdate";
 
 export const ModalUpdateBackdrop = ({
   closeModal,
   id,
+  user
 }) => {
   
   
@@ -14,6 +14,7 @@ export const ModalUpdateBackdrop = ({
         <ModalUpdate
           closeModal={closeModal}
           id={id}
+          user={user}
         />
         <Backdrop closeModal={closeModal} />
       

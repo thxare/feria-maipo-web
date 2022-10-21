@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
 import { Ventas } from "../../components/productor/Ventas";
-import { ProductosContextProvider } from "../../components/productor/Context";
+import { ProductosContextProvider } from "../../components/productor/ContextProducto";
 
 export default function VentaExterna() {
   const funciones = [
@@ -9,6 +9,7 @@ export default function VentaExterna() {
     { name: "Venta Externa", link: "/productor/ventaexterna" },
     { name: "Venta Local", link: "/productor/ventalocal" },
   ];
+
   return (
     <>
       <ProductosContextProvider>
@@ -18,7 +19,7 @@ export default function VentaExterna() {
         <div className="h-screen bg-gray-200">
           <div className="h-max bg-gray-200">
             <Header funciones={funciones} />
-            <Ventas tipo="Externa" />
+            <Ventas tipo="Externa" lugar={"extranjero"} />
           </div>
         </div>
       </ProductosContextProvider>
