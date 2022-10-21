@@ -1,6 +1,6 @@
 import React from "react";
 import { Backdrop } from "../../ui/Backdrop";
-import { ProductosContext } from "../Context";
+import { ProductosContext } from "../ContextProducto";
 import { ModalUpdate } from "./ModalUpdate";
 
 export const ModalUpdateBackdrop = ({

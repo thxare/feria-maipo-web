@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import { validacion } from "../../utils/validacion";
+import { UserContext } from "./ContextUser";
 
 export const LoginForm = () => {
-  const [user, setUser] = useState({});
+  const { user, setUser } = useContext(UserContext);
+
   const apiUrl = "https://api-feria-web-production.up.railway.app";
   const {
     register,
@@ -24,9 +26,10 @@ export const LoginForm = () => {
   const onSubmit = async (data) => {
     const userResponse = await axios.post(`${apiUrl}/api/auth/login`, data);
     setUser(userResponse.data);
-    console.log(userResponse)
-    return await validation(userResponse);
+    await validation(userResponse);
+    
   };
+  window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(user));
 
   return (
     <>

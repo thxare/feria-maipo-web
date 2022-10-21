@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ProductosContext } from "../Context";
+import { ProductosContext } from "../ContextProducto";
 
 export const ModalUpdate = ({ closeModal, id }) => {
   const [imagen, setImagen] = useState("/feria-logo.png");

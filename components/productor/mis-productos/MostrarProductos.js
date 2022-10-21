@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { ProductosContext } from "../Context";
+import { ProductosContext } from "../ContextProducto";
 import { MisProductos } from "./MisProductos";
+
 
 export const MostrarProductos = () => {
   const { productos, setProductos } = useContext(ProductosContext);
@@ -19,13 +20,12 @@ export const MostrarProductos = () => {
   };
   const onUpdate = (id, callback) => {
     const find = [...productos].find((producto) => producto.id_producto === id);
-    console.log(find)
+    console.log(find);
     callback();
   };
   return (
-    <div>
+    <>
       <MisProductos onDelete={onDelete} onUpdate={onUpdate} />
-    </div>
+    </>
   );
 };
-

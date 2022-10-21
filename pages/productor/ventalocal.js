@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
 import { Ventas } from "../../components/productor/Ventas";
-import { ProductosContextProvider } from "../../components/productor/Context";
+import { ProductosContextProvider } from "../../components/productor/ContextProducto";
 
 export default function VentaLocal() {
   const funciones = [

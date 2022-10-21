@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ProductosContext } from "../Context";
+import { ProductosContext } from "../ContextProducto";
 
 export const ModalProductos = () => {
   const { productos } = useContext(ProductosContext);

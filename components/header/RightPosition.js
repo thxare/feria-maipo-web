@@ -16,6 +16,8 @@ export const RightPosition = () => {
   }
 
   const onSubmit = () => {
+    const data = {}
+    window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(data));
     router.push("/login/");
   };
 

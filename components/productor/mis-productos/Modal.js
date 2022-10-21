@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ProductosContext } from "../Context";
+import { ProductosContext } from "../ContextProducto";
 
 export const Modal = ({ closeModal }) => {
   const [imagen, setImagen] = useState("/feria-logo.png");
@@ -33,7 +33,7 @@ export const Modal = ({ closeModal }) => {
 
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
-    const output = { ...data, imagen, id_calidad, id_usuario: 2 };
+    const output = { ...data, imagen, id_calidad };
     closeModal();
     setProductos((productos) => [output, ...productos]);
     if (!calidad == "" && !id_calidad == 0) {

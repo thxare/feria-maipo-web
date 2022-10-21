@@ -1,10 +1,13 @@
 import axios from "axios";
 import Head from "next/head";
+import { useRouter, withRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
-import { ProductosContextProvider } from "../../components/productor/Context";
+import { UserContextProvider } from "../../components/login/ContextUser";
+import { ProductosContextProvider } from "../../components/productor/ContextProducto";
 import { MostrarProductos } from "../../components/productor/mis-productos/MostrarProductos";
 
-export default function Index() {
+export default function Index(props) {
   const funciones = [
     { name: "Mis Productos", link: "/productor/" },
     { name: "Venta Externa", link: "/productor/ventaexterna" },
