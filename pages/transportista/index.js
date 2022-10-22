@@ -2,17 +2,17 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
 import { CardList } from "../../components/transportista/CardList";
-import axios from 'axios'
+import axios from "axios";
 
 export default function Index(props) {
   const funciones = [
     { name: "Subastas", link: "/transportista/" },
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
-  const [subastas, setSubastas] = useState([]) 
-  
+  const [subastas, setSubastas] = useState([]);
+
   useEffect(() => {
-    setSubastas(props.subastas)
+    setSubastas(props.subastas);
   }, [props.subastas]);
 
   return (
@@ -34,7 +34,6 @@ export default function Index(props) {
 }
 
 export const getServerSideProps = async () => {
-
   const data = await axios.get(
     `https://api-feria-web-production.up.railway.app/api/subastas/`
   );
@@ -50,9 +49,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      subastas: data.data
+      subastas: data.data,
     },
   };
-
-
 };

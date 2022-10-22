@@ -1,24 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext} from "react";
+import { TransporteContext } from "../ContextTransporte";
 import { FormularioTransporte } from "./FormularioTransporte";
 import { TablaTransportes } from "./TablaTransportes";
 
 export const MostrarTransportes = ({ user }) => {
-  const [tabla, setTabla] = useState([]);
-  const [listaActulizada, setListaActulizada] = useState(true);
-  useEffect(() => {
-    axios
-      .get(`https://api-feria-web-production.up.railway.app/api/transportes/`)
-      .then((res) => {
-        const data = res.data;
-        const filtrado = data.filter(
-          (transportes) => transportes.id_usuario == user?.id_usuario
-        );
-        setTabla(filtrado);
-        setListaActulizada(false);
-      });
-  }, [listaActulizada]);
-
+  const { tabla, setListaActulizada } = useContext(TransporteContext);
   return (
     <div>
       <TablaTransportes tabla={tabla} />

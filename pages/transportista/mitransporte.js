@@ -5,6 +5,7 @@ import axios from "axios";
 import { FormularioTransporte } from "../../components/transportista/mis-transportes/FormularioTransporte";
 import { useState, useEffect } from "react";
 import { MostrarTransportes } from "../../components/transportista/mis-transportes/MostrarTransportes";
+import { TransporteContext, TransporteContextProvider } from "../../components/transportista/ContextTransporte";
 
 export default function MiTransporte() {
   const funciones = [
@@ -18,6 +19,7 @@ export default function MiTransporte() {
 
   return (
     <>
+    <TransporteContextProvider user={user}>
       <Head>
         <title>Maipo Grande - Transportista</title>
       </Head>
@@ -28,33 +30,10 @@ export default function MiTransporte() {
           <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
             Mis Transportes
           </h1>
-          <MostrarTransportes user={user}/>
+          <MostrarTransportes user={user} />
         </div>
       </div>
+      </TransporteContextProvider>
     </>
   );
 }
-
-// export const getServerSideProps = async () => {
-//   const data = await axios.get(
-//     `https://api-feria-web-production.up.railway.app/api/transportes/`
-//   );
-//   //console.log(data.data);
-//   const transportesFiltrados = data.data.filter((transportes) => {
-//     transportes.id_usuario == idUsuario;
-//   });
-//   if (!transportesFiltrados) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       transportes: transportesFiltrados,
-//     },
-//   };
-// };
