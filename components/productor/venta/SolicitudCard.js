@@ -6,7 +6,7 @@ export const SolicitudCard = ({handleClick, nombre, kilogramos, estado}) => {
   return (
     <>
       
-      <div className="m-4 flex w-10/12 flex-col rounded-lg bg-white pb-6 shadow-lg">
+      <div className="md:m-4 flex md:w-10/12 flex-col rounded-lg bg-white pb-6 shadow-lg w-full my-2">
         <div className="px-3">
           <div className="flex flex-col md:flex-row">
             <div className="mb-2 w-full px-4">
