@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
 import { validacion } from "../../utils/validacion";
 import { UserContext } from "./ContextUser";
+import { Alert } from "../ui/Alert";
 
 export const LoginForm = () => {
   const { user, setUser } = useContext(UserContext);
+  const [showAlert, setShowAlert] = useState(false);
 
   const apiUrl = "https://api-feria-web-production.up.railway.app";
   const {
@@ -19,21 +20,33 @@ export const LoginForm = () => {
     if (userResponse.status === 200) {
       return validacion(userResponse.data.id_rol);
     } else {
-      console.log("Usuario malo");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
     }
   };
 
   const onSubmit = async (data) => {
-    const userResponse = await axios.post(`${apiUrl}/api/auth/login`, data);
-    setUser(userResponse.data);
-    await validation(userResponse);
+    try {
+      const userResponse = await axios.post(`${apiUrl}/api/auth/login`, data);
+      setUser(userResponse.data);
+      await validation(userResponse);
+    } catch (err) {
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+    }
   };
+
   useEffect(() => {
     window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(user));
   }, [user]);
 
   return (
     <>
+      {showAlert && <Alert text="Usuario o contraseña incorrecta" />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-4">
           <label
