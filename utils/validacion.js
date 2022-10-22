@@ -1,5 +1,5 @@
 import { router } from "next/router";
-export const validacion = (rol) => {
+export const validacion = (rol, setShowAlert) => {
   switch (rol) {
     case 2:
       router.push("/productor/");
@@ -14,7 +14,10 @@ export const validacion = (rol) => {
       router.push("/transportista/");
       break;
     default:
-      console.log("Algo está mal");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
       break;
   }
 };
