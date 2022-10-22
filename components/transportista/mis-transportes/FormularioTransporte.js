@@ -1,11 +1,19 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 
-export const FormularioTransporte = ({
-  transporte,
-  setTransporte,
-  setListaActulizada,
-}) => {
-  //const [transporte, setTransporte] = useState({});
+// Aquí necesito al usuario, por eso se lo mando desde la página mitransporte
+// ya que necesito el id_usuario
+
+export const FormularioTransporte = ({ setListaActulizada, user }) => {
+  const [transporte, setTransporte] = useState({
+    patente: "",
+    tamano: "",
+    id_usuario: user?.id_usuario,
+    capacidad_carga: 0,
+    refrigeracion: "",
+    id_tipo: 0,
+  });
+
   const handleChange = (e) => {
     setTransporte({
       ...transporte,
@@ -16,13 +24,8 @@ export const FormularioTransporte = ({
     });
   };
 
-  // Destructuring de transporte
-  // const {} = transporte
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //console.log(transporte);
-    //validación de los datos (que no estén vacíos)
     if (
       transporte.capacidad_carga === 0 ||
       transporte.id_tipo === 0 ||
@@ -37,26 +40,23 @@ export const FormularioTransporte = ({
       {
         patente: transporte.patente,
         tamano: transporte.tamano,
-        id_usuario: 5,
+        id_usuario: user?.id_usuario,
         capacidad_carga: transporte.capacidad_carga,
         refrigeracion: transporte.refrigeracion,
         id_tipo: transporte.id_tipo,
       }
     );
-    console.log(respuesta);
-    //setListaActualizada(true);
+
     setTransporte({
       patente: "",
       tamano: "",
-      id_usuario: 5,
+      id_usuario: user?.id_usuario,
       capacidad_carga: 0,
       refrigeracion: "",
       id_tipo: 0,
     });
     setListaActulizada(true);
   };
-
-  // Colocar en los inputus un value con valor del destructuring de transporte
 
   return (
     <form onSubmit={handleSubmit} className="mt-12 bg-gray-100 p-10 md:mx-16">
@@ -156,7 +156,7 @@ export const FormularioTransporte = ({
           </label>
           <div className="relative">
             <select
-              defaultValue={0}
+              defaultValue={transporte.id_tipo}
               name="id_tipo"
               onChange={handleChange}
               type="text"
