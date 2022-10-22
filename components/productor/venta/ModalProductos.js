@@ -7,12 +7,11 @@ export const ModalProductos = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
   }, []);
-  
+
   const id_usuario = user?.id_usuario;
   return (
     <div>
       {productos.map((producto) => {
-        console.log(producto);
         const [checked, setChecked] = useState({
           id: producto.id_producto,
           checked: false,
@@ -31,7 +30,7 @@ export const ModalProductos = () => {
             {producto.id_usuario == id_usuario && (
               <div
                 className={
-                  "mx-auto grid h-16 grid-cols-5 items-center gap-1 border-b-2 border-solid bg-gray-50 py-3 px-3"
+                  "mx-auto flex h-16 flex-row items-center gap-1 border-b-2 border-solid bg-gray-50 py-3 px-3 md:grid md:grid-cols-5"
                 }
                 key={producto.id_producto}
               >
