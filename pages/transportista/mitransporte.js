@@ -3,9 +3,7 @@ import { Header } from "../../components/header/Header";
 import { TablaTransportes } from "../../components/transportista/mis-transportes/TablaTransportes";
 import axios from "axios";
 import { FormularioTransporte } from "../../components/transportista/mis-transportes/FormularioTransporte";
-import { useState, useEffect, useCallback } from "react";
-
-var idUsuario = 5;
+import { useState, useEffect } from "react";
 
 export default function MiTransporte() {
   const funciones = [
@@ -13,33 +11,26 @@ export default function MiTransporte() {
     { name: "Mi Transporte", link: "/transportista/mitransporte" },
   ];
 
-  const [transporte, setTransporte] = useState({
-    patente: "",
-    tamano: "",
-    id_usuario: 5,
-    capacidad_carga: 0,
-    refrigeracion: "",
-    id_tipo: 0,
-  });
   const [tabla, setTabla] = useState([]);
-
+  const [user, setUser] = useState();
   const [listaActulizada, setListaActulizada] = useState(true);
 
   useEffect(() => {
     const listarTabla = async () => {
-      const data = await axios.get(
+      setUser(JSON.parse(window.localStorage.getItem("loggedNoteAppUser")));
+      const { id_usuario } = user;
+      const { data } = await axios.get(
         `https://api-feria-web-production.up.railway.app/api/transportes/`
       );
-      const datos = data.data;
-      const transportesFiltrados = datos.filter(
-        (transportes) => transportes.id_usuario === idUsuario
+      const transportesFiltrados = data.filter(
+        (transportes) => transportes.id_usuario === id_usuario
       );
       setTabla(transportesFiltrados);
     };
     if (listaActulizada) listarTabla();
 
     setListaActulizada(false);
-  }, [tabla, listaActulizada]);
+  }, [user, tabla, listaActulizada]);
 
   return (
     <>
@@ -53,13 +44,14 @@ export default function MiTransporte() {
           <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
             Mis Transportes
           </h1>
-          <TablaTransportes
-            tabla={tabla}
-          />
+          <TablaTransportes tabla={tabla} />
+          {/* Aquí en el formulario necesito el id_usuario, en un principio le pasaba el usuario completo,
+          pero en realidad basta con el id nada más */}
           <FormularioTransporte
-            transporte={transporte}
-            setTransporte={setTransporte}
+            //transporte={transporte}
+            //setTransporte={setTransporte}
             setListaActulizada={setListaActulizada}
+            user={user}
           />
         </div>
       </div>

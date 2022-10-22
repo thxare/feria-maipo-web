@@ -1,11 +1,24 @@
 import axios from "axios";
+import { useState } from "react";
+
+// Aquí necesito al usuario, por eso se lo mando desde la página mitransporte
+// ya que necesito el id_usuario
 
 export const FormularioTransporte = ({
-  transporte,
-  setTransporte,
+  // transporte,
+  // setTransporte,
   setListaActulizada,
+  user,
 }) => {
-  //const [transporte, setTransporte] = useState({});
+  const [transporte, setTransporte] = useState({
+    patente: "",
+    tamano: "",
+    id_usuario: user.id_usuario,
+    capacidad_carga: 0,
+    refrigeracion: "",
+    id_tipo: 0,
+  });
+
   const handleChange = (e) => {
     setTransporte({
       ...transporte,
@@ -37,7 +50,7 @@ export const FormularioTransporte = ({
       {
         patente: transporte.patente,
         tamano: transporte.tamano,
-        id_usuario: 5,
+        id_usuario: user.id_usuario,
         capacidad_carga: transporte.capacidad_carga,
         refrigeracion: transporte.refrigeracion,
         id_tipo: transporte.id_tipo,
@@ -48,7 +61,7 @@ export const FormularioTransporte = ({
     setTransporte({
       patente: "",
       tamano: "",
-      id_usuario: 5,
+      id_usuario: user.id_usuario,
       capacidad_carga: 0,
       refrigeracion: "",
       id_tipo: 0,
@@ -156,7 +169,7 @@ export const FormularioTransporte = ({
           </label>
           <div className="relative">
             <select
-              defaultValue={0}
+              defaultValue={transporte.id_tipo}
               name="id_tipo"
               onChange={handleChange}
               type="text"
