@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Header } from "../../../components/header/Header";
 import { Postulacion } from "../../../components/transportista/Postulacion";
-import { Spinner } from "../../../components/transportista/Spinner";
+import { Spinner } from "../../../components/ui/Spinner";
 import { useState, useEffect } from "react";
 import { getOneSubasta } from "../../../utils/fetching";
 
@@ -21,8 +21,8 @@ export default function DetalleSubasta() {
       const data = await getOneSubasta(router.query.id);
       //console.log(data);
       setSubasta(await data);
-      const estado = data.estado.toLowerCase() !== "activa"
-      setIsActive(estado)
+      const estado = data.estado.toLowerCase() !== "activa";
+      setIsActive(estado);
     };
     fetchingSubasta();
   }, [router.query.id]);
@@ -33,7 +33,6 @@ export default function DetalleSubasta() {
   const fechaInicio = dateInicio.toLocaleDateString();
   const dateTermino = new Date(subasta.fecha_ter);
   const fechaTermino = dateTermino.toLocaleDateString();
-  
 
   return (
     <>
@@ -160,7 +159,7 @@ export default function DetalleSubasta() {
           </div>
           <div className="col-span-1 p-3 md:col-span-2">
             <h2 className="text-center text-lg font-bold">Postulación</h2>
-            <Postulacion estado={isActive}/>
+            <Postulacion estado={isActive} />
           </div>
         </div>
       </div>
