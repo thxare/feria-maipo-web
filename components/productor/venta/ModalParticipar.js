@@ -5,7 +5,7 @@ import { ModalProductos } from "./ModalProductos";
 export const ModalParticipar = ({ closeModal }) => {
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-9/12 rounded-lg border bg-white p-6 shadow-lg md:p-8 md:pt-4">
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max md:w-9/12 w-11/12 rounded-lg border bg-white p-6 shadow-lg md:p-8 md:pt-4">
         <div className="flex w-full flex-row justify-end">
           <div className="h-8 w-8 hover:rounded-full hover:bg-zinc-200">
             <button className="m-1" onClick={closeModal}>
@@ -26,7 +26,7 @@ export const ModalParticipar = ({ closeModal }) => {
             </button>
           </div>
         </div>
-        <div className="px-4">
+        <div className="md:px-4 px-0">
           <h1 className="inline-block text-xl font-semibold">Mis Productos</h1>
           <div className="mx-auto my-5 h-64 w-full overflow-auto rounded">
             <ModalProductos />
