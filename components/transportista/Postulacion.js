@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const Postulacion = () => {
+export const Postulacion = ({ estado }) => {
   const transportes = [
     {
       id: 1,
@@ -44,7 +44,7 @@ export const Postulacion = () => {
   const [transporte, setTransporte] = useState([]);
 
   const [postulacion, setPostulacion] = useState({});
-  
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -63,6 +63,7 @@ export const Postulacion = () => {
           Cargo
         </label>
         <input
+          disabled={estado}
           className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
           id="cargo"
           {...register("cargo", { required: true })}
@@ -92,6 +93,7 @@ export const Postulacion = () => {
           name="precio"
           type="number"
           placeholder="2500"
+          disabled={estado}
         />
         {errors.precio?.type === "required" && (
           <span className="text-xs italic text-bordeaux">
@@ -114,6 +116,7 @@ export const Postulacion = () => {
           id="transportes"
           {...register("transportes", { required: true })}
           aria-invalid={errors.transportes ? "true" : "false"}
+          disabled={estado}
         >
           <option defaultValue>Elige un transporte</option>
           {transportes.map((transporte) => (
@@ -132,6 +135,7 @@ export const Postulacion = () => {
       </div>
 
       <button
+        disabled={estado}
         type="submit"
         className="mb-3 inline-block w-full rounded bg-green px-6 py-2.5 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
       >

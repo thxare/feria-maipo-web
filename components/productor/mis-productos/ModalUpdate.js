@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ProductosContext } from "../Context";
+import { ProductosContext } from "../ContextProducto";
 
-export const ModalUpdate = ({ closeModal, id }) => {
+export const ModalUpdate = ({ closeModal, id, user }) => {
   const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
   const { productos, setProductos } = useContext(ProductosContext);
-  
+
   const {
     register,
     handleSubmit,
@@ -30,19 +30,18 @@ export const ModalUpdate = ({ closeModal, id }) => {
       }
     }
   };
+  const id_usuario = user.id_usuario;
 
   const find = [...productos].find((producto) => producto.id_producto === id);
 
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
-    const output = { ...data, imagen, id_calidad, id_usuario: 2 };
-    console.log(output)
+    const output = { ...data, imagen, id_calidad, id_usuario };
+    console.log(output);
     setProductos((prev) =>
       prev.map((producto) => (producto.id_producto === id ? output : find))
     );
-    
-    
-    
+
     const resp = await axios.put(
       `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
       {
@@ -314,3 +313,4 @@ export const ModalUpdate = ({ closeModal, id }) => {
     </>
   );
 };
+

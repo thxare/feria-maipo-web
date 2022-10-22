@@ -1,12 +1,10 @@
 import Head from "next/head";
 import { Header } from "../../components/header/Header";
-import { Cards } from "../../components/cliente-local/Cards";
 
-export default function Index() {
+export default function Compras() {
   const funciones = [
     { name: "Mercado", link:"/cliente-local/" },
     { name: "Compras" , link:"/cliente-local/compras"},
-    { name: "Solicitudes", link: "/cliente-local/solicitudes" },
   ];
   return (
     <>
@@ -15,7 +13,6 @@ export default function Index() {
       </Head>
       <div>
         <Header funciones={funciones} />
-        <Cards />
       </div>
     </>
   );

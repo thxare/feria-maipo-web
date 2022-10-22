@@ -1,4 +1,4 @@
-export const TablaTransportes = ({ tabla, setListaActualizada }) => {
+export const TablaTransportes = ({ tabla }) => {
   return (
     <div className="mt-10 h-max bg-gray-100 p-10 md:mx-16">
       <div className="overflow-auto rounded-lg shadow-sm ">

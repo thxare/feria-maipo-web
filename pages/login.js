@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useEffect } from "react";
+import { UserContextProvider } from "../components/login/ContextUser";
 import { Login } from "../components/login/Login";
 
 export default function LoginPage() {
@@ -14,10 +15,12 @@ export default function LoginPage() {
 
   return (
     <>
+    <UserContextProvider>
       <Head>
         <title>Maipo Grande - Login</title>
       </Head>
       <Login />
+      </UserContextProvider>
     </>
   );
 }
