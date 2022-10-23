@@ -15,7 +15,7 @@ export default function Index() {
     if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
       router?.push("/redireccion/");
     } else if (typeof dato !== "undefined" || dato !== {}) {
-      router?.push("/productor/");
+      router?.push("/cliente-local/");
     }
   }, []);
 
