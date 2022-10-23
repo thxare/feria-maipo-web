@@ -66,7 +66,7 @@ export const Form = ({ peticion, setPeticion }) => {
       kilogramos: 0,
       id_usuario: id_usuario,
       estado: "activo",
-      locacion: "local",
+      locacion: "extranjero",
     });
   };
   
