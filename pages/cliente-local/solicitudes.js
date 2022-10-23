@@ -1,10 +1,10 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
+import { router } from "next/router";
 import { Header } from "../../components/header/Header";
 import { Tabla } from "../../components/cliente-local/Tabla";
 import { Form } from "../../components/cliente-local/Form";
 import axios from "axios";
-/* import Dropdown from "../../components/cliente-local/Dropdown"; */
 
 <link rel="shortcut icon" href="#"></link>;
 
@@ -43,6 +43,14 @@ export default function Compras() {
     { name: "Solicitudes", link: "/cliente-local/solicitudes" },
     { name: "Mercado", link: "/cliente-local/" },
   ];
+  useEffect(() => {
+    const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
+    if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
+      router?.push("/redireccion/");
+    } else if (typeof dato !== "undefined" || dato !== {}) {
+      router?.push("/productor/");
+    }
+  }, []);
   return (
     <>
       <Head>
