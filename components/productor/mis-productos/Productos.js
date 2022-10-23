@@ -56,7 +56,7 @@ export const Productos = ({
               {calidad}
             </div>
             <div>
-              <span className="font-bold">Precio: </span>${precio}
+              <span className="font-bold">Precio: </span>${precio} x kg
             </div>
             <div className="capitalize">
               <span className="font-bold">Descripción: </span> {descripcion}

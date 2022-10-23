@@ -68,7 +68,7 @@ export const ModalProductos = () => {
                       "form-check-input float-left mt-1 h-4 w-4 cursor-pointer appearance-none rounded-sm border bg-contain bg-center bg-no-repeat align-top transition duration-200 focus:outline-none" +
                       `${
                         checked
-                          ? " border-gray-300 bg-white"
+                          ? " border-gray-500 bg-white"
                           : " border-blue-600 bg-blue-600"
                       }`
                     }

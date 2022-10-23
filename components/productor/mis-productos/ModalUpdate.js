@@ -99,6 +99,7 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
           <label className="font-semibold">Nombre: </label>
           <input
             type="text"
+            placeholder="Papa, naranja, etc..."
             defaultValue={find.nombre}
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
             {...register("nombre", { required: true })}
@@ -113,6 +114,7 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
           <div className="flex flex-col justify-between sm:flex-row">
             <input
               defaultValue={find.precio}
+              placeholder="x kg"
               type="number"
               className="focus:shadow-outline mb-4 w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline sm:mb-0 sm:w-3/5"
               {...register("precio", { required: true })}
@@ -296,7 +298,7 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
       "
             id="exampleFormControlTextarea1"
             rows="3"
-            placeholder="Kilos, uso, etc..."
+            placeholder="Uso, estado, etc..."
             {...register("observaciones", { required: true })}
             aria-invalid={errors.observaciones ? "true" : "false"}
           ></textarea>
