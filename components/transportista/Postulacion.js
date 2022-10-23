@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { TransporteContext } from "./ContextTransporte";
 
 export const Postulacion = ({ estado }) => {
   const transportes = [
@@ -41,9 +42,8 @@ export const Postulacion = ({ estado }) => {
     },
   ];
 
-  const [transporte, setTransporte] = useState([]);
-
-  const [postulacion, setPostulacion] = useState({});
+  const { tabla } = useContext(TransporteContext);
+  console.log(tabla);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -119,13 +119,24 @@ export const Postulacion = ({ estado }) => {
           disabled={estado}
         >
           <option defaultValue>Elige un transporte</option>
-          {transportes.map((transporte) => (
-            <option
-              className=""
-              key={transporte.id}
-              value={`${transporte.id}`}
-            >{`${transporte.tipo} ${transporte.patente}`}</option>
-          ))}
+          {tabla.map((transporte) => {
+            const tipo = "";
+            if (transporte.id_tipo == 1) {
+              tipo = "Terrestre";
+            } else if (transporte.id_tipo == 2) {
+              tipo = "Maritimo";
+            } else {
+              tipo = "Aereo";
+            }
+
+            return (
+              <option
+                className=""
+                key={transporte.id_transporte}
+                value={`${transporte.id_transporte}`}
+              >{`${tipo} ${transporte.patente}`}</option>
+            );
+          })}
         </select>
         {errors.transportes?.type === "required" && (
           <span className="text-xs italic text-bordeaux">

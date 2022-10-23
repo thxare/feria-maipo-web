@@ -1,6 +1,5 @@
-import axios from "axios";
 import Head from "next/head";
-import { useRouter, withRouter } from "next/router";
+import { router } from "next/router";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
 import { ProductosContextProvider } from "../../components/productor/ContextProducto";
@@ -12,6 +11,15 @@ export default function Index(props) {
     { name: "Venta Externa", link: "/productor/ventaexterna" },
     { name: "Venta Local", link: "/productor/ventalocal" },
   ];
+
+  useEffect(() => {
+    const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
+    if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
+      router?.push("/redireccion/");
+    } else if (typeof dato !== "undefined" || dato !== {}) {
+      router?.push("/productor/");
+    }
+  }, []);
 
   return (
     <>
