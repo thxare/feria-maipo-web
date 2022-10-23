@@ -21,7 +21,6 @@ export default function DetalleSubasta() {
   }, []);
 
   const router = useRouter();
-  //console.log(router.query)
   useEffect(() => {
     const fetchingSubasta = async () => {
       const data = await getOneSubasta(router.query.id);
@@ -39,6 +38,8 @@ export default function DetalleSubasta() {
   const fechaInicio = dateInicio.toLocaleDateString();
   const dateTermino = new Date(subasta.fecha_ter);
   const fechaTermino = dateTermino.toLocaleDateString();
+  
+ 
 
   return (
     <>
