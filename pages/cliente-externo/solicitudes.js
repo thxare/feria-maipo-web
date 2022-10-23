@@ -19,7 +19,7 @@ export default function Compras() {
     kilogramos: 0,
     id_usuario: id_usuario,
     estado: "Activo",
-    locacion: "local",
+    locacion: "extranjero",
   });
 
   const [tablaa, setTabla] = useState([]);

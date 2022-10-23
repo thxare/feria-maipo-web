@@ -39,9 +39,9 @@ export default function Compras() {
   }, [listaActulizada, tablaa]);
 
   const funciones = [
+    { name: "Mercado", link: "/cliente-local/" },
     { name: "Intancias de Compra", link: "/cliente-local/Intancias" },
     { name: "Solicitudes", link: "/cliente-local/solicitudes" },
-    { name: "Mercado", link: "/cliente-local/" },
   ];
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
