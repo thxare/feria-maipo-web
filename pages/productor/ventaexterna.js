@@ -1,7 +1,9 @@
 import Head from "next/head";
+import { router } from "next/router";
 import { Header } from "../../components/header/Header";
 import { Ventas } from "../../components/productor/Ventas";
 import { ProductosContextProvider } from "../../components/productor/ContextProducto";
+import { useEffect } from "react";
 
 export default function VentaExterna() {
   const funciones = [
@@ -9,6 +11,14 @@ export default function VentaExterna() {
     { name: "Venta Externa", link: "/productor/ventaexterna" },
     { name: "Venta Local", link: "/productor/ventalocal" },
   ];
+  useEffect(() => {
+    const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
+    if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
+      router?.push("/redireccion/");
+    } else if (typeof dato !== "undefined" || dato !== {}) {
+      router?.push("/productor/ventaexterna");
+    }
+  }, []);
 
   return (
     <>
