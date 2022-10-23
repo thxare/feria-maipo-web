@@ -2,8 +2,8 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { router } from "next/router";
 import { Header } from "../../components/header/Header";
-import { Tabla } from "../../components/cliente-local/Tabla";
-import { Form } from "../../components/cliente-local/Form";
+import { Tabla } from "../../components/cliente-extranjero/Tabla";
+import { Form } from "../../components/cliente-extranjero/Form";
 import axios from "axios";
 
 <link rel="shortcut icon" href="#"></link>;
@@ -39,8 +39,8 @@ export default function Compras() {
   }, [listaActulizada, tablaa]);
 
   const funciones = [
-    { name: "Solicitudes", link: "/cliente-local/solicitudes" },
-    { name: "Mercado", link: "/cliente-local/" },
+    { name: "Intancias de Compra", link: "/cliente-externo/" },
+    { name: "Solicitudes", link: "/cliente-externo/solicitudes" },  
   ];
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
@@ -53,7 +53,7 @@ export default function Compras() {
   return (
     <>
       <Head>
-        <title>Maipo Grande - Cliente Local</title>
+        <title>Maipo Grande - Cliente Externo</title>
         <link rel="shortcut icon" href="#"></link>
       </Head>
       <div>

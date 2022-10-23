@@ -1,13 +1,13 @@
 import Head from "next/head";
 import { router } from "next/router";
 import { useEffect } from "react";
+import { CardsIntancia } from "../../components/cliente-extranjero/Cards";
 import { Header } from "../../components/header/Header";
-import { Cards } from "../../components/cliente-local/Cards";
 
 export default function Index() {
   const funciones = [
-    { name: "Solicitudes", link: "/cliente-local/solicitudes" },
-    { name: "Mercado", link: "/cliente-local/" },
+    { name: "Intancias de Compra", link: "/cliente-externo/" },
+    { name: "Solicitudes", link: "/cliente-externo/solicitudes" },  
   ];
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
@@ -21,11 +21,11 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>Maipo Grande - Cliente Local</title>
+        <title>Maipo Grande - Cliente Externo</title>
       </Head>
       <div>
         <Header funciones={funciones} />
-        <Cards />
+        <CardsIntancia />
       </div>
     </>
   );
