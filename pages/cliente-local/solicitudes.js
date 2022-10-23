@@ -9,12 +9,17 @@ import axios from "axios";
 <link rel="shortcut icon" href="#"></link>;
 
 export default function Compras() {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
+  }, []);
+  const id_usuario = user?.id_usuario
   const [peticion, setPeticion] = useState({
     nombre: "",
     kilogramos: 0,
-    id_usuario: 4,
-    estado: "activo",
-    locacion: "extranjero"
+    id_usuario: id_usuario,
+    estado: "Activo",
+    locacion: "local",
   });
 
   const [tablaa, setTabla] = useState([]);
@@ -34,8 +39,9 @@ export default function Compras() {
   }, [listaActulizada, tablaa]);
 
   const funciones = [
-    { name: "Mercado", link: "/cliente-local/" },
+    { name: "Intancias de Compra", link: "/cliente-local/Intancias" },
     { name: "Solicitudes", link: "/cliente-local/solicitudes" },
+    { name: "Mercado", link: "/cliente-local/" },
   ];
   return (
     <>

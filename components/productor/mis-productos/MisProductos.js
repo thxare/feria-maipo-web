@@ -12,6 +12,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
   const handleClick = () => {
     setShow(!show);
   };
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
   }, []);

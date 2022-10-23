@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import React, { useEffect, useState } from "react";
 
 export const Form = ({ peticion, setPeticion }) => {
   const handleChange = (e) => {
@@ -11,6 +11,13 @@ export const Form = ({ peticion, setPeticion }) => {
           : parseInt(e.target.value),
     });
   };
+
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
+  }, []);
+
+  const id_usuario = user?.id_usuario;
 
   /* id_usuario, kg, nombre, estado  */
   const { id_peticion, nombre, kilogramos, estado } = peticion;
@@ -31,16 +38,7 @@ export const Form = ({ peticion, setPeticion }) => {
     }
     //consulta
 
-    /* A solucionar:
-    1. Como obtener el id del usuario que está logeado (x el momento se usa un id default). 
-    2. Id_Producto. */
-
-    /* let peticionCreada = {
-      id_usuario: 7,
-      estado: "P",
-      nombre: nombre,
-      kilogramos: kilogramos,
-    };  */
+    
 
     const requestInit = {
       method: "POST",
@@ -50,11 +48,12 @@ export const Form = ({ peticion, setPeticion }) => {
     };
     const respuesta = await axios.post(
       "https://api-feria-web-production.up.railway.app/api/peticion",
-      { id_usuario: peticion.id_usuario,
+      {
+        id_usuario: id_usuario,
         nombre: peticion.nombre,
         kilogramos: peticion.kilogramos,
         estado: peticion.estado,
-        locacion: peticion.locacion
+        locacion: peticion.locacion,
       }
     );
     console.log(respuesta);
@@ -65,10 +64,12 @@ export const Form = ({ peticion, setPeticion }) => {
     setPeticion({
       nombre: "",
       kilogramos: 0,
-      estado: "activa",
-      locacion: ""
+      id_usuario: id_usuario,
+      estado: "activo",
+      locacion: "local",
     });
   };
+  
 
   return (
     <div className="mx-auto">

@@ -4,9 +4,10 @@ import { Cards } from "../../components/cliente-local/Cards";
 
 export default function Index() {
   const funciones = [
-    { name: "Mercado", link:"/cliente-local/" },
-    { name: "Compras" , link:"/cliente-local/compras"},
+    { name: "Intancias de Compra", link: "/cliente-local/Intancias" },
     { name: "Solicitudes", link: "/cliente-local/solicitudes" },
+    { name: "Mercado", link:"/cliente-local/" },
+    
   ];
   return (
     <>
