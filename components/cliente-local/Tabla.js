@@ -16,7 +16,7 @@ export const Tabla = ({ tablaa, setlistaActulizada }) => {
   const [user, setUser] = useState();
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
-  }, []);sfgiafp
+  }, [])
 
   const id_usuario = user?.id_usuario;
 
