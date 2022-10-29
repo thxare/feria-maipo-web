@@ -16,14 +16,33 @@ export const Modal = ({ closeModal, user }) => {
     formState: { errors },
   } = useForm();
 
+  const WIDTH = 200;
+
   const onFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       if (file.type.includes("image")) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = function load() {
-          setImagen(reader.result);
+
+        reader.onload = function load(e) {
+          let image_url = reader.result;
+          let image = document.getElementById("imagen");
+          setImagen(image_url);
+          image.onload = (e) => {
+            let canvas = document.createElement("canvas");
+            let ratio = WIDTH / e.target.width;
+            canvas.width = WIDTH;
+            canvas.height = e.target.height * ratio;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            let new_image_url = ctx.canvas.toDataURL("image/jpeg", 98);
+
+            setImagen(new_image_url);
+          };
+          //const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
+          //console.log(srcEncoded);
+          //setImagen(reader.result);
         };
       } else {
         console.log("No es una imagen");
@@ -76,7 +95,7 @@ export const Modal = ({ closeModal, user }) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src={imagen} width="150" height="150" alt="" />
+              <Image src={imagen} width="150" height="150" alt="" id="imagen" />
             </div>
 
             <input
