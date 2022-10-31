@@ -55,13 +55,14 @@ export const Modal = ({ closeModal, user }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
+    console.log(output);
     closeModal();
-    setProductos((productos) => [output, ...productos]);
     if (!calidad == "" && !id_calidad == 0) {
       const resp = await axios.post(
         "https://api-feria-web-production.up.railway.app/api/productos",
         output
       );
+      console.log(resp);
     } else {
       console.log("Ingrese");
     }
