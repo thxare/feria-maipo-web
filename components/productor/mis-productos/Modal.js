@@ -40,9 +40,6 @@ export const Modal = ({ closeModal, user }) => {
 
             setImagen(new_image_url);
           };
-          //const srcEncoded = ctx.canvas.toDataURL(e.target, "image/png");
-          //console.log(srcEncoded);
-          //setImagen(reader.result);
         };
       } else {
         console.log("No es una imagen");
@@ -55,7 +52,7 @@ export const Modal = ({ closeModal, user }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
-    console.log(output);
+    setProductos((productos) => [output, ...productos]);
     closeModal();
     if (!calidad == "" && !id_calidad == 0) {
       const resp = await axios.post(
