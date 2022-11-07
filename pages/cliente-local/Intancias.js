@@ -2,7 +2,7 @@ import Head from "next/head";
 import { router } from "next/router";
 import { useEffect } from "react";
 import { Header } from "../../components/header/Header";
-import { CardsIntancia } from "../../components/cliente-local/CardsInstancia"
+import { CardsIntancia } from "../../components/cliente-local/CardsInstancia";
 
 export default function Compras() {
   const funciones = [
@@ -25,8 +25,7 @@ export default function Compras() {
       </Head>
       <div>
         <Header funciones={funciones} />
-        
-        <CardsIntancia/>
+        <CardsIntancia />
       </div>
     </>
   );

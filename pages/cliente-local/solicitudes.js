@@ -13,7 +13,7 @@ export default function Compras() {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
   }, []);
-  const id_usuario = user?.id_usuario
+  const id_usuario = user?.id_usuario;
   const [peticion, setPeticion] = useState({
     nombre: "",
     kilogramos: 0,
@@ -61,14 +61,16 @@ export default function Compras() {
         <Header funciones={funciones} />
       </div>
 
-      <div>
-        <Tabla
-          peticion={peticion}
-          tablaa={tablaa}
-          setlistaActulizada={setlistaActulizada}
-        />
+      <div className="h-screen bg-gray-100 px-12">
+        <div className="h-max bg-gray-100">
+          <Tabla
+            peticion={peticion}
+            tablaa={tablaa}
+            setlistaActulizada={setlistaActulizada}
+          />
 
-        <Form peticion={peticion} setPeticion={setPeticion} />
+          <Form peticion={peticion} setPeticion={setPeticion} />
+        </div>
       </div>
     </>
   );

@@ -21,7 +21,7 @@ export const Tabla = ({ tablaa, setlistaActulizada }) => {
   const id_usuario = user?.id_usuario;
 
   return (
-    <div className="h-max bg-gray-100 p-10">
+    <div className="h-max mb-12">
       <h1 className="mb-5 text-3xl font-semibold">Solicitud de compra</h1>
       <h2 className="mb-2 text-xl font-semibold">Frutas solicitadas</h2>
       <div className="overflow-auto rounded-lg shadow-sm ">
