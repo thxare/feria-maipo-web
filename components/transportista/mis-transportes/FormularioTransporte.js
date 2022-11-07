@@ -100,7 +100,7 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
               id="grid-state"
             >
               <option value="NADA" hidden disabled></option>
-              <option>Si</option>
+              <option>Sí</option>
               <option>No</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -164,9 +164,9 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
             >
               <option value={0} disabled hidden></option>
-              <option value={1}>terrestre</option>
-              <option value={2}>maritimo</option>
-              <option value={3}>aereo</option>
+              <option value={1}>Terrestre</option>
+              <option value={2}>Marítimo</option>
+              <option value={3}>Aéreo</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
