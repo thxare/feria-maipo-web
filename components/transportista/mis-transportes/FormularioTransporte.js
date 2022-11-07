@@ -205,7 +205,7 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <button
             type="submit"
-            className="mb-3 inline-block w-full rounded bg-green px-6 py-2.5 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
+            className="mb-3 inline-block w-full rounded bg-green px-6 py-3 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
           >
             Enviar
           </button>

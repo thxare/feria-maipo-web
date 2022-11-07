@@ -32,7 +32,7 @@ export const Productos = ({
       >
         <div className="order-1 flex flex-col justify-end sm:order-none sm:flex-row">
           <button
-            className="my-2 mx-5 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green sm:m-4 sm:mr-1"
+            className="my-2 mx-5 rounded bg-green py-2 px-4 font-bold text-white shadow-md hover:bg-darkGreen sm:m-4 sm:mr-1"
             onClick={() => onUpdate(id, () => setShow(!show))}
           >
             Modificar Producto

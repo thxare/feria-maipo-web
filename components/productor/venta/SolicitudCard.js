@@ -23,7 +23,7 @@ export const SolicitudCard = ({handleClick, nombre, kilogramos, estado}) => {
           </div>
           <div className="flex flex-col">
             <button
-              className="mx-auto w-full rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green sm:mr-5"
+              className="mx-auto w-full rounded bg-green py-2 px-4 font-bold text-white shadow-md hover:bg-darkGreen sm:mr-5"
               onClick={handleClick}
             >
               Participar

@@ -46,7 +46,7 @@ export const Card = ({
       </div>
       <div className="px-6 pt-4 pb-4 text-center">
         <Link href={`/transportista/subasta/${id}`}>
-          <a className="mb-2 rounded-md bg-orange py-1.5 px-4 font-bold text-white transition duration-150 ease-in-out hover:bg-orangeSmooth">
+          <a className="mb-2 rounded-md bg-orange py-2 px-4 font-bold text-white transition duration-150 ease-in-out hover:bg-orangeSmooth">
             Ingresar
           </a>
         </Link>
