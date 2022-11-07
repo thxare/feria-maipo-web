@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ProductosContext } from "../ContextProducto";
+import { useImage } from "../../../hooks/useImage";
 
 export const ModalUpdate = ({ closeModal, id, user }) => {
-  const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
   const { productos, setProductos } = useContext(ProductosContext);
@@ -16,31 +16,22 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
     formState: { errors },
   } = useForm();
 
+  const [handleImageChange, imagen] = useImage();
+
   const onFileChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file.type.includes("image")) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function load() {
-          setImagen(reader.result);
-        };
-      } else {
-        console.log("No es una imagen");
-      }
-    }
+    handleImageChange(e);
   };
   const id_usuario = user.id_usuario;
 
   const find = [...productos].find((producto) => producto.id_producto === id);
-
+  
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
-    console.log(output);
     setProductos((prev) =>
       prev.map((producto) => (producto.id_producto === id ? output : find))
     );
+    closeModal();
 
     const resp = await axios.put(
       `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
@@ -48,12 +39,11 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
         observaciones: output.observaciones || find.observaciones,
         id_calidad: output.id_calidad || find.id_calidad,
         nombre: output.nombre || find.nombre,
-        imagen: "/feria-logo.png",
+        imagen: output.imagen ||find.imagen,
         precio: output.precio || find.precio,
         id_producto: id,
       }
     );
-    closeModal();
   };
 
   return (
@@ -84,7 +74,7 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src={imagen} width="150" height="150" />
+              <Image src={imagen} width="150" height="150" id="imagen" />
             </div>
 
             <input
@@ -315,4 +305,3 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
     </>
   );
 };
-

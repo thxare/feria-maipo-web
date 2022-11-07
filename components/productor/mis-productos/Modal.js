@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ProductosContext } from "../ContextProducto";
+import { useImage } from "../../../hooks/useImage";
 
 export const Modal = ({ closeModal, user }) => {
-  const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
 
@@ -16,35 +16,10 @@ export const Modal = ({ closeModal, user }) => {
     formState: { errors },
   } = useForm();
 
-  const WIDTH = 200;
+  const [handleImageChange, imagen] = useImage();
 
   const onFileChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file.type.includes("image")) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = function load(e) {
-          let image_url = reader.result;
-          let image = document.getElementById("imagen");
-          setImagen(image_url);
-          image.onload = (e) => {
-            let canvas = document.createElement("canvas");
-            let ratio = WIDTH / e.target.width;
-            canvas.width = WIDTH;
-            canvas.height = e.target.height * ratio;
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-            let new_image_url = ctx.canvas.toDataURL("image/jpeg", 98);
-
-            setImagen(new_image_url);
-          };
-        };
-      } else {
-        console.log("No es una imagen");
-      }
-    }
+    handleImageChange(e);
   };
 
   const id_usuario = user?.id_usuario;
