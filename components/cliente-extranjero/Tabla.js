@@ -16,7 +16,7 @@ export const Tabla = ({ tablaa, setlistaActulizada }) => {
   const [user, setUser] = useState();
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
-  }, [])
+  }, []);
 
   const id_usuario = user?.id_usuario;
 
@@ -45,39 +45,42 @@ export const Tabla = ({ tablaa, setlistaActulizada }) => {
               </th>
             </tr>
           </thead>
-          
-            {tablaa.map((tabla) => {
-              return (
-                <tbody className="divide-y divide-gray-100" key={tabla.id_peticion}>
-                  {tabla.id_usuario == id_usuario && (
-                    <tr key={tabla.id_peticion}>
-                      <td className="whitespace-nowrap p-3 text-sm text-gray-700">
-                        <a className="font-bold text-lime-600 hover:underline">
-                          {tabla.id_peticion}
-                        </a>
-                      </td>
-                      <td className="whitespace-nowrap p-3 text-sm text-gray-700">
-                        {tabla.nombre}
-                      </td>
-                      <td className="whitespace-nowrap p-3 text-sm text-gray-700">
-                        {tabla.kilogramos}
-                      </td>
-                      <td className=" capitalize whitespace-nowrap p-3 text-sm text-gray-700">
-                        {tabla.estado}
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(tabla.id_peticion)}
-                          className="rounded border border-bordeaux bg-bordeaux py-1 px-2 font-bold text-white hover:bg-amber-600"
-                        >
-                          Eliminar solicitud
-                        </button>
-                      </td>
-                    </tr>
-                  )}
+
+          {tablaa.map((tabla) => {
+            return (
+              tabla.id_usuario === id_usuario && (
+                <tbody
+                  className="divide-y divide-gray-100 bg-white"
+                  key={tabla.id_peticion}
+                >
+                  <tr key={tabla.id_peticion}>
+                    <td className="whitespace-nowrap p-3 text-sm text-gray-700">
+                      <a className="font-bold text-lime-600 hover:underline">
+                        {tabla.id_peticion}
+                      </a>
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-sm text-gray-700">
+                      {tabla.nombre}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-sm text-gray-700">
+                      {tabla.kilogramos}
+                    </td>
+                    <td className=" whitespace-nowrap p-3 text-sm capitalize text-gray-700">
+                      {tabla.estado}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => handleDelete(tabla.id_peticion)}
+                        className="rounded border bg-bordeaux py-2 px-4 font-bold text-white hover:bg-red"
+                      >
+                        Eliminar solicitud
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
-              );
-            })}
+              )
+            );
+          })}
         </table>
       </div>
     </div>
