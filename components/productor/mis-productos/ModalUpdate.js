@@ -39,7 +39,7 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
         observaciones: output.observaciones || find.observaciones,
         id_calidad: output.id_calidad || find.id_calidad,
         nombre: output.nombre || find.nombre,
-        imagen: output.imagen ||find.imagen,
+        imagen: output.imagen || find.imagen,
         precio: output.precio || find.precio,
         id_producto: id,
       }

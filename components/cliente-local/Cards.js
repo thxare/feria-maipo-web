@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Cards = () => {
   return (
     <div className="h-max bg-gray-100 ">
-      <h1 className="mb-2 text-xl font-bold p-10">Saldos</h1>
+      <h1 className="mb-2 text-3xl font-semibold p-10">Saldos</h1>
       <div className="container mx-auto flex min-h-screen items-center justify-center">
         <div className="mx-auto grid  w-full grid-cols-2  gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           <div className="card">

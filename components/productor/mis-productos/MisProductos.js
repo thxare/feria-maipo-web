@@ -31,7 +31,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
       )}
       <div className="mx-auto mt-8 h-fit w-10/12">
         <div className="mx-3 flex flex-col justify-between sm:mx-0 sm:flex-row">
-          <div className="text-2xl font-semibold">Mis Productos</div>
+          <h1 className="text-3xl font-semibold">Mis Productos</h1>
           <button
             className="m-2 mr-1 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green"
             onClick={handleClick}

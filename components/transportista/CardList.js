@@ -2,7 +2,7 @@ import { Card } from "./Card";
 
 export const CardList = ({ subastas }) => {
   return (
-    <div className="grid grid-cols-8 justify-center gap-5 px-14 pt-14 md:gap-3">
+    <div className="grid grid-cols-8 justify-center gap-5 pt-12 md:gap-3">
       {subastas?.map((subasta) => {
         return (
           <Card
