@@ -28,15 +28,15 @@ export const Card = ({
       <div className="px-6 py-4">
         <h2 className="mb-2 text-left text-xl font-bold">Subasta {id}</h2>
         <p className="text-justify text-base font-semibold text-gray-700">
-          Fecha inicio: <span className="font-normal">{fechaInicio}</span>
+          Fecha Inicio: <span className="font-normal">{fechaInicio}</span>
         </p>
         <p className="text-justify text-base font-semibold text-gray-700">
-          Fecha término: <span className="font-normal">{fechaTermino}</span>
+          Fecha Término: <span className="font-normal">{fechaTermino}</span>
         </p>
         <p className="text-justify text-base font-semibold text-gray-700">
           Estado:{" "}
           <span
-            className={`font-bold ${
+            className={`font-bold capitalize ${
               estado.toLowerCase() === "activa" ? "text-green" : "text-red"
             }`}
           >

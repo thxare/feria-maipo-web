@@ -15,8 +15,8 @@ export const SolicitudCard = ({handleClick, nombre, kilogramos, estado}) => {
                 <span className="font-bold">Kilogramos: </span>
                 {kilogramos}kg
               </div>
-              <div className="font-semibold text-darkGreen">
-                <span className="font-bold text-black">Estado: </span>
+              <div className="font-semibold text-darkGreen capitalize">
+                <span className="font-bold text-black capitalize">Estado: </span>
                 {estado}
               </div>
             </div>

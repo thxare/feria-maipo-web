@@ -38,8 +38,6 @@ export default function DetalleSubasta() {
   const fechaInicio = dateInicio.toLocaleDateString();
   const dateTermino = new Date(subasta.fecha_ter);
   const fechaTermino = dateTermino.toLocaleDateString();
-  
- 
 
   return (
     <>
@@ -49,7 +47,7 @@ export default function DetalleSubasta() {
         </Head>
         <div className="h-full min-h-screen bg-gray-200">
           <Header funciones={funciones} />
-          <h1 className="mt-10 mb-2 text-center text-2xl font-bold md:text-4xl">
+          <h1 className="mt-10 mb-2 text-center text-2xl font-semibold md:text-3xl">
             {`Subasta ${subasta.id_subasta} ${fechaInicio}`}
           </h1>
           <div className="mx-auto mt-8 mb-7 grid w-3/4 grid-cols-1 place-content-center rounded-lg bg-slate-100 md:grid-cols-5">
@@ -63,7 +61,7 @@ export default function DetalleSubasta() {
                     className="mr-auto mb-2 block font-semibold"
                     htmlFor="fechaInicio"
                   >
-                    Fecha inicio
+                    Fecha Inicio
                   </label>
                   <input
                     className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
@@ -79,7 +77,7 @@ export default function DetalleSubasta() {
                     className="mr-auto mb-2 block font-semibold"
                     htmlFor="fechaTermino"
                   >
-                    Fecha término
+                    Fecha Término
                   </label>
                   <input
                     className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
@@ -98,7 +96,7 @@ export default function DetalleSubasta() {
                     Ganador
                   </label>
                   <input
-                    className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
+                    className="right-4 w-2/3 rounded-md border border-green px-2 text-center capitalize disabled:bg-white md:w-1/3"
                     disabled
                     type="text"
                     name="ganador"
@@ -114,7 +112,7 @@ export default function DetalleSubasta() {
                     Estado
                   </label>
                   <input
-                    className="right-4 w-2/3 rounded-md border border-green px-2 text-center disabled:bg-white md:w-1/3"
+                    className="right-4 w-2/3 rounded-md border border-green px-2 text-center capitalize disabled:bg-white md:w-1/3"
                     disabled
                     type="text"
                     name="estado"
