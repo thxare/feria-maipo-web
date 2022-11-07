@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ProductosContext } from "../ContextProducto";
+import { useImage } from "../../../hooks/useImage";
 
 export const Modal = ({ closeModal, user }) => {
-  const [imagen, setImagen] = useState("/feria-logo.png");
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
 
@@ -16,19 +16,10 @@ export const Modal = ({ closeModal, user }) => {
     formState: { errors },
   } = useForm();
 
+  const [handleImageChange, imagen] = useImage();
+
   const onFileChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file.type.includes("image")) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function load() {
-          setImagen(reader.result);
-        };
-      } else {
-        console.log("No es una imagen");
-      }
-    }
+    handleImageChange(e);
   };
 
   const id_usuario = user?.id_usuario;
@@ -36,13 +27,14 @@ export const Modal = ({ closeModal, user }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
-    closeModal();
     setProductos((productos) => [output, ...productos]);
+    closeModal();
     if (!calidad == "" && !id_calidad == 0) {
       const resp = await axios.post(
         "https://api-feria-web-production.up.railway.app/api/productos",
         output
       );
+      console.log(resp);
     } else {
       console.log("Ingrese");
     }
@@ -76,7 +68,7 @@ export const Modal = ({ closeModal, user }) => {
           <label className="font-semibold">Imagen:</label>
           <div className="flex flex-row">
             <div className="w-2/4">
-              <Image src={imagen} width="150" height="150" alt="" />
+              <Image src={imagen} width="150" height="150" alt="" id="imagen" />
             </div>
 
             <input
