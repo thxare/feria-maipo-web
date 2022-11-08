@@ -40,39 +40,37 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
           </button>
         </div>
 
-        <div className="pb-4">
-          <ul>
-            {productos.map((producto, index) => {
-              const valorTxt = "";
-              if (producto.id_calidad == 1) {
-                valorTxt = "Extra";
-              } else if (producto.id_calidad == 2) {
-                valorTxt = "Primera";
-              } else {
-                valorTxt = "Segunda";
-              }
+        <div className="grid pb-4 md:grid-cols-4 md:gap-4">
+          {productos.map((producto, index) => {
+            const valorTxt = "";
+            if (producto.id_calidad == 1) {
+              valorTxt = "Extra";
+            } else if (producto.id_calidad == 2) {
+              valorTxt = "Primera";
+            } else {
+              valorTxt = "Segunda";
+            }
 
-              return (
-                <li key={index}>
-                  {producto.id_usuario == id_usuario && (
-                    <Productos
-                      onDelete={onDelete}
-                      onUpdate={onUpdate}
-                      user={user}
-                      setProductos={setProductos}
-                      id={producto.id_producto}
-                      nombre={producto.nombre}
-                      precio={producto.precio}
-                      calidad={valorTxt}
-                      descripcion={producto.observaciones}
-                      img={producto.imagen}
-                      productos={productos}
-                    />
-                  )}
+            return (
+              producto.id_usuario == id_usuario && (
+                <li key={index} className="list-none">
+                  <Productos
+                    onDelete={onDelete}
+                    onUpdate={onUpdate}
+                    user={user}
+                    setProductos={setProductos}
+                    id={producto.id_producto}
+                    nombre={producto.nombre}
+                    precio={producto.precio}
+                    calidad={valorTxt}
+                    descripcion={producto.observaciones}
+                    img={producto.imagen}
+                    productos={productos}
+                  />
                 </li>
-              );
-            })}
-          </ul>
+              )
+            );
+          })}
         </div>
       </div>
     </>

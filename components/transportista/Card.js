@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useEffect } from "react";
 
 export const Card = ({
   ganador,

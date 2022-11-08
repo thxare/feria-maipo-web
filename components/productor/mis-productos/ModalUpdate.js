@@ -8,7 +8,8 @@ import { useImage } from "../../../hooks/useImage";
 export const ModalUpdate = ({ closeModal, id, user }) => {
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
-  const { productos, setProductos } = useContext(ProductosContext);
+  const { productos, setProductos, setActulizado } =
+    useContext(ProductosContext);
 
   const {
     register,
@@ -24,15 +25,13 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
   const id_usuario = user.id_usuario;
 
   const find = [...productos].find((producto) => producto.id_producto === id);
-  
+
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
     setProductos((prev) =>
       prev.map((producto) => (producto.id_producto === id ? output : find))
     );
-    closeModal();
-
     const resp = await axios.put(
       `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
       {
@@ -44,6 +43,8 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
         id_producto: id,
       }
     );
+    closeModal();
+    setActulizado(true);
   };
 
   return (
