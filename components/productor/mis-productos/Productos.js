@@ -38,7 +38,7 @@ export const Productos = ({
             Modificar Producto
           </button>
           <button
-            className="mx-5 mb-2 rounded bg-bordeaux py-2 px-4 font-bold text-white shadow-md hover:bg-red"
+            className="mx-5 mb-2 rounded bg-red py-2 px-4 font-bold text-white shadow-md hover:bg-bordeaux"
             onClick={() => onDelete(id)}
           >
             Eliminar Producto
