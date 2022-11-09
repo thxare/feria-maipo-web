@@ -60,7 +60,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
                     user={user}
                     setProductos={setProductos}
                     id={producto.id_producto}
-                    nombre={producto.nombre}
+                    nombreCard={producto.nombre}
                     precio={producto.precio}
                     calidad={valorTxt}
                     descripcion={producto.observaciones}
