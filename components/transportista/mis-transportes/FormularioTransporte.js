@@ -100,7 +100,7 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
               id="grid-state"
             >
               <option value="NADA" hidden disabled></option>
-              <option>Si</option>
+              <option>Sí</option>
               <option>No</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -164,9 +164,9 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
               className="mb-2 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
             >
               <option value={0} disabled hidden></option>
-              <option value={1}>terrestre</option>
-              <option value={2}>maritimo</option>
-              <option value={3}>aereo</option>
+              <option value={1}>Terrestre</option>
+              <option value={2}>Marítimo</option>
+              <option value={3}>Aéreo</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -205,7 +205,7 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <button
             type="submit"
-            className="mb-3 inline-block w-full rounded bg-green px-6 py-2.5 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
+            className="mb-3 inline-block w-full rounded bg-green px-6 py-3 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
           >
             Enviar
           </button>

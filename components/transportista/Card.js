@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useEffect } from "react";
 
 export const Card = ({
   ganador,
@@ -28,15 +27,15 @@ export const Card = ({
       <div className="px-6 py-4">
         <h2 className="mb-2 text-left text-xl font-bold">Subasta {id}</h2>
         <p className="text-justify text-base font-semibold text-gray-700">
-          Fecha inicio: <span className="font-normal">{fechaInicio}</span>
+          Fecha Inicio: <span className="font-normal">{fechaInicio}</span>
         </p>
         <p className="text-justify text-base font-semibold text-gray-700">
-          Fecha término: <span className="font-normal">{fechaTermino}</span>
+          Fecha Término: <span className="font-normal">{fechaTermino}</span>
         </p>
         <p className="text-justify text-base font-semibold text-gray-700">
           Estado:{" "}
           <span
-            className={`font-bold ${
+            className={`font-bold capitalize ${
               estado.toLowerCase() === "activa" ? "text-green" : "text-red"
             }`}
           >
@@ -46,7 +45,7 @@ export const Card = ({
       </div>
       <div className="px-6 pt-4 pb-4 text-center">
         <Link href={`/transportista/subasta/${id}`}>
-          <a className="mb-2 rounded-md bg-orange py-1.5 px-4 font-bold text-white transition duration-150 ease-in-out hover:bg-orangeSmooth">
+          <a className="mb-2 rounded-md bg-orange py-2 px-4 font-bold text-white transition duration-150 ease-in-out hover:bg-orangeSmooth">
             Ingresar
           </a>
         </Link>

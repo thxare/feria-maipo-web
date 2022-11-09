@@ -33,10 +33,12 @@ export default function Index(props) {
       <div className="h-screen bg-gray-200">
         <div className="h-fit bg-gray-200">
           <Header funciones={funciones} />
-          <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
-            Subastas
-          </h1>
-          <CardList subastas={subastas} />
+          <div className="px-14">
+            <h1 className="mt-10 mb-2 text-center text-3xl font-semibold md:ml-10 md:text-left">
+              Subastas
+            </h1>
+            <CardList subastas={subastas} />
+          </div>
         </div>
       </div>
     </>

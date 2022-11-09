@@ -73,7 +73,7 @@ export const Form = ({ peticion, setPeticion }) => {
 
   return (
     <div className="mx-auto">
-      <form onSubmit={handleSubmit} className=" h-max bg-gray-100 p-10 ">
+      <form onSubmit={handleSubmit} className="p-10 h-max bg-white rounded-lg">
         <div className="-mx-3 mb-6 flex flex-wrap place-content-center">
           <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
             <label
@@ -121,7 +121,7 @@ export const Form = ({ peticion, setPeticion }) => {
           <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
             <button
               type="submit"
-              className="mb-3 inline-block w-full rounded bg-green px-6 py-2.5 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
+              className="mb-3 inline-block w-full rounded bg-green px-6 py-3 font-sans text-xs font-semibold uppercase leading-tight tracking-wide text-white shadow-xl transition duration-150 ease-in-out hover:bg-darkGreen hover:shadow-lg focus:bg-darkGreen focus:shadow-lg focus:outline-none focus:ring-0"
             >
               Enviar
             </button>

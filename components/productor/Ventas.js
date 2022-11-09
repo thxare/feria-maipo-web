@@ -21,7 +21,7 @@ export const Ventas = ({ tipo, lugar }) => {
   return (
     <div className="mx-auto mt-8 h-fit w-10/12">
       <div className="mx-3 flex flex-col justify-between sm:mx-0 sm:flex-row">
-        <div className="text-2xl font-semibold">Venta {tipo}</div>
+        <h1 className="text-3xl font-semibold mb-3">Venta {tipo}</h1>
       </div>
       {show && <ModalParticiparBackdrop closeModal={handleClick} />}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1">

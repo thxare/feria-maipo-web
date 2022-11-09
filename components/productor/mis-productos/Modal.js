@@ -9,7 +9,7 @@ export const Modal = ({ closeModal, user }) => {
   const [active, setActive] = useState(false);
   const [calidad, setCalidad] = useState({ nombreCa: "", id_calidad: 0 });
 
-  const { setProductos } = useContext(ProductosContext);
+  const { setProductos, setActulizado } = useContext(ProductosContext);
   const {
     register,
     handleSubmit,
@@ -34,7 +34,7 @@ export const Modal = ({ closeModal, user }) => {
         "https://api-feria-web-production.up.railway.app/api/productos",
         output
       );
-      console.log(resp);
+      setActulizado(true);
     } else {
       console.log("Ingrese");
     }
@@ -122,7 +122,7 @@ export const Modal = ({ closeModal, user }) => {
           justify-center
           whitespace-nowrap
           rounded
-          bg-darkGreen
+          bg-green
           px-8
           py-3
           text-xs
@@ -130,11 +130,11 @@ export const Modal = ({ closeModal, user }) => {
           uppercase
           leading-tight text-white
           shadow-md transition duration-150 ease-in-out
-          hover:bg-green hover:shadow-lg focus:bg-green
+          hover:bg-darkGreen hover:shadow-lg focus:bg-dargGreen
           focus:shadow-lg
           focus:outline-none
           focus:ring-0
-          active:bg-green
+          active:bg-darkGreen
           active:text-white
           active:shadow-lg
         "
@@ -289,7 +289,7 @@ export const Modal = ({ closeModal, user }) => {
               Por favor ingrese la descripcion del producto
             </span>
           )}
-          <button className="mt-4 rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-lg hover:bg-green">
+          <button className="mt-4 rounded bg-green py-2 px-4 font-bold text-white shadow-lg hover:bg-darkGreen">
             Guardar
           </button>
         </form>

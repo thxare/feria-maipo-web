@@ -32,7 +32,7 @@ export const ModalParticipar = ({ closeModal }) => {
             <ModalProductos />
           </div>
           <div className="mx-auto w-5/12">
-            <button className="mx-auto w-full rounded bg-darkGreen py-2 px-4 font-bold text-white shadow-md hover:bg-green">
+            <button className="mx-auto w-full rounded bg-green py-2 px-4 font-bold text-white shadow-md hover:bg-darkGreen">
               Participar
             </button>
           </div>

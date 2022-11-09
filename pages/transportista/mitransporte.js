@@ -34,7 +34,7 @@ export default function MiTransporte() {
         <div className="h-screen">
           <div className="h-max bg-gray-200">
             <Header funciones={funciones} />
-            <h1 className="mt-10 mb-2 text-center text-4xl font-bold md:ml-10 md:text-left">
+            <h1 className="mt-10 mb-2 text-center text-3xl font-semibold md:ml-10 md:text-left">
               Mis Transportes
             </h1>
             <MostrarTransportes user={user} />
