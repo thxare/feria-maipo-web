@@ -7,7 +7,8 @@ export const Cards = () => {
   return (
     <>
       <div className="mx-auto flex justify-center">
-        <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"> 
+        {/* Esto luego ir dentro de un map, y los valores se deben traer del servidor */}
           <Card
             nombreCard={"Mango"}
             img={"/uva.png"}
