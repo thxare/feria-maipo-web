@@ -3,11 +3,12 @@ import { router } from "next/router";
 import { useEffect } from "react";
 import { CardsIntancia } from "../../components/cliente-extranjero/Cards";
 import { Header } from "../../components/header/Header";
+import { ContainerPage } from "../../components/ui/ContainerPage";
 
 export default function Index() {
   const funciones = [
     { name: "Intancias de Compra", link: "/cliente-externo/" },
-    { name: "Solicitudes", link: "/cliente-externo/solicitudes" },  
+    { name: "Solicitudes", link: "/cliente-externo/solicitudes" },
   ];
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
@@ -25,7 +26,9 @@ export default function Index() {
       </Head>
       <div>
         <Header funciones={funciones} />
-        <CardsIntancia />
+        <ContainerPage titulo={"Instancia de compra"}>
+          <CardsIntancia />
+        </ContainerPage>
       </div>
     </>
   );

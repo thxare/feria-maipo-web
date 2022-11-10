@@ -3,6 +3,7 @@ import { router } from "next/router";
 import { useEffect } from "react";
 import { Header } from "../../components/header/Header";
 import { Cards } from "../../components/cliente-local/Cards";
+import { ContainerPage } from "../../components/ui/ContainerPage";
 
 export default function Index() {
   const funciones = [
@@ -26,12 +27,9 @@ export default function Index() {
       </Head>
       <div>
         <Header funciones={funciones} />
-        <div className="h-screen bg-gray-200">
-          <h1 className="mb-2 p-10 text-3xl font-semibold">Saldos</h1>
-          <div className="h-max bg-gray-200">
-            <Cards />
-          </div>
-        </div>
+        <ContainerPage titulo={"Saldos"}>
+          <Cards />
+        </ContainerPage>
       </div>
     </>
   );

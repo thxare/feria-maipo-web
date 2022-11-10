@@ -40,7 +40,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
           </button>
         </div>
 
-        <div className="grid pb-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4">
+        <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
           {productos.map((producto, index) => {
             const valorTxt = "";
             if (producto.id_calidad == 1) {
@@ -53,7 +53,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
 
             return (
               producto.id_usuario == id_usuario && (
-                <li key={index} className="list-none mt-4 md:mt-0">
+                <li key={index} className="mt-4 list-none md:mt-0">
                   <Productos
                     onDelete={onDelete}
                     onUpdate={onUpdate}

@@ -3,6 +3,7 @@ import { router } from "next/router";
 import { useEffect } from "react";
 import { Header } from "../../components/header/Header";
 import { CardsIntancia } from "../../components/cliente-local/CardsInstancia";
+import { ContainerPage } from "../../components/ui/ContainerPage";
 
 export default function Compras() {
   const funciones = [
@@ -25,14 +26,9 @@ export default function Compras() {
       </Head>
       <div>
         <Header funciones={funciones} />
-        <div className="h-screen bg-gray-200">
-          <h1 className="mb-2 p-10 text-3xl font-semibold">
-            Instancia de compra
-          </h1>
-          <div className="h-max bg-gray-200">
-            <CardsIntancia />
-          </div>
-        </div>
+        <ContainerPage titulo={"Instancia de compra"}>
+          <CardsIntancia />
+        </ContainerPage>
       </div>
     </>
   );
