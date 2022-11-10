@@ -26,7 +26,6 @@ export default function Index() {
       </Head>
       <div>
         <Header funciones={funciones} />
-
         <div className="h-screen bg-gray-200">
           <h1 className="mb-2 p-10 text-3xl font-semibold">Saldos</h1>
           <div className="h-max bg-gray-200">

@@ -5,7 +5,7 @@ export const Card = ({ id, img, button, nombreCard, valores }) => {
   return (
     <>
       <div
-        className="mx-auto flex h-full flex-col justify-between rounded-lg bg-white pb-6 shadow-lg"
+        className="mx-auto flex h-full w-full flex-col justify-between rounded-lg bg-white pb-6 shadow-lg"
         id={id}
       >
         <div className="order-1 flex flex-col justify-end">{button}</div>

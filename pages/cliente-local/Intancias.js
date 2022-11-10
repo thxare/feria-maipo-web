@@ -26,8 +26,10 @@ export default function Compras() {
       <div>
         <Header funciones={funciones} />
         <div className="h-screen bg-gray-200">
-          <h1 className="p-10 text-3xl font-semibold">Instancia de compra</h1>
-          <div className="h-max bg-gray-200 px-10">
+          <h1 className="mb-2 p-10 text-3xl font-semibold">
+            Instancia de compra
+          </h1>
+          <div className="h-max bg-gray-200">
             <CardsIntancia />
           </div>
         </div>
