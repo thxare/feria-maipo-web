@@ -1,20 +1,35 @@
 import React from "react";
+import { Card } from "../ui/Card";
+import { Button } from "../ui/Button";
+import { ValoresCard } from "../ui/ValoresCard";
+import { CardContainer } from "../ui/CardContainer";
 
-import { Card } from "./Card";
 export const Cards = () => {
   return (
-    <div className="h-max bg-gray-100 ">
-      <h1 className="mb-2 p-10 text-3xl font-semibold">Saldos</h1>
-      <div className="container mx-auto flex min-h-screen justify-center">
-        <div className="mx-auto grid  w-full grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
-      </div>
-    </div>
+    <>
+      <CardContainer>
+        {/* Esto luego ir dentro de un map, y los valores se deben traer del servidor */}
+        <Card
+          nombreCard={"Mango"}
+          img={"/uva.png"}
+          button={
+            <>
+              <Button
+                text={"Comprar Producto"}
+                colorBtn={"bg-green"}
+                hoverBtn={"hover:bg-darkGreen"}
+              />
+            </>
+          }
+          valores={
+            <>
+              <ValoresCard nombre={"Precio"} valor={"$6.990 x kg"} />
+              <ValoresCard nombre={"Calidad"} valor={"Extra"} />
+              <ValoresCard nombre={"Observaciones"} valor={"Excelente fruta"} />
+            </>
+          }
+        />
+      </CardContainer>
+    </>
   );
 };

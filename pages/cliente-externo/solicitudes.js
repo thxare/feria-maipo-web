@@ -60,8 +60,8 @@ export default function Compras() {
         <Header funciones={funciones} />
       </div>
 
-      <div className="h-screen bg-gray-100 px-12">
-        <div className="h-max bg-gray-100">
+      <div className="h-screen bg-gray-200 p-8">
+        <div className="h-max bg-gray-200">
           <Tabla
             peticion={peticion}
             tablaa={tablaa}
