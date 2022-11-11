@@ -3,7 +3,7 @@ import { router } from "next/router";
 import { Header } from "../../components/header/Header";
 import { Ventas } from "../../components/productor/Ventas";
 import { ProductosContextProvider } from "../../components/productor/ContextProducto";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function VentaExterna() {
   const funciones = [
@@ -36,3 +36,4 @@ export default function VentaExterna() {
     </>
   );
 }
+

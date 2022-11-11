@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../login/ContextUser";
-
 import { ProductosContext } from "../ContextProducto";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Productos } from "./Productos";
@@ -42,7 +40,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
 
         <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
           {productos.map((producto, index) => {
-            const valorTxt = "";
+            let valorTxt = "";
             if (producto.id_calidad == 1) {
               valorTxt = "Extra";
             } else if (producto.id_calidad == 2) {

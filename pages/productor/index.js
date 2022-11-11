@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { router } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
 import { ProductosContextProvider } from "../../components/productor/ContextProducto";
 import { MostrarProductos } from "../../components/productor/mis-productos/MostrarProductos";
