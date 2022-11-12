@@ -27,7 +27,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
           setProductos={setProductos}
         />
       )}
-      <div className="mx-auto mt-8 h-fit w-10/12">
+      <div className="mx-auto mt-8 h-fit w-10/12" data-testid="misProductos">
         <div className="mx-3 flex flex-col justify-between sm:mx-0 sm:flex-row">
           <h1 className="text-3xl font-semibold">Mis Productos</h1>
           <button

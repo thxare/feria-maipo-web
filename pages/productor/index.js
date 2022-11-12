@@ -13,11 +13,15 @@ export default function Index(props) {
   ];
 
   useEffect(() => {
-    const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
-    if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
-      router?.push("/redireccion/");
-    } else if (typeof dato !== "undefined" || dato !== {}) {
-      router?.push("/productor/");
+    try {
+      const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
+      if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
+        router?.push("/redireccion/");
+      } else if (typeof dato !== "undefined" || dato !== {}) {
+        router?.push("/productor/");
+      }
+    } catch (err) {
+      console.log(err);
     }
   }, []);
 

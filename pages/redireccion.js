@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Redireccion } from "../components/ui/Redireccion";
 
 export default function RedireccionPage() {

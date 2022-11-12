@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Aquí necesito al usuario, por eso se lo mando desde la página mitransporte
 // ya que necesito el id_usuario

@@ -1,3 +1,5 @@
+import React from "react";
+
 export const TablaTransportes = ({ tabla }) => {
   return (
     <div className="mt-10 h-max bg-gray-100 p-10 md:mx-16">
