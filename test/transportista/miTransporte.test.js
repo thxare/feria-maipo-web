@@ -5,9 +5,6 @@ import { render } from "@testing-library/react";
 import React from "react";
 import MiTransporte from "../../pages/transportista/mitransporte";
 
-const obj = {
-  objeto: "esto es un objeto",
-};
 
 describe("Test mitransporte de Transportista", () => {
   beforeEach(() => {

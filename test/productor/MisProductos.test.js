@@ -79,9 +79,4 @@ describe("<MisProductos />", () => {
     expect(btnGuardar.innerHTML).toBe("Guardar");
   });
 
-  test("Cerrar modal Productor", async () => {
-    const submitButton = screen.getByRole("button");
-    fireEvent.click(submitButton);
-    const modal = await waitFor(() => screen.getByTestId("modal"));
-  });
 });

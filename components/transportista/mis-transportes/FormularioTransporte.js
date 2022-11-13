@@ -59,12 +59,13 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-12 bg-gray-100 p-10 md:mx-16">
+    <form onSubmit={handleSubmit} className="mt-12 bg-gray-100 p-10 md:mx-16" data-testid="formTransporte">
       <div className="-mx-3 mb-3 flex flex-wrap place-content-center">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <label
             htmlFor="patente"
             className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            data-testid="lblPatente"
           >
             Patente:
           </label>
@@ -86,12 +87,16 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
       </div>
       <div className="-mx-3 mb-3 flex flex-wrap place-content-center">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
-          <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+          <label
+            className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            data-testid="lblRefrigeracion"
+          >
             Refrigeración:
           </label>
           <div className="relative">
             <select
               defaultValue="NADA"
+              data-testid="refrigeracion"
               name="refrigeracion"
               onChange={handleChange}
               type="text"
@@ -118,11 +123,15 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
 
       <div className="-mx-3 mb-3 flex flex-wrap place-content-center">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
-          <label className="grid-state mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+          <label
+            className="grid-state mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            data-testid="lblTamano"
+          >
             Tamaño:
           </label>
           <div className="relative">
             <select
+            data-testid="tamano"
               defaultValue="NADA"
               name="tamano"
               onChange={handleChange}
@@ -151,11 +160,15 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
       </div>
       <div className="-mx-3 mb-3 flex flex-wrap place-content-center">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
-          <label className="grid-state mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700">
+          <label
+            className="grid-state mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            data-testid="lblTipoTranporte"
+          >
             Tipo transporte:
           </label>
           <div className="relative">
             <select
+            data-testid="tipo"
               defaultValue={transporte.id_tipo}
               name="id_tipo"
               onChange={handleChange}
@@ -185,6 +198,7 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
           <label
             htmlFor="capacidad_carga"
             className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+            data-testid="lblCapacidad"
           >
             Capacidad de carga:
           </label>
