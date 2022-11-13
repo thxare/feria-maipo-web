@@ -32,7 +32,7 @@ export const Card = ({
           data-testid="fechaInicioTransportista"
         >
           Fecha Inicio:{" "}
-          <span className="font-normal" >
+          <span className="font-normal"  data-testid="fechaInispan">
             {fechaInicio}
           </span>
         </p>
@@ -40,7 +40,7 @@ export const Card = ({
           className="text-justify text-base font-semibold text-gray-700"
           data-testid="fechaTermino"
         >
-          Fecha Término: <span className="font-normal">{fechaTermino}</span>
+          Fecha Término: <span className="font-normal" data-testid="fechaTerminospan">{fechaTermino}</span>
         </p>
         <p
           className="text-justify text-base font-semibold text-gray-700"
@@ -53,6 +53,7 @@ export const Card = ({
                 ? "text-green"
                 : "text-red"
             }`}
+            data-testid="estadoSpan"
           >
             {estado}
           </span>
