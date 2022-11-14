@@ -60,7 +60,7 @@ export const FormularioTransporte = ({ setListaActulizada, user }) => {
 
   return (
     <form onSubmit={handleSubmit} className="mt-12 bg-gray-100 p-10 md:mx-16" data-testid="formTransporte">
-      <div className="-mx-3 mb-3 flex flex-wrap place-content-center">
+      <div className="-mx-3 mb-3 flex flex-wrap place-content-center" data-testid="containerTransporte">
         <div className="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <label
             htmlFor="patente"

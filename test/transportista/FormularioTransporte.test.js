@@ -3,15 +3,7 @@
  */
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { act } from "react-dom/test-utils";
 import { FormularioTransporte } from "../../components/transportista/mis-transportes/FormularioTransporte";
-
-const resizeWindow = (x) => {
-  window.innerWidth = x;
-  act(() => {
-    window.dispatchEvent(new Event("resize"));
-  });
-};
 
 describe("Se realizan test en el componente <FormularioTransporte />", () => {
   beforeEach(() => {
@@ -95,6 +87,11 @@ describe("Se realizan test en el componente <FormularioTransporte />", () => {
     const clases = btnEnviar.split(" ");
     expect(clases.includes("hover:bg-darkGreen")).toBe(true);
   });
-
+  test("Formulario de 'Mis Transportes' es responsivo", () => {
+    const container = screen.getByTestId("containerTransporte").className;
+    const clases = container.split(" ");
+    expect(clases.includes("flex")).toBe(true);
+    expect(clases.includes("flex-wrap")).toBe(true);
+    expect(clases.includes("place-content-center")).toBe(true);
+  });
 });
- 

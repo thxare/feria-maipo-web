@@ -4,7 +4,7 @@ export const TablaTransportes = ({ tabla }) => {
   return (
     <div className="mt-10 h-max bg-gray-100 p-10 md:mx-16">
       <div className="overflow-auto rounded-lg shadow-sm ">
-        <table className="mx-auto w-9/12">
+        <table className="mx-auto w-9/12" data-testid="tablaTransporte">
           <thead className="border-b-2 border-gray-200 bg-green" data-testid="headerTabla">
             <tr >
               <th
