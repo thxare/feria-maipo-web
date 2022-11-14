@@ -24,7 +24,7 @@ export const Ventas = ({ tipo, lugar }) => {
         <h1 className="text-3xl font-semibold mb-3">Venta {tipo}</h1>
       </div>
       {show && <ModalParticiparBackdrop closeModal={handleClick} />}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1" data-testid="containerCard">
         {peticion.map((pet, index) => {
         if(pet.locacion === lugar)
           return (

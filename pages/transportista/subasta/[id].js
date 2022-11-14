@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Header } from "../../../components/header/Header";
 import { Postulacion } from "../../../components/transportista/Postulacion";
 import { Spinner } from "../../../components/ui/Spinner";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getOneSubasta } from "../../../utils/fetching";
 import { TransporteContextProvider } from "../../../components/transportista/ContextTransporte";
 
