@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { router } from "next/router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Header } from "../../components/header/Header";
 import { CardsIntancia } from "../../components/cliente-local/CardsInstancia";
 import { ContainerPage } from "../../components/ui/ContainerPage";

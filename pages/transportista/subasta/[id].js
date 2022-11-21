@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Header } from "../../../components/header/Header";
 import { Postulacion } from "../../../components/transportista/Postulacion";
 import { Spinner } from "../../../components/ui/Spinner";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getOneSubasta } from "../../../utils/fetching";
 import { TransporteContextProvider } from "../../../components/transportista/ContextTransporte";
 
@@ -50,7 +50,10 @@ export default function DetalleSubasta() {
           <h1 className="mt-10 mb-2 text-center text-2xl font-semibold md:text-3xl">
             {`Subasta ${subasta.id_subasta} ${fechaInicio}`}
           </h1>
-          <div className="mx-auto mt-8 mb-7 grid w-3/4 grid-cols-1 place-content-center rounded-lg bg-slate-100 md:grid-cols-5">
+          <div
+            className="mx-auto mt-8 mb-7 grid w-3/4 grid-cols-1 place-content-center rounded-lg bg-slate-100 md:grid-cols-5"
+            data-testid="containerCard"
+          >
             <div className="col-span-1 p-3 md:col-span-3">
               <h2 className="text-center text-lg font-bold">
                 Detalles de la subasta

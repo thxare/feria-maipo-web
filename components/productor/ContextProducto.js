@@ -6,6 +6,8 @@ export const ProductosContext = createContext();
 export const ProductosContextProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [actulizado, setActulizado] = useState(true);
+  const controller = new AbortController();
+
   useEffect(() => {
     axios
       .get("https://api-feria-web-production.up.railway.app/api/productos")
@@ -17,6 +19,7 @@ export const ProductosContextProvider = ({ children }) => {
         setProductos(filtrado);
         setActulizado(false);
       });
+    controller.abort();
   }, [actulizado]);
 
   return (

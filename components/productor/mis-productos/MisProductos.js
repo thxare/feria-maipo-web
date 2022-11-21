@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../login/ContextUser";
-
 import { ProductosContext } from "../ContextProducto";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
 import { Productos } from "./Productos";
@@ -29,7 +27,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
           setProductos={setProductos}
         />
       )}
-      <div className="mx-auto mt-8 h-fit w-10/12">
+      <div className="mx-auto mt-8 h-fit w-10/12" data-testid="misProductos">
         <div className="mx-3 flex flex-col justify-between sm:mx-0 sm:flex-row">
           <h1 className="text-3xl font-semibold">Mis Productos</h1>
           <button
@@ -42,7 +40,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
 
         <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
           {productos.map((producto, index) => {
-            const valorTxt = "";
+            let valorTxt = "";
             if (producto.id_calidad == 1) {
               valorTxt = "Extra";
             } else if (producto.id_calidad == 2) {

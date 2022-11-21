@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { router } from "next/router";
 import { Header } from "../../components/header/Header";
 import { CardList } from "../../components/transportista/CardList";
@@ -17,11 +17,15 @@ export default function Index(props) {
   }, [props.subastas]);
 
   useEffect(() => {
-    const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
-    if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
-      router?.push("/redireccion/");
-    } else if (typeof dato !== "undefined" || dato !== {}) {
-      router?.push("/transportista/");
+    try {
+      const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
+      if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
+        router?.push("/redireccion/");
+      } else if (typeof dato !== "undefined" || dato !== {}) {
+        router?.push("/transportista/");
+      }
+    } catch (err) {
+      
     }
   }, []);
 

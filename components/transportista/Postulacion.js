@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TransporteContext } from "./ContextTransporte";
 
@@ -120,7 +120,7 @@ export const Postulacion = ({ estado }) => {
         >
           <option defaultValue>Elige un transporte</option>
           {tabla.map((transporte) => {
-            const tipo = "";
+            let tipo = "";
             if (transporte.id_tipo == 1) {
               tipo = "Terrestre";
             } else if (transporte.id_tipo == 2) {

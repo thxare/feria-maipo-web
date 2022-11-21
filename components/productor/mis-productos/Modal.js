@@ -42,10 +42,10 @@ export const Modal = ({ closeModal, user }) => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12">
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12"  data-testid="modal">
         <div className="flex w-full flex-row justify-end">
           <div className="h-8 w-8 hover:rounded-full hover:bg-zinc-200">
-            <button className="m-1" onClick={closeModal}>
+            <button className="m-1" onClick={closeModal}  data-testid="closeModal">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -65,7 +65,9 @@ export const Modal = ({ closeModal, user }) => {
         </div>
 
         <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-          <label className="font-semibold">Imagen:</label>
+          <label className="font-semibold" data-testid="labelImagenModal">
+            Imagen:
+          </label>
           <div className="flex flex-row">
             <div className="w-2/4">
               <Image src={imagen} width="150" height="150" alt="" id="imagen" />
@@ -80,7 +82,9 @@ export const Modal = ({ closeModal, user }) => {
             />
           </div>
 
-          <label className="font-semibold">Nombre: </label>
+          <label className="font-semibold" data-testid="labelNombreModal">
+            Nombre:
+          </label>
           <input
             type="text"
             placeholder="Papa, naranja, etc..."
@@ -93,7 +97,9 @@ export const Modal = ({ closeModal, user }) => {
               Por favor ingrese el nombre del producto
             </span>
           )}
-          <label className="font-semibold">Precio: </label>
+          <label className="font-semibold" data-testid="labelPrecioModal">
+            Precio:
+          </label>
           <div className="flex flex-col justify-between sm:flex-row">
             <input
               type="number"
@@ -117,6 +123,7 @@ export const Modal = ({ closeModal, user }) => {
                     className="
                     
           dropdown-toggle
+          focus:bg-dargGreen
           flex
           items-center
           justify-center
@@ -127,10 +134,9 @@ export const Modal = ({ closeModal, user }) => {
           py-3
           text-xs
           font-medium
-          uppercase
-          leading-tight text-white
-          shadow-md transition duration-150 ease-in-out
-          hover:bg-darkGreen hover:shadow-lg focus:bg-dargGreen
+          uppercase leading-tight
+          text-white shadow-md transition duration-150
+          ease-in-out hover:bg-darkGreen hover:shadow-lg
           focus:shadow-lg
           focus:outline-none
           focus:ring-0
@@ -142,6 +148,7 @@ export const Modal = ({ closeModal, user }) => {
                     id="dropdownMenuButton2"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+                    data-testid="divCalidadModal"
                   >
                     {calidad.nombreCa ? calidad.nombreCa : "Calidad"}
 
@@ -257,7 +264,9 @@ export const Modal = ({ closeModal, user }) => {
             </div>
           </div>
 
-          <label className="font-semibold">Descripción: </label>
+          <label className="font-semibold" data-testid="labelDescModal">
+            Descripción:
+          </label>
           <textarea
             className="
         form-control

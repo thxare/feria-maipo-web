@@ -20,7 +20,6 @@ export const MostrarProductos = () => {
   };
   const onUpdate = (id, callback) => {
     const find = [...productos].find((producto) => producto.id_producto === id);
-    console.log(find);
     callback();
   };
   return (

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 export const Card = ({
   ganador,
@@ -25,19 +26,34 @@ export const Card = ({
         height={200}
       />
       <div className="px-6 py-4">
-        <h2 className="mb-2 text-left text-xl font-bold">Subasta {id}</h2>
-        <p className="text-justify text-base font-semibold text-gray-700">
-          Fecha Inicio: <span className="font-normal">{fechaInicio}</span>
+        <h2 className="mb-2 text-left text-xl font-bold" data-testid="tituloSubasta">Subasta {id}</h2>
+        <p
+          className="text-justify text-base font-semibold text-gray-700"
+          data-testid="fechaInicioTransportista"
+        >
+          Fecha Inicio:{" "}
+          <span className="font-normal"  data-testid="fechaInispan">
+            {fechaInicio}
+          </span>
         </p>
-        <p className="text-justify text-base font-semibold text-gray-700">
-          Fecha Término: <span className="font-normal">{fechaTermino}</span>
+        <p
+          className="text-justify text-base font-semibold text-gray-700"
+          data-testid="fechaTermino"
+        >
+          Fecha Término: <span className="font-normal" data-testid="fechaTerminospan">{fechaTermino}</span>
         </p>
-        <p className="text-justify text-base font-semibold text-gray-700">
+        <p
+          className="text-justify text-base font-semibold text-gray-700"
+          data-testid="estadoCard"
+        >
           Estado:{" "}
           <span
             className={`font-bold capitalize ${
-              estado.toLowerCase() === "activa" ? "text-green" : "text-red"
+              estado.toString().toLowerCase() === "activa"
+                ? "text-green"
+                : "text-red"
             }`}
+            data-testid="estadoSpan"
           >
             {estado}
           </span>
