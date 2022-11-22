@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/Button";
 
 export const CarritoCompras = () => {
+  const valoresTotales = [];
+  const productos = [
+    {
+      nombre: "Pera",
+      cantidad: 500,
+      precioU: 1300,
+    },
+    { nombre: "Manzana", cantidad: 300, precioU: 6300 },
+    { nombre: "Piña", cantidad: 200, precioU: 6300 },
+  ];
+
+  const calcularTotal = (cantidad, precioU) => {
+    return cantidad * precioU;
+  };
+  productos.map((producto) => {
+    valoresTotales.push(producto.cantidad * producto.precioU);
+  });
+
+  let total = 0;
+  for (let i = 0; i < valoresTotales.length; i++) {
+    total += valoresTotales[i];
+  }
+
   return (
     <div className="mx-auto mt-12 h-auto w-10/12 max-w-4xl">
       <div className="mb-3 rounded-sm bg-white shadow-sm">
@@ -37,7 +60,7 @@ export const CarritoCompras = () => {
 
             <div className="mx-auto inline-block">
               <label className="font-semibold">Cantidad: </label>
-              300kg
+              300 kg
               {/* <input
                 type="number"
                 min="0"
@@ -55,10 +78,29 @@ export const CarritoCompras = () => {
         <div className="p-3">
           <div className="mb-4 text-2xl font-medium">Resumen</div>
           <div className="">
-            <div>Peras 300 kg x 3000 $900.000</div>
-            <div>Manzanas 400 kg x 2000 $800.000</div>
-            <div>
-              Total a pagar <span className="font-bold">CLP $1.700.000</span>
+            <div className="grid grid-cols-4 gap-2">
+              <div className="inline-block font-bold">Nombre</div>
+              <div className="inline-block font-bold">Cantidad</div>
+              <div className="inline-block font-bold"> Precio Unitario</div>
+              <div className="inline-block font-bold">Total</div>
+            </div>
+            {productos.map((producto) => {
+              return (
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="inline-block">{producto.nombre}</div>
+                  <div className="inline-block">{producto.cantidad} kg</div>
+                  <div className="inline-block">${producto.precioU}</div>
+                  <div className="inline-block">
+                    ${calcularTotal(producto.cantidad, producto.precioU)}
+                  </div>
+                </div>
+              );
+            })}
+
+            <div className="mt-7 flex flex-row justify-between border-t-[1px] pt-4">
+              <div className="pt-2">
+                Total a pagar <span className="font-bold">CLP ${total}</span>
+              </div>
               <div>
                 <Button
                   text={"Pagar"}
