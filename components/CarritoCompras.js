@@ -6,11 +6,25 @@ export const CarritoCompras = () => {
   const productos = [
     {
       nombre: "Pera",
-      cantidad: 500,
+      cantidad: 1000,
       precioU: 1300,
+      calidad: "Extra",
+      descripcion: "Piña De La Mejor Calidad Para Hacer Jugos",
     },
-    { nombre: "Manzana", cantidad: 300, precioU: 6300 },
-    { nombre: "Piña", cantidad: 200, precioU: 6300 },
+    {
+      nombre: "Manzana",
+      cantidad: 100,
+      precioU: 1300,
+      calidad: "Extra",
+      descripcion: "Piña De La Mejor Calidad Para Hacer Jugos",
+    },
+    {
+      nombre: "Piña",
+      cantidad: 500,
+      precioU: 1700,
+      calidad: "Extra",
+      descripcion: "Piña De La Mejor Calidad Para Hacer Jugos",
+    },
   ];
 
   const calcularTotal = (cantidad, precioU) => {
@@ -27,53 +41,49 @@ export const CarritoCompras = () => {
 
   return (
     <div className="mx-auto mt-12 h-auto w-10/12 max-w-4xl">
-      <div className="mb-3 rounded-sm bg-white shadow-sm">
-        <div className="border-b-[1px] border-gray-200 p-2">
-          Nombre productor
-        </div>
-        <div className="flex w-full justify-between p-5">
-          <div className="h-32 w-32 bg-slate-400">
-            <div className="w-full"></div>
-          </div>
-          <div className="w-3/4">
-            <div className="flex justify-between">
-              <div className="text-2xl font-medium">Peras</div>
-
-              <Button
-                text={"Eliminar"}
-                colorBtn={"bg-red"}
-                hoverBtn={"hover:bg-bordeaux"}
-              />
+      {productos.map((producto) => {
+        return (
+          <div className="mb-3 rounded-sm bg-white shadow-sm">
+            <div className="border-b-[1px] border-gray-200 p-2">
+              Nombre productor
             </div>
-            <div className="infoProducto">
-              <div>
-                <span className="font-bold">Precio:</span> $3000 x kg
+            <div className="flex w-full justify-between p-5">
+              <div className="h-40 w-40 bg-slate-300">
+                <div className="w-full"></div>
               </div>
-              <div>
-                <span className="font-bold">Calidad:</span> Extra
+              <div className="w-3/4">
+                <div className="flex justify-between">
+                  <div className="text-2xl font-medium">{producto.nombre}</div>
+                  <Button
+                    text={"Eliminar"}
+                    colorBtn={"bg-red"}
+                    hoverBtn={"hover:bg-bordeaux"}
+                  />
+                </div>
+                <div className="infoProducto">
+                  <div>
+                    <span className="font-bold">Precio:</span> $
+                    {producto.precioU} x kg
+                  </div>
+                  <div>
+                    <span className="font-bold">Calidad:</span>{" "}
+                    {producto.calidad}
+                  </div>
+                  <div>
+                    <span className="font-bold">Descripción:</span>{" "}
+                    {producto.descripcion}
+                  </div>
+                </div>
+                <div className="mx-auto inline-block">
+                  <label className="font-semibold">Cantidad: </label>
+                  {producto.cantidad} kg
+                </div>
               </div>
-              <div>
-                <span className="font-bold">Descripción:</span> Piña De La Mejor
-                Calidad Para Hacer Jugos
-              </div>
-            </div>
-
-            <div className="mx-auto inline-block">
-              <label className="font-semibold">Cantidad: </label>
-              300 kg
-              {/* <input
-                type="number"
-                min="0"
-                max="9999"
-                placeholder="Kg"
-                className={
-                  "focus:shadow-outline w-6/12 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
-                }
-              /> */}
             </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
+
       <div className="mb-3 rounded-sm bg-white shadow-sm">
         <div className="p-3">
           <div className="mb-4 text-2xl font-medium">Resumen</div>
