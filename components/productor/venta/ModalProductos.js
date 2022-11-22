@@ -17,7 +17,7 @@ export const ModalProductos = () => {
           checked: false,
         });
 
-        const valorTxt = "";
+        let valorTxt = "";
         if (producto.id_calidad == 1) {
           valorTxt = "Extra";
         } else if (producto.id_calidad == 2) {

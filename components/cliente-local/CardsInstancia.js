@@ -16,6 +16,7 @@ export const CardsIntancia = () => {
               <Button
                 text={"Ingresar"}
                 colorBtn={"bg-green"}
+                margin={"my-2 mx-5"}
                 hoverBtn={"hover:bg-darkGreen"}
               />
             </>

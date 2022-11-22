@@ -17,6 +17,7 @@ export const Cards = () => {
               <Button
                 text={"Comprar Producto"}
                 colorBtn={"bg-green"}
+                margin={"my-2 mx-5"}
                 hoverBtn={"hover:bg-darkGreen"}
               />
             </>
