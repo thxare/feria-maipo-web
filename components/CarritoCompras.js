@@ -40,12 +40,44 @@ export const CarritoCompras = () => {
   }
 
   return (
-    <div className="mx-auto mt-12 h-auto w-10/12 max-w-4xl">
+    <div className="mx-auto mt-8 h-auto w-10/12 max-w-4xl">
+      <div className="mb-5 h-6 w-6 cursor-pointer rounded-full hover:bg-gray-300">
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+      </div>
       {productos.map((producto) => {
         return (
           <div className="mb-3 rounded-sm bg-white shadow-sm">
             <div className="border-b-[1px] border-gray-200 p-2">
-              Nombre productor
+              <div className="flex">
+                <svg
+                  className="h-5 w-5 fill-black"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                <div>Nombre productor</div>
+              </div>
             </div>
             <div className="flex w-full justify-between p-5">
               <div className="h-40 w-40 bg-slate-300">
