@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
 import { ProductosContext } from "../ContextProducto";
 import { ModalAndBackdrop } from "./ModalAndBackdrop";
@@ -38,7 +39,7 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
           </button>
         </div>
 
-        <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <div className="grid pb-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
           {productos.map((producto, index) => {
             let valorTxt = "";
             if (producto.id_calidad == 1) {
@@ -48,7 +49,8 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
             } else {
               valorTxt = "Segunda";
             }
-
+            const formatoFecha = dayjs(producto.fecha_limite).add(1,'day').format("DD/MM/YYYY");
+            
             return (
               producto.id_usuario == id_usuario && (
                 <li key={index} className="mt-4 list-none md:mt-0">
@@ -60,7 +62,9 @@ export const MisProductos = ({ onDelete, onUpdate }) => {
                     id={producto.id_producto}
                     nombreCard={producto.nombre}
                     precio={producto.precio}
+                    cantidad={producto.cantidad}
                     calidad={valorTxt}
+                    fechaLimite={formatoFecha}
                     descripcion={producto.observaciones}
                     img={producto.imagen}
                     productos={productos}

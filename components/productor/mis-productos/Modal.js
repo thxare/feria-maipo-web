@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ProductosContext } from "../ContextProducto";
 import { useImage } from "../../../hooks/useImage";
+import dayjs from "dayjs";
 
 export const Modal = ({ closeModal, user }) => {
   const [active, setActive] = useState(false);
@@ -27,25 +28,33 @@ export const Modal = ({ closeModal, user }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
+    
     setProductos((productos) => [output, ...productos]);
     closeModal();
-    if (!calidad == "" && !id_calidad == 0) {
-      const resp = await axios.post(
-        "https://api-feria-web-production.up.railway.app/api/productos",
-        output
-      );
-      setActulizado(true);
-    } else {
-      console.log("Ingrese");
-    }
+     if (!calidad == "" && !id_calidad == 0) {
+       const resp = await axios.post(
+         "https://api-feria-web-production.up.railway.app/api/productos",
+         output
+       );
+       setActulizado(true);
+     } else {
+       console.log("Ingrese");
+     }
   };
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12"  data-testid="modal">
+      <div
+        className="fixed top-0 left-0 right-0 bottom-0 z-50 mx-auto my-auto block h-max w-10/12 rounded-lg border bg-white p-6 shadow-lg sm:w-8/12 md:w-6/12 md:p-8 md:pt-4 lg:w-4/12"
+        data-testid="modal"
+      >
         <div className="flex w-full flex-row justify-end">
           <div className="h-8 w-8 hover:rounded-full hover:bg-zinc-200">
-            <button className="m-1" onClick={closeModal}  data-testid="closeModal">
+            <button
+              className="m-1"
+              onClick={closeModal}
+              data-testid="closeModal"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -263,7 +272,36 @@ export const Modal = ({ closeModal, user }) => {
               </div>
             </div>
           </div>
-
+          <label className="font-semibold" data-testid="labelNombreModal">
+            Cantidad:
+          </label>
+          <input
+            type="number"
+            placeholder="kg"
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("cantidad", { required: true })}
+            aria-invalid={errors.cantidad ? "true" : "false"}
+          />
+          {errors.cantidad?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese la cantidad del producto
+            </span>
+          )}
+          <label className="font-semibold" data-testid="labelNombreModal">
+            Fecha Limite:
+          </label>
+          <input
+            type="date"
+            placeholder="10/10/2022"
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("fecha_limite", { required: true })}
+            aria-invalid={errors.fecha_limite ? "true" : "false"}
+          />
+          {errors.fecha_limite?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese la fecha límite del producto
+            </span>
+          )}
           <label className="font-semibold" data-testid="labelDescModal">
             Descripción:
           </label>
@@ -289,7 +327,7 @@ export const Modal = ({ closeModal, user }) => {
       "
             id="exampleFormControlTextarea1"
             rows="3"
-            placeholder="Uso, estado, etc..."
+            placeholder="Estado, etc..."
             {...register("observaciones", { required: true })}
             aria-invalid={errors.observaciones ? "true" : "false"}
           ></textarea>
