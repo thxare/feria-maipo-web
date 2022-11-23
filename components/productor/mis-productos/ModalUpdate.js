@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ProductosContext } from "../ContextProducto";
 import { useImage } from "../../../hooks/useImage";
+import dayjs from "dayjs";
 
 export const ModalUpdate = ({ closeModal, id, user }) => {
   const [active, setActive] = useState(false);
@@ -29,20 +30,26 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
   const onSubmit = async (data) => {
     const id_calidad = calidad.id_calidad;
     const output = { ...data, imagen, id_calidad, id_usuario };
+
     setProductos((prev) =>
       prev.map((producto) => (producto.id_producto === id ? output : find))
     );
+
     const resp = await axios.put(
       `https://api-feria-web-production.up.railway.app/api/productos/${id}`,
       {
+        cantidad: output.cantidad || find.cantidad,
         observaciones: output.observaciones || find.observaciones,
         id_calidad: output.id_calidad || find.id_calidad,
         nombre: output.nombre || find.nombre,
         imagen: output.imagen || find.imagen,
         precio: output.precio || find.precio,
+        saldo: 0,
+        fecha_limite: output.fecha_limite || find.fecha_limite,
         id_producto: id,
       }
     );
+    console.log(resp);
     closeModal();
     setActulizado(true);
   };
@@ -264,7 +271,37 @@ export const ModalUpdate = ({ closeModal, id, user }) => {
               </div>
             </div>
           </div>
-
+          <label className="font-semibold" data-testid="labelNombreModal">
+            Cantidad:
+          </label>
+          <input
+            type="number"
+            placeholder="kg"
+            defaultValue={find.cantidad}
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("cantidad", { required: true })}
+            aria-invalid={errors.cantidad ? "true" : "false"}
+          />
+          {errors.cantidad?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese la cantidad del producto
+            </span>
+          )}
+          <label className="font-semibold" data-testid="labelNombreModal">
+            Fecha Limite:
+          </label>
+          <input
+            type="date"
+            placeholder="10/10/2022"
+            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow outline-green focus:outline"
+            {...register("fecha_limite", { required: true })}
+            aria-invalid={errors.fecha_limite ? "true" : "false"}
+          />
+          {errors.fecha_limite?.type === "required" && (
+            <span className="text-xs italic text-bordeaux">
+              Por favor ingrese la fecha límite del producto
+            </span>
+          )}
           <label className="font-semibold">Descripción: </label>
           <textarea
             defaultValue={find.observaciones}

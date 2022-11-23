@@ -14,6 +14,8 @@ export const Productos = ({
   onUpdate,
   descripcion,
   user,
+  cantidad,
+  fechaLimite,
   img = "/feria-logo.png",
 }) => {
   const [show, setShow] = useState(false);
@@ -52,9 +54,15 @@ export const Productos = ({
           <>
             <ValoresCard nombre={"Calidad"} valor={calidad} />
             <ValoresCard nombre={"Precio"} valor={precio + "x kg"} />
+            <ValoresCard nombre={"Cantidad"} valor={cantidad + " kg"} />
             <ValoresCard
               nombre={"Descripción"}
               valor={descripcion}
+              valoresEstilo={"h-13 overflow-auto"}
+            />
+            <ValoresCard
+              nombre={"Fecha Límite"}
+              valor={fechaLimite}
               valoresEstilo={"h-13 overflow-auto"}
             />
           </>
