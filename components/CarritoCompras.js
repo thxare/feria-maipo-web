@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import { ProductosContext } from "./productor/ContextProducto";
@@ -52,7 +53,9 @@ export const CarritoCompras = () => {
         const findUser = [...users].find(
           (user) => user.id_usuario === producto.id_usuario
         );
-        console.log(findUser);
+        const formatoFecha = dayjs(producto.fecha_limite)
+          .add(1, "day")
+          .format("DD/MM/YYYY");
 
         let valorTxt = "";
         if (producto.id_calidad == 1) {
@@ -86,7 +89,12 @@ export const CarritoCompras = () => {
             <div className="flex w-full justify-between p-5">
               <div className="h-40 w-40 bg-slate-300">
                 <div className="w-full">
-                  <Image src={producto.imagen} width="250" height="250" alt="" />
+                  <Image
+                    src={producto.imagen}
+                    width="250"
+                    height="250"
+                    alt=""
+                  />
                 </div>
               </div>
               <div className="w-3/4">
@@ -107,10 +115,15 @@ export const CarritoCompras = () => {
                     <span className="font-bold">Calidad:</span> {valorTxt}
                   </div>
                   <div>
+                    <span className="font-bold">Fecha Limite:</span>{" "}
+                    {formatoFecha}
+                  </div>
+                  <div>
                     <span className="font-bold">Descripción:</span>{" "}
                     {producto.observaciones}
                   </div>
                 </div>
+              
                 <div className="mx-auto inline-block">
                   <label className="font-semibold">Cantidad: </label>
                   {producto.cantidad} kg
