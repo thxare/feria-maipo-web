@@ -55,7 +55,7 @@ export const Productos = ({
         valores={
           <>
             <ValoresCard nombre={"Calidad"} valor={calidad} />
-            <ValoresCard nombre={"Precio"} valor={precio + "x kg"} />
+            <ValoresCard nombre={"Precio"} valor={precio + " x kg"} />
             <ValoresCard nombre={"Cantidad"} valor={cantidad + " kg"} />
             <ValoresCard
               nombre={"Descripción"}
