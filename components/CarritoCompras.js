@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { get } from "react-hook-form";
+import { ProductosContext } from "./productor/ContextProducto";
 import { Button } from "./ui/Button";
 
 export const CarritoCompras = () => {
-  const valoresTotales = [];
-  const productos = [
-    {
-      nombre: "Pera",
-      cantidad: 1000,
-      precioU: 1300,
-      calidad: "Extra",
-      descripcion: "Piña De La Mejor Calidad Para Hacer Jugos",
-    },
-    {
-      nombre: "Manzana",
-      cantidad: 100,
-      precioU: 1300,
-      calidad: "Extra",
-      descripcion: "Piña De La Mejor Calidad Para Hacer Jugos",
-    },
-    {
-      nombre: "Piña",
-      cantidad: 500,
-      precioU: 1700,
-      calidad: "Extra",
-      descripcion: "Piña De La Mejor Calidad Para Hacer Jugos",
-    },
-  ];
+  const { productos } = useContext(ProductosContext);
+  const [users, setUsers] = useState([]);
 
-  const calcularTotal = (cantidad, precioU) => {
-    return cantidad * precioU;
+  useEffect(() => {
+    axios
+      .get("https://api-feria-web-production.up.railway.app/api/usuarios")
+      .then((res) => {
+        setUsers(res.data);
+      });
+  }, []);
+
+  const valoresTotales = [];
+
+  const calcularTotal = (cantidad, precio) => {
+    return cantidad * precio;
   };
   productos.map((producto) => {
-    valoresTotales.push(producto.cantidad * producto.precioU);
+    valoresTotales.push(producto.cantidad * producto.precio);
   });
 
   let total = 0;
@@ -58,6 +49,19 @@ export const CarritoCompras = () => {
         </svg>
       </div>
       {productos.map((producto) => {
+        const findUser = [...users].find(
+          (user) => user.id_usuario === producto.id_usuario
+        );
+        console.log(findUser);
+
+        let valorTxt = "";
+        if (producto.id_calidad == 1) {
+          valorTxt = "Extra";
+        } else if (producto.id_calidad == 2) {
+          valorTxt = "Primera";
+        } else {
+          valorTxt = "Segunda";
+        }
         return (
           <div className="mb-3 rounded-sm bg-white shadow-sm">
             <div className="border-b-[1px] border-gray-200 p-2">
@@ -76,7 +80,7 @@ export const CarritoCompras = () => {
                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                   />
                 </svg>
-                <div>Nombre productor</div>
+                <div>{findUser.nombre + " " + findUser.apellido_p}</div>
               </div>
             </div>
             <div className="flex w-full justify-between p-5">
@@ -95,15 +99,14 @@ export const CarritoCompras = () => {
                 <div className="infoProducto">
                   <div>
                     <span className="font-bold">Precio:</span> $
-                    {producto.precioU} x kg
+                    {producto.precio} x kg
                   </div>
                   <div>
-                    <span className="font-bold">Calidad:</span>{" "}
-                    {producto.calidad}
+                    <span className="font-bold">Calidad:</span> {valorTxt}
                   </div>
                   <div>
                     <span className="font-bold">Descripción:</span>{" "}
-                    {producto.descripcion}
+                    {producto.observaciones}
                   </div>
                 </div>
                 <div className="mx-auto inline-block">
@@ -131,9 +134,9 @@ export const CarritoCompras = () => {
                 <div className="grid grid-cols-4 gap-2">
                   <div className="inline-block">{producto.nombre}</div>
                   <div className="inline-block">{producto.cantidad} kg</div>
-                  <div className="inline-block">${producto.precioU}</div>
+                  <div className="inline-block">${producto.precio}</div>
                   <div className="inline-block">
-                    ${calcularTotal(producto.cantidad, producto.precioU)}
+                    ${calcularTotal(producto.cantidad, producto.precio)}
                   </div>
                 </div>
               );
