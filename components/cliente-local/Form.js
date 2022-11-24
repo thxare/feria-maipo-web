@@ -68,7 +68,7 @@ export const Form = ({ peticion, setPeticion }) => {
     });
   };
 
-  return (
+  /* return (
     <div className="mx-auto">
       <form onSubmit={handleSubmit} className="h-max bg-white p-10 rounded-lg">
         <div className="-mx-3 mb-6 flex flex-wrap place-content-center">
@@ -125,5 +125,5 @@ export const Form = ({ peticion, setPeticion }) => {
         </div>
       </form>
     </div>
-  );
+  ); */
 };
