@@ -1,6 +1,6 @@
 import axios from "axios";
+import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
-import { get } from "react-hook-form";
 import { ProductosContext } from "./productor/ContextProducto";
 import { Button } from "./ui/Button";
 
@@ -85,7 +85,9 @@ export const CarritoCompras = () => {
             </div>
             <div className="flex w-full justify-between p-5">
               <div className="h-40 w-40 bg-slate-300">
-                <div className="w-full"></div>
+                <div className="w-full">
+                  <Image src={producto.imagen} width="250" height="250" alt="" />
+                </div>
               </div>
               <div className="w-3/4">
                 <div className="flex justify-between">
