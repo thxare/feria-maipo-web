@@ -12,8 +12,6 @@ export const CardsIntancia = ({ productos }) => {
           return (
             <Card
               nombreCard={products.nombre}
-              precio={products.precio}
-              cantidad={products.cantidad}
               img={products.imagen}
               button={
                 <>
@@ -21,11 +19,20 @@ export const CardsIntancia = ({ productos }) => {
                     text={"Agregar"}
                     colorBtn={"bg-green"}
                     hoverBtn={"hover:bg-darkGreen"}
+                    margin={"my-2 mx-5"}
                   />
                 </>
               }
               valores={
                 <>
+                  <ValoresCard
+                    nombre={"Precio"}
+                    valor={products.precio + " x kg"}
+                  />
+                  <ValoresCard
+                    nombre={"Cantidad"}
+                    valor={products.cantidad + " kg"}
+                  />
                   <ValoresCard
                     nombre={"Observaciones"}
                     valor={products.observaciones}
