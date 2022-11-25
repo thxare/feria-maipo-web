@@ -6,7 +6,7 @@ import { CardContainer } from "../ui/CardContainer";
 
 export const CardsIntancia = ({ productos }) => {
   const min = 0;
-  const [value, setValue] = useState({ cantidadCompra: "" });
+  const [cantidadProducto, setCantidadProducto] = useState("");
   const [productosCarrito, setProductosCarrito] = useState([]);
 
   useEffect(() => {
@@ -14,20 +14,13 @@ export const CardsIntancia = ({ productos }) => {
   }, [productosCarrito]);
 
   const handleChange = (id, e) => {
-    const { name, value } = e.target;
+    //const { name, value } = e.target;
     productos.filter((producto) => {
       if (producto.id_producto == id) {
-        setValue((prev) => {
-          return {
-            ...prev,
-            [name]: value,
-          };
-        });
+        setCantidadProducto(e.target.value);
       }
     });
   };
-
-  const idProducto = productos.map((producto) => producto.id_producto);
 
   const addAmount = (id) => {
     const amountValue = productos.filter(
@@ -39,14 +32,10 @@ export const CardsIntancia = ({ productos }) => {
   const handleClick = (event, id) => {
     event.preventDefault();
     const id_producto = addAmount(id)[0].id_producto;
+    const valuesProductoVenta = { id_producto, cantidadProducto };
 
-    const valuesProductoVenta = { id_producto, value };
     setProductosCarrito([...productosCarrito, valuesProductoVenta]);
   };
-
-  // const handleClick = (event) =>{
-  //   event.preventDefault()
-  // }
 
   return (
     <>
@@ -90,7 +79,7 @@ export const CardsIntancia = ({ productos }) => {
                         <input
                           type="number"
                           id={products.id_producto}
-                          value={value.cantidadCompra[products.id]}
+                          value={cantidadProducto[products.id]}
                           name="cantidadCompra"
                           onChange={(e) =>
                             handleChange(products.id_producto, e)
