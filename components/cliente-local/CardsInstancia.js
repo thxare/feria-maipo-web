@@ -1,16 +1,61 @@
-import React from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { ValoresCard } from "../ui/ValoresCard";
 import { CardContainer } from "../ui/CardContainer";
 
 export const CardsIntancia = ({ productos }) => {
+  const min = 0;
+  const [value, setValue] = useState({ cantidadCompra: "" });
+  const [productosCarrito, setProductosCarrito] = useState([]);
+
+  useEffect(() => {
+    console.log(productosCarrito);
+  }, [productosCarrito]);
+
+  const handleChange = (id, e) => {
+    const { name, value } = e.target;
+    productos.filter((producto) => {
+      if (producto.id_producto == id) {
+        setValue((prev) => {
+          return {
+            ...prev,
+            [name]: value,
+          };
+        });
+      }
+    });
+  };
+
+  const idProducto = productos.map((producto) => producto.id_producto);
+
+  const addAmount = (id) => {
+    const amountValue = productos.filter(
+      (producto) => producto.id_producto == id
+    );
+    return amountValue;
+  };
+
+  const handleClick = (event, id) => {
+    event.preventDefault();
+    const id_producto = addAmount(id)[0].id_producto;
+
+    const valuesProductoVenta = { id_producto, value };
+    setProductosCarrito([...productosCarrito, valuesProductoVenta]);
+  };
+
+  // const handleClick = (event) =>{
+  //   event.preventDefault()
+  // }
+
   return (
     <>
       <CardContainer>
-        {productos.map((products) => {
+        {productos.map((products, index) => {
           return (
             <Card
+              id={products.id_producto}
+              key={products.id_producto}
               nombreCard={products.nombre}
               img={products.imagen}
               button={
@@ -20,6 +65,7 @@ export const CardsIntancia = ({ productos }) => {
                     colorBtn={"bg-green"}
                     hoverBtn={"hover:bg-darkGreen"}
                     margin={"my-2 mx-5"}
+                    onClickBtn={(e) => handleClick(e, products.id_producto)}
                   />
                 </>
               }
@@ -30,12 +76,48 @@ export const CardsIntancia = ({ productos }) => {
                     valor={products.precio + " x kg"}
                   />
                   <ValoresCard
-                    nombre={"Cantidad"}
+                    nombre={"Kilogramos Disponibles"}
                     valor={products.cantidad + " kg"}
                   />
                   <ValoresCard
                     nombre={"Observaciones"}
                     valor={products.observaciones}
+                  />
+                  <ValoresCard
+                    nombre={"Cantidad de Kg"}
+                    valor={
+                      <>
+                        <input
+                          type="number"
+                          id={products.id_producto}
+                          value={value.cantidadCompra[products.id]}
+                          name="cantidadCompra"
+                          onChange={(e) =>
+                            handleChange(products.id_producto, e)
+                          }
+                          placeholder="500 Kg, 1500 Kg"
+                          required
+                          className="
+                  
+        form-control
+        m-0
+        block
+        w-full
+        rounded
+        border
+        border-solid
+        border-gray-300
+        bg-white bg-clip-padding
+        px-3 py-1.5 text-base
+        font-normal
+        text-gray-700
+        transition
+        ease-in-out
+        focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none
+      "
+                        />
+                      </>
+                    }
                   />
                 </>
               }
