@@ -24,7 +24,7 @@ export default function Compras() {
 
   const [productos, setProductos] = useState([]);
   const [productosCarrito, setProductosCarrito] = useState([]);
-  //const [listaActulizada, setListaActulizada] = useState(true);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     const getProductos = async () => {
@@ -42,7 +42,7 @@ export default function Compras() {
 
   useEffect(() => {
     setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
-  }, []);
+  }, [update]);
 
   return (
     <>
@@ -58,7 +58,7 @@ export default function Compras() {
             cantidad={productosCarrito.length}
           />
           <ContainerPage titulo={"Productos"}>
-            <CardsIntancia productos={productos} />
+            <CardsIntancia productos={productos} setUpdate={setUpdate} />
           </ContainerPage>
         </div>
       </ProductosCarritoContextProvider>

@@ -15,7 +15,7 @@ export default function Carrito(props) {
   useEffect(() => {
     setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
   }, []);
-  console.log(productosCarrito);
+
   return (
     <>
       <ProductosCarritoContextProvider>

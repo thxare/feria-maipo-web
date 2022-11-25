@@ -3,9 +3,8 @@ import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { ValoresCard } from "../ui/ValoresCard";
 import { CardContainer } from "../ui/CardContainer";
-import { Alert } from "../ui/Alert";
 
-export const CardsIntancia = ({ productos }) => {
+export const CardsIntancia = ({ productos, setUpdate }) => {
   const initialState = "";
   const [cantidadProducto, setCantidadProducto] = useState(initialState);
   const [productosCarrito, setProductosCarrito] = useState([]);
@@ -49,11 +48,13 @@ export const CardsIntancia = ({ productos }) => {
       );
     } else {
       setProductosCarrito([...productosCarrito, valuesProductoVenta]);
+      setUpdate(true);
     }
   };
 
   useEffect(() => {
     window.localStorage.setItem("carrito", JSON.stringify(productosCarrito));
+    setUpdate(false)
   }, [productosCarrito]);
 
   return (
