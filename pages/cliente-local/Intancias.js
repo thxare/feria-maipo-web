@@ -5,6 +5,7 @@ import axios from "axios";
 import { Header } from "../../components/header/Header";
 import { CardsIntancia } from "../../components/cliente-local/CardsInstancia";
 import { ContainerPage } from "../../components/ui/ContainerPage";
+import { ProductosCarritoContextProvider } from "../../components/ContextDetalleVenta";
 
 export default function Compras() {
   const funciones = [
@@ -37,15 +38,17 @@ export default function Compras() {
 
   return (
     <>
-      <Head>
-        <title>Maipo Grande - Cliente Local</title>
-      </Head>
-      <div>
-        <Header funciones={funciones} />
-        <ContainerPage titulo={"Productos"}>
-          <CardsIntancia productos={productos} />
-        </ContainerPage>
-      </div>
+      <ProductosCarritoContextProvider>
+        <Head>
+          <title>Maipo Grande - Cliente Local</title>
+        </Head>
+        <div>
+          <Header funciones={funciones} />
+          <ContainerPage titulo={"Productos"}>
+            <CardsIntancia productos={productos} />
+          </ContainerPage>
+        </div>
+      </ProductosCarritoContextProvider>
     </>
   );
 }

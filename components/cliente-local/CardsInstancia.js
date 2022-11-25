@@ -1,13 +1,17 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useContext, useEffect, useState } from "react";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { ValoresCard } from "../ui/ValoresCard";
 import { CardContainer } from "../ui/CardContainer";
+import { ProductosCarritoContext } from "../ContextDetalleVenta";
 
 export const CardsIntancia = ({ productos }) => {
   const min = 0;
   const [cantidadProducto, setCantidadProducto] = useState("");
   const [productosCarrito, setProductosCarrito] = useState([]);
+  // const { productosCarrito, setProductosCarrito } = useContext(
+  //   ProductosCarritoContext
+  // );
 
   useEffect(() => {
     console.log(productosCarrito);
@@ -27,10 +31,29 @@ export const CardsIntancia = ({ productos }) => {
   const handleClick = (event, id) => {
     event.preventDefault();
     const id_producto = addAmount(id)[0].id_producto;
-    const valuesProductoVenta = { id_producto, cantidadProducto };
+    const nombre = addAmount(id)[0].nombre;
+    const precio = addAmount(id)[0].precio;
+    const imagen = addAmount(id)[0].imagen;
+    const observaciones = addAmount(id)[0].observaciones;
+    const id_usuario = addAmount(id)[0].id_usuario;
+    //const cantidad = addAmount(id)[0].cantidad;
+    const cantidad = cantidadProducto;
+    const valuesProductoVenta = {
+      id_producto,
+      cantidad,
+      nombre,
+      precio,
+      id_usuario,
+      observaciones,
+      imagen,
+    };
     setCantidadProducto("");
     setProductosCarrito([...productosCarrito, valuesProductoVenta]);
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("carrito", JSON.stringify(productosCarrito));
+  }, [productosCarrito]);
 
   return (
     <>

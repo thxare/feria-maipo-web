@@ -2,11 +2,11 @@ import axios from "axios";
 import dayjs from "dayjs";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
-import { ProductosContext } from "./productor/ContextProducto";
+import { ProductosCarritoContext } from "./ContextDetalleVenta";
 import { Button } from "./ui/Button";
 
-export const CarritoCompras = () => {
-  const { productos } = useContext(ProductosContext);
+export const CarritoCompras = ({productosCarrito}) => {
+  //const { productosCarrito } = useContext(ProductosCarritoContext);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const CarritoCompras = () => {
   const calcularTotal = (cantidad, precio) => {
     return cantidad * precio;
   };
-  productos.map((producto) => {
+  productosCarrito.map((producto) => {
     valoresTotales.push(producto.cantidad * producto.precio);
   });
 
@@ -49,7 +49,7 @@ export const CarritoCompras = () => {
           />
         </svg>
       </div>
-      {productos.map((producto) => {
+      {productosCarrito.map((producto) => {
         const findUser = [...users].find(
           (user) => user.id_usuario === producto.id_usuario
         );
@@ -57,14 +57,14 @@ export const CarritoCompras = () => {
           .add(1, "day")
           .format("DD/MM/YYYY");
 
-        let valorTxt = "";
-        if (producto.id_calidad == 1) {
-          valorTxt = "Extra";
-        } else if (producto.id_calidad == 2) {
-          valorTxt = "Primera";
-        } else {
-          valorTxt = "Segunda";
-        }
+        // let valorTxt = "";
+        // if (producto.id_calidad == 1) {
+        //   valorTxt = "Extra";
+        // } else if (producto.id_calidad == 2) {
+        //   valorTxt = "Primera";
+        // } else {
+        //   valorTxt = "Segunda";
+        // }
         return (
           <div className="mb-3 rounded-sm bg-white shadow-sm">
             <div className="border-b-[1px] border-gray-200 p-2">
@@ -83,7 +83,7 @@ export const CarritoCompras = () => {
                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                   />
                 </svg>
-                <div>{`${findUser.nombre} ${findUser.apellido_p}, ${findUser.ciudad}`}</div>
+                {/* <div>{`${findUser.nombre} ${findUser.apellido_p}, ${findUser.ciudad}`}</div> */}
               </div>
             </div>
             <div className="flex w-full justify-between p-5">
@@ -111,9 +111,9 @@ export const CarritoCompras = () => {
                     <span className="font-bold">Precio:</span> $
                     {producto.precio} x kg
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="font-bold">Calidad:</span> {valorTxt}
-                  </div>
+                  </div> */}
                   <div>
                     <span className="font-bold">Fecha Limite:</span>{" "}
                     {formatoFecha}
@@ -123,7 +123,7 @@ export const CarritoCompras = () => {
                     {producto.observaciones}
                   </div>
                 </div>
-              
+
                 <div className="mx-auto inline-block">
                   <label className="font-semibold">Cantidad: </label>
                   {producto.cantidad} kg
@@ -144,7 +144,7 @@ export const CarritoCompras = () => {
               <div className="inline-block font-bold"> Precio Unitario</div>
               <div className="inline-block font-bold">Total</div>
             </div>
-            {productos.map((producto) => {
+            {productosCarrito.map((producto) => {
               return (
                 <div className="grid grid-cols-4 gap-2">
                   <div className="inline-block">{producto.nombre}</div>
