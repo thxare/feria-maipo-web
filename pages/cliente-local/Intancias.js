@@ -23,6 +23,8 @@ export default function Compras() {
   }, []);
 
   const [productos, setProductos] = useState([]);
+  const [productosCarrito, setProductosCarrito] = useState([]);
+  //const [listaActulizada, setListaActulizada] = useState(true);
 
   useEffect(() => {
     const getProductos = async () => {
@@ -30,13 +32,13 @@ export default function Compras() {
         "https://api-feria-web-production.up.railway.app/api/productos/"
       );
       const datos = res.data;
-      const filteredDatos = datos.filter((x) => x.saldo === 0);
+      const filteredDatos = datos.filter(
+        (x) => x.saldo === 0 && x.cantidad > 0
+      );
       setProductos(filteredDatos);
     };
     getProductos();
   }, [productos]);
-
-  const [productosCarrito, setProductosCarrito] = useState([]);
 
   useEffect(() => {
     setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));

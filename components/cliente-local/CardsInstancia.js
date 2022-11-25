@@ -1,21 +1,14 @@
-import React, { createRef, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { ValoresCard } from "../ui/ValoresCard";
 import { CardContainer } from "../ui/CardContainer";
-import { ProductosCarritoContext } from "../ContextDetalleVenta";
+import { Alert } from "../ui/Alert";
 
 export const CardsIntancia = ({ productos }) => {
-  const min = 0;
-  const [cantidadProducto, setCantidadProducto] = useState("");
+  const initialState = "";
+  const [cantidadProducto, setCantidadProducto] = useState(initialState);
   const [productosCarrito, setProductosCarrito] = useState([]);
-  // const { productosCarrito, setProductosCarrito } = useContext(
-  //   ProductosCarritoContext
-  // );
-
-  useEffect(() => {
-    console.log(productosCarrito);
-  }, [productosCarrito]);
 
   const handleChange = (e) => {
     setCantidadProducto(e.target.value);
@@ -32,11 +25,13 @@ export const CardsIntancia = ({ productos }) => {
     event.preventDefault();
     const id_producto = addAmount(id)[0].id_producto;
     const nombre = addAmount(id)[0].nombre;
+    const cantidadInicial = addAmount(id)[0].cantidad;
+
     const precio = addAmount(id)[0].precio;
     const imagen = addAmount(id)[0].imagen;
     const observaciones = addAmount(id)[0].observaciones;
     const id_usuario = addAmount(id)[0].id_usuario;
-    const cantidad = cantidadProducto;
+    const cantidad = parseInt(cantidadProducto);
     const valuesProductoVenta = {
       id_producto,
       cantidad,
@@ -46,8 +41,15 @@ export const CardsIntancia = ({ productos }) => {
       observaciones,
       imagen,
     };
-    setCantidadProducto("");
-    setProductosCarrito([...productosCarrito, valuesProductoVenta]);
+    if (cantidad < 0) {
+      alert("La cantidad de kg del producto debe ser mayor a 0 ");
+    } else if (cantidad > cantidadInicial) {
+      alert(
+        "La cantidad de kg del producto debe ser menos de los kg disponibles"
+      );
+    } else {
+      setProductosCarrito([...productosCarrito, valuesProductoVenta]);
+    }
   };
 
   useEffect(() => {
