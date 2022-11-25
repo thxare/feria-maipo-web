@@ -12,6 +12,9 @@ export default function Index() {
     { name: "Productos", link: "/cliente-local/Intancias" },
     /* { name: "Solicitudes", link: "/cliente-local/solicitudes" }, */
   ];
+
+  const [productosCarrito, setProductosCarrito] = useState([]);
+
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
     if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
@@ -19,6 +22,9 @@ export default function Index() {
     } else if (typeof dato !== "undefined" || dato !== {}) {
       router?.push("/cliente-local/");
     }
+  }, []);
+  useEffect(() => {
+    setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
   }, []);
   const [productos, setProductos] = useState([]);
 
@@ -40,7 +46,12 @@ export default function Index() {
         <title>Maipo Grande - Cliente Local</title>
       </Head>
       <div>
-        <Header funciones={funciones} />
+        <Header
+          funciones={funciones}
+          carrito={true}
+          tipoCliente="cliente-local"
+          cantidad={productosCarrito.length}
+        />
         <ContainerPage titulo={"Saldos"}>
           <Cards productos={productos} />
         </ContainerPage>

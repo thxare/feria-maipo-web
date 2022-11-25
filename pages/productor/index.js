@@ -33,7 +33,7 @@ export default function Index(props) {
         </Head>
         <div className="h-screen bg-gray-200">
           <div className="h-max bg-gray-200">
-            <Header funciones={funciones} />
+            <Header funciones={funciones}  carrito={false}/>
             <MostrarProductos />
           </div>
         </div>

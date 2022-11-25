@@ -36,7 +36,6 @@ export const CardsIntancia = ({ productos }) => {
     const imagen = addAmount(id)[0].imagen;
     const observaciones = addAmount(id)[0].observaciones;
     const id_usuario = addAmount(id)[0].id_usuario;
-    //const cantidad = addAmount(id)[0].cantidad;
     const cantidad = cantidadProducto;
     const valuesProductoVenta = {
       id_producto,

@@ -1,11 +1,12 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { ProductosCarritoContext } from "./ContextDetalleVenta";
 import { Button } from "./ui/Button";
 
-export const CarritoCompras = ({productosCarrito}) => {
+export const CarritoCompras = ({ productosCarrito }) => {
   //const { productosCarrito } = useContext(ProductosCarritoContext);
   const [users, setUsers] = useState([]);
 
@@ -30,10 +31,13 @@ export const CarritoCompras = ({productosCarrito}) => {
   for (let i = 0; i < valoresTotales.length; i++) {
     total += valoresTotales[i];
   }
-
+  const router = useRouter();
   return (
     <div className="mx-auto mt-8 h-auto w-10/12 max-w-4xl">
-      <div className="mb-5 h-6 w-6 cursor-pointer rounded-full hover:bg-gray-300">
+      <div
+        className="mb-5 h-6 w-6 cursor-pointer rounded-full hover:bg-gray-300"
+        onClick={() => router.back()}
+      >
         <svg
           className="h-6 w-6"
           fill="none"

@@ -1,11 +1,15 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import { Header } from "../components/header/Header";
-import { CarritoCompras } from "../components/CarritoCompras";
-import { ProductosCarritoContextProvider } from "../components/ContextDetalleVenta";
+
+import { CarritoCompras } from "../../components/CarritoCompras";
+import { ProductosCarritoContextProvider } from "../../components/ContextDetalleVenta";
+import { Header } from "../../components/header/Header";
 
 export default function Carrito(props) {
-  const funciones = [{ name: "Carrito de compras", link: "/carrito/" }];
+  const funciones = [
+    { name: "Saldos", link: "/cliente-local/" },
+    { name: "Productos", link: "/cliente-local/Intancias" },
+  ];
   const [productosCarrito, setProductosCarrito] = useState([]);
 
   useEffect(() => {

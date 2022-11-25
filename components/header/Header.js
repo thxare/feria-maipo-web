@@ -65,7 +65,7 @@ export const Header = (props) => {
             </svg>
           </button>
           <LeftPosition funciones={props.funciones} />
-          <RightPosition />
+          <RightPosition carrito={props.carrito} tipoCliente={props.tipoCliente} cantidad={props.cantidad}/>
         </div>
         <div className={className} id="menu">
           <ul className="navbar-nav list-style-none mr-auto ml-8 mt-2 flex flex-col pl-0 md:flex-row">

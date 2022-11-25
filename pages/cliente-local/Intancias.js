@@ -36,6 +36,12 @@ export default function Compras() {
     getProductos();
   }, [productos]);
 
+  const [productosCarrito, setProductosCarrito] = useState([]);
+
+  useEffect(() => {
+    setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
+  }, []);
+
   return (
     <>
       <ProductosCarritoContextProvider>
@@ -43,7 +49,12 @@ export default function Compras() {
           <title>Maipo Grande - Cliente Local</title>
         </Head>
         <div>
-          <Header funciones={funciones} />
+          <Header
+            funciones={funciones}
+            carrito={true}
+            tipoCliente="cliente-local"
+            cantidad={productosCarrito.length}
+          />
           <ContainerPage titulo={"Productos"}>
             <CardsIntancia productos={productos} />
           </ContainerPage>
