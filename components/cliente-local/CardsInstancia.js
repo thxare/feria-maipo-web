@@ -13,13 +13,8 @@ export const CardsIntancia = ({ productos }) => {
     console.log(productosCarrito);
   }, [productosCarrito]);
 
-  const handleChange = (id, e) => {
-    //const { name, value } = e.target;
-    productos.filter((producto) => {
-      if (producto.id_producto == id) {
-        setCantidadProducto(e.target.value);
-      }
-    });
+  const handleChange = (e) => {
+    setCantidadProducto(e.target.value);
   };
 
   const addAmount = (id) => {
@@ -33,7 +28,7 @@ export const CardsIntancia = ({ productos }) => {
     event.preventDefault();
     const id_producto = addAmount(id)[0].id_producto;
     const valuesProductoVenta = { id_producto, cantidadProducto };
-
+    setCantidadProducto("");
     setProductosCarrito([...productosCarrito, valuesProductoVenta]);
   };
 
@@ -81,9 +76,7 @@ export const CardsIntancia = ({ productos }) => {
                           id={products.id_producto}
                           value={cantidadProducto[products.id]}
                           name="cantidadCompra"
-                          onChange={(e) =>
-                            handleChange(products.id_producto, e)
-                          }
+                          onChange={(e) => handleChange(e)}
                           placeholder="500 Kg, 1500 Kg"
                           required
                           className="
