@@ -50,7 +50,7 @@ export default function Index() {
           funciones={funciones}
           carrito={true}
           tipoCliente="cliente-local"
-          cantidad={productosCarrito.length}
+          cantidad={productosCarrito ? productosCarrito.length : 0}
         />
         <ContainerPage titulo={"Saldos"}>
           <Cards productos={productos} />
