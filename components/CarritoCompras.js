@@ -3,12 +3,11 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { ProductosCarritoContext } from "./ContextDetalleVenta";
 import { Button } from "./ui/Button";
 
-export const CarritoCompras = ({ productosCarrito }) => {
-  //const { productosCarrito } = useContext(ProductosCarritoContext);
+export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
   const [users, setUsers] = useState([]);
+  const [change, setChange] = useState(false);
 
   useEffect(() => {
     axios
@@ -32,6 +31,20 @@ export const CarritoCompras = ({ productosCarrito }) => {
     total += valoresTotales[i];
   }
   const router = useRouter();
+
+  const onDelete = (id) => {
+    setChange(true);
+    setProductosCarrito(
+      [...productosCarrito].filter((producto) => producto.id_producto !== id)
+    );
+  };
+  useEffect(() => {
+    if (change) {
+      window.localStorage.setItem("carrito", JSON.stringify(productosCarrito));
+    }
+    setChange(false);
+  }, [change]);
+
   return (
     <div className="mx-auto mt-8 h-auto w-10/12 max-w-4xl">
       <div
@@ -112,6 +125,7 @@ export const CarritoCompras = ({ productosCarrito }) => {
                     text={"Eliminar"}
                     colorBtn={"bg-red"}
                     hoverBtn={"hover:bg-bordeaux"}
+                    onClickBtn={() => onDelete(producto.id_producto)}
                   />
                 </div>
                 <div className="infoProducto">

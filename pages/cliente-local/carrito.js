@@ -28,7 +28,7 @@ export default function Carrito(props) {
             <h1 className="mt-10 mb-2 text-center text-3xl font-semibold md:ml-10 md:text-left">
               Carrito de compras
             </h1>
-            <CarritoCompras productosCarrito={productosCarrito} />
+            <CarritoCompras productosCarrito={productosCarrito} setProductosCarrito={setProductosCarrito} />
           </div>
         </div>
       </ProductosCarritoContextProvider>

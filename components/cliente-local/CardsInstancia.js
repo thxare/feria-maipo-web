@@ -13,7 +13,7 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
     setCantidadProducto(e.target.value);
   };
 
-  const addAmount = (id) => {
+  const filterProduct = (id) => {
     const amountValue = productos.filter(
       (producto) => producto.id_producto == id
     );
@@ -22,14 +22,13 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
 
   const handleClick = (event, id) => {
     event.preventDefault();
-    const id_producto = addAmount(id)[0].id_producto;
-    const nombre = addAmount(id)[0].nombre;
-    const cantidadInicial = addAmount(id)[0].cantidad;
-
-    const precio = addAmount(id)[0].precio;
-    const imagen = addAmount(id)[0].imagen;
-    const observaciones = addAmount(id)[0].observaciones;
-    const id_usuario = addAmount(id)[0].id_usuario;
+    const id_producto = filterProduct(id)[0].id_producto;
+    const nombre = filterProduct(id)[0].nombre;
+    const cantidadInicial = filterProduct(id)[0].cantidad;
+    const precio = filterProduct(id)[0].precio;
+    const imagen = filterProduct(id)[0].imagen;
+    const observaciones = filterProduct(id)[0].observaciones;
+    const id_usuario = filterProduct(id)[0].id_usuario;
     const cantidad = parseInt(cantidadProducto);
     const valuesProductoVenta = {
       id_producto,
@@ -54,7 +53,7 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
 
   useEffect(() => {
     window.localStorage.setItem("carrito", JSON.stringify(productosCarrito));
-    setUpdate(false)
+    setUpdate(false);
   }, [productosCarrito]);
 
   return (
