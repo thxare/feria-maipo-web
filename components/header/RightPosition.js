@@ -64,11 +64,11 @@ export const RightPosition = ({ carrito, tipoCliente, cantidad }) => {
           aria-expanded="false"
         >
           <Image
-            src="/favicon-32x32.png"
-            className="rounded-full"
-            width="20"
-            height="20"
-            alt=""
+            src="/iconoUsuario.png"
+            className="rounded-full hover:bg-slate-300"
+            width="25"
+            height="25"
+            alt="icono-usuario"
             loading="lazy"
           />
         </a>

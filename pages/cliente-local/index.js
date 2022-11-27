@@ -40,11 +40,7 @@ export default function Index() {
     };
     getProductos();
   }, [productos]);
-
-  useEffect(() => {
-    setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
-  }, [update]);
-
+  
   return (
     <>
       <Head>
@@ -55,7 +51,7 @@ export default function Index() {
           funciones={funciones}
           carrito={true}
           tipoCliente="cliente-local"
-          cantidad={productosCarrito.length}
+          cantidad={productosCarrito ? productosCarrito.length : 0}
         />
         <ContainerPage titulo={"Saldos"}>
           <Cards productos={productos} setUpdate={setUpdate}/>

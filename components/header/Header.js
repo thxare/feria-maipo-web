@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-
-import { clearPreviewData } from "next/dist/server/api-utils";
 import { RightPosition } from "./RightPosition";
 import { LeftPosition } from "./LeftPosition";
 
@@ -17,6 +15,7 @@ export const Header = (props) => {
   if (change) {
     className += ` hidden`;
   }
+   
 
   return (
     <>

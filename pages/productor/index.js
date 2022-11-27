@@ -8,8 +8,6 @@ import { MostrarProductos } from "../../components/productor/mis-productos/Mostr
 export default function Index(props) {
   const funciones = [
     { name: "Mis Productos", link: "/productor/" },
-    { name: "Venta Externa", link: "/productor/ventaexterna" },
-    { name: "Venta Local", link: "/productor/ventalocal" },
   ];
 
   useEffect(() => {

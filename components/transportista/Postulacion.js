@@ -1,51 +1,35 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TransporteContext } from "./ContextTransporte";
+import axios from "axios";
+import { getOnePerson } from "../../utils/fetching";
 
-export const Postulacion = ({ estado }) => {
-  const transportes = [
-    {
-      id: 1,
-      patente: "RX-TF-23",
-      tamaño: "XL",
-      capacidad_carga: "10T",
-      refrigeracion: "Liquida",
-      id_tipo: 2,
-      tipo: "Barco",
-    },
-    {
-      id: 2,
-      patente: "GH-WE-23",
-      tamaño: "L",
-      capacidad_carga: "6T",
-      refrigeracion: "Liquida",
-      id_tipo: 2,
-      tipo: "Barco",
-    },
-    {
-      id: 3,
-      patente: "UB-NS-23",
-      tamaño: "M",
-      capacidad_carga: "3T",
-      refrigeracion: "Liquida",
-      id_tipo: 1,
-      tipo: "Camión",
-    },
-    {
-      id: 4,
-      patente: "AE-CR-23",
-      tamaño: "S",
-      capacidad_carga: "2T",
-      refrigeracion: "Liquida",
-      id_tipo: 1,
-      tipo: "Camión",
-    },
-  ];
+export const Postulacion = ({ estado, idSubasta }) => {
+  const [name, setName] = useState("");
 
   const { tabla } = useContext(TransporteContext);
-  console.log(tabla);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const user = JSON.parse(window.localStorage.getItem("loggedNoteAppUser"));
+    const persona = await getOnePerson(user.id_persona);
+    const id_transporte = parseInt(data.transportes);
+    const detalle = {
+      id_transporte,
+      id_subasta: idSubasta,
+      cargo: parseInt(data.cargo),
+      precio: parseInt(data.precio),
+      nombre: persona?.nombre,
+    };
+    console.log(detalle);
+    try {
+      axios.post(
+        "https://api-feria-web-production.up.railway.app/api/detalle-subasta/",
+        detalle
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
     console.log(data);
   };
   const {
