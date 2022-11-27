@@ -3,6 +3,7 @@ import { Card } from "../ui/Card";
 import { CardContainer } from "../ui/CardContainer";
 import { Button } from "../ui/Button";
 import { ValoresCard } from "../ui/ValoresCard";
+import dayjs from "dayjs";
 
 export const Cards = ({ productos, setUpdate }) => {
   const initialState = "";
@@ -60,6 +61,10 @@ export const Cards = ({ productos, setUpdate }) => {
     <>
       <CardContainer>
         {productos.map((products, index) => {
+          
+          const fechaFormato = dayjs(products.fecha_limite)
+            .add(1, "day")
+            .format("DD/MM/YYYY");
           return (
             <Card
               id={products.id_producto}
@@ -87,10 +92,12 @@ export const Cards = ({ productos, setUpdate }) => {
                     nombre={"Kilogramos Disponibles"}
                     valor={products.cantidad + " kg"}
                   />
+                  <ValoresCard nombre={"Fecha Limite"} valor={fechaFormato} />
                   <ValoresCard
                     nombre={"Observaciones"}
                     valor={products.observaciones}
                   />
+
                   <ValoresCard
                     nombre={"Cantidad de Kg"}
                     valor={
