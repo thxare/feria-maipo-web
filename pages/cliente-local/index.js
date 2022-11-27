@@ -47,16 +47,16 @@ export default function Index() {
           //console.log(fechaLimite);
           const dia_producto = fechaLimite.$D;
           const mes_producto = fechaLimite.$M + 1;
-          console.log(mes_producto < mes_actual);
+          
           const anio_producto = fechaLimite.$y;
-
+          console.log(dia_producto < dia_actual);
           if (
             (anio_producto >= anio_actual &&
-              mes_producto <= mes_actual &&
+              mes_producto < mes_actual &&
               x.cantidad > 0) ||
             (anio_producto >= anio_actual &&
               mes_producto == mes_actual &&
-              dia_actual < dia_producto)
+              dia_producto < dia_actual)
           ) {
             return x;
           }

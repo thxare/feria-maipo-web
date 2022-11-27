@@ -47,14 +47,14 @@ export default function Index() {
         const mes_producto = fechaLimite.$M + 1;
         const anio_producto = fechaLimite.$y;
 
-        if (
+        if  (
           (anio_producto >= anio_actual &&
-            mes_producto <= mes_actual &&
+            mes_producto < mes_actual &&
             x.cantidad > 0) ||
           (anio_producto >= anio_actual &&
             mes_producto == mes_actual &&
-            dia_actual < dia_producto)
-        ) {
+            dia_producto < dia_actual)
+        )  {
           console.log("saldos");
         } else {
           if (x.cantidad > 0) {

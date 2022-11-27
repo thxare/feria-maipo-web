@@ -47,11 +47,11 @@ export default function Compras() {
         const anio_producto = fechaLimite.$y;
         if (
           (anio_producto >= anio_actual &&
-            mes_producto <= mes_actual &&
+            mes_producto < mes_actual &&
             x.cantidad > 0) ||
           (anio_producto >= anio_actual &&
             mes_producto == mes_actual &&
-            dia_actual < dia_producto)
+            dia_producto < dia_actual)
         ) {
           console.log("saldos");
         } else {
