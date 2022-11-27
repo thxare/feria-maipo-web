@@ -11,7 +11,7 @@ import { Spinner } from "../../components/ui/Spinner";
 export default function Index() {
   const funciones = [
     { name: "Saldos", link: "/cliente-local/" },
-    { name: "Productos", link: "/cliente-local/Intancias" },
+    { name: "Productos", link: "/cliente-local/Intancias/" },
     /* { name: "Solicitudes", link: "/cliente-local/solicitudes" }, */
   ];
   const [productos, setProductos] = useState();

@@ -12,7 +12,7 @@ import { Spinner } from "../../components/ui/Spinner";
 export default function Compras() {
   const funciones = [
     { name: "Saldos", link: "/cliente-local/" },
-    { name: "Productos", link: "/cliente-local/Intancias" },
+    { name: "Productos", link: "/cliente-local/Intancias/" },
     /* { name: "Solicitudes", link: "/cliente-local/solicitudes" }, */
   ];
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Compras() {
     if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
       router?.push("/redireccion/");
     } else if (typeof dato !== "undefined" || dato !== {}) {
-      router?.push("/cliente-local/Intancias");
+      router?.push("/cliente-local/Intancias/");
     }
   }, []);
 

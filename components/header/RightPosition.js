@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { router } from "next/router";
 import Link from "next/link";
 
 export const RightPosition = ({ carrito, tipoCliente, cantidad }) => {
   const [changeUser, setChangeUser] = useState(true);
+  const [url, setUrl] = useState("");
 
   let classNameUser = `dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none left-auto right-0`;
 
@@ -22,9 +23,20 @@ export const RightPosition = ({ carrito, tipoCliente, cantidad }) => {
     router.push("/login/");
   };
 
+  useEffect(() => {
+    let urlActual = window.location.href;
+    let urlSplit = urlActual.split("/");
+    setUrl(urlSplit);
+  }, []);
+
   const handleClick = (e) => {
     e.preventDefault();
-    router.push(`${tipoCliente}/carrito`);
+    ///router.push(`/carrito`);
+    if (url.includes("Intancias")) {
+      router.push(`./carrito`);
+    } else {
+      router.push(`${tipoCliente}/carrito`);
+    }
   };
   return (
     <div className="relative flex items-center">
