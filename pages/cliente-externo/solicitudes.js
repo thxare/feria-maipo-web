@@ -1,4 +1,4 @@
-import Head from "next/head";
+/* import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import { router } from "next/router";
 import { Header } from "../../components/header/Header";
@@ -74,3 +74,4 @@ export default function Compras() {
     </>
   );
 }
+ */

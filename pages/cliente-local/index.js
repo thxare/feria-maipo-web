@@ -1,16 +1,21 @@
 import Head from "next/head";
 import { router } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../components/header/Header";
 import { Cards } from "../../components/cliente-local/Cards";
 import { ContainerPage } from "../../components/ui/ContainerPage";
+import axios from "axios";
 
 export default function Index() {
   const funciones = [
-    { name: "Mercado", link: "/cliente-local/" },
-    { name: "Intancias de Compra", link: "/cliente-local/Intancias" },
-    { name: "Solicitudes", link: "/cliente-local/solicitudes" },
+    { name: "Saldos", link: "/cliente-local/" },
+    { name: "Productos", link: "/cliente-local/Intancias" },
+    /* { name: "Solicitudes", link: "/cliente-local/solicitudes" }, */
   ];
+
+  const [productosCarrito, setProductosCarrito] = useState([]);
+  const [update, setUpdate] = useState(false);
+
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
     if (typeof dato === "undefined" || Object.entries(dato).length === 0) {
@@ -19,16 +24,38 @@ export default function Index() {
       router?.push("/cliente-local/");
     }
   }, []);
+  useEffect(() => {
+    setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
+  }, [update]);
+  
+  const [productos, setProductos] = useState([]);
 
+  useEffect(() => {
+    const getProductos = async () => {
+      const res = await axios.get(
+        "https://api-feria-web-production.up.railway.app/api/productos/"
+      );
+      const datos = res.data;
+      const filteredDatos = datos.filter((x) => x.saldo === 1);
+      setProductos(filteredDatos);
+    };
+    getProductos();
+  }, [productos]);
+  
   return (
     <>
       <Head>
         <title>Maipo Grande - Cliente Local</title>
       </Head>
       <div>
-        <Header funciones={funciones} />
+        <Header
+          funciones={funciones}
+          carrito={true}
+          tipoCliente="cliente-local"
+          cantidad={productosCarrito ? productosCarrito.length : 0}
+        />
         <ContainerPage titulo={"Saldos"}>
-          <Cards />
+          <Cards productos={productos} setUpdate={setUpdate}/>
         </ContainerPage>
       </div>
     </>

@@ -40,12 +40,14 @@ export const Productos = ({
               colorBtn={"bg-green"}
               hoverBtn={"hover:bg-darkGreen"}
               text={"Modificar Producto"}
+              margin={"my-2 mx-5"}
               onClickBtn={() => onUpdate(id, () => setShow(!show))}
             />
             <Button
               colorBtn={"bg-red"}
               hoverBtn={"hover:bg-bordeaux"}
               text={"Eliminar Producto"}
+              margin={"my-2 mx-5"}
               onClickBtn={() => onDelete(id)}
             />
           </>
@@ -53,7 +55,7 @@ export const Productos = ({
         valores={
           <>
             <ValoresCard nombre={"Calidad"} valor={calidad} />
-            <ValoresCard nombre={"Precio"} valor={precio + "x kg"} />
+            <ValoresCard nombre={"Precio"} valor={precio + " x kg"} />
             <ValoresCard nombre={"Cantidad"} valor={cantidad + " kg"} />
             <ValoresCard
               nombre={"Descripción"}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { router } from "next/router";
 
-export const RightPosition = () => {
+export const RightPosition = ({ carrito, tipoCliente, cantidad }) => {
   const [changeUser, setChangeUser] = useState(true);
 
   let classNameUser = `dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none left-auto right-0`;
@@ -25,38 +25,31 @@ export const RightPosition = () => {
     <div className="relative flex items-center">
       <div className="dropdown relative">
         <a
-          className="
-  dropdown-toggle
-  hidden-arrow
-  mr-4
-  flex
-  items-center
-  text-green
-  hover:text-gray-700 focus:text-gray-700
-"
-          href="#"
+          className={`dropdown-toggle hidden-arrow mr-4 items-center text-green hover:text-darkGreen focus:text-darkGreen ${
+            carrito ? "flex" : "hidden"
+          }`}
+          href={`http://localhost:3000/${tipoCliente}/carrito`}
           id="dropdownMenuButton1"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
           <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="bell"
-            className="w-4"
-            role="img"
+            className="h-6 w-6 fill-green hover:fill-darkGreen focus:fill-darkGreen"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
           >
             <path
-              fill="currentColor"
-              d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"
-            ></path>
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
           </svg>
-          <span className="absolute -mt-2.5 ml-2 rounded-full bg-red py-0 px-1.5 text-xs text-white">
-            1
+          <span className="absolute -mt-4 ml-4 rounded-full bg-red py-0 px-1.5 text-xs text-white">
+            {cantidad}
           </span>
         </a>
       </div>
@@ -71,11 +64,11 @@ export const RightPosition = () => {
           aria-expanded="false"
         >
           <Image
-            src="/favicon-32x32.png"
-            className="rounded-full"
-            width="20"
-            height="20"
-            alt=""
+            src="/iconoUsuario.png"
+            className="rounded-full hover:bg-slate-300"
+            width="25"
+            height="25"
+            alt="icono-usuario"
             loading="lazy"
           />
         </a>

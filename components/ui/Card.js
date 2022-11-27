@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
-export const Card = ({ id, img, button, nombreCard, valores }) => {
+export const Card = ({ id, img, button, nombreCard, valores, key }) => {
   return (
     <>
       <div
         className="mx-auto flex h-full w-full flex-col justify-between rounded-lg bg-white pb-6 shadow-lg"
         id={id}
+        key={key}
       >
         <div className="order-1 flex flex-col justify-end">{button}</div>
         <div className="flex flex-col">
