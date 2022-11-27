@@ -7,7 +7,7 @@ export const LoginLogo = () => {
       <Image
         width="200"
         height="200"
-        src="/feria-logo.png"
+        src="/nuevo_logo.png"
         alt="Logo Feria Maipo Grande"
       />
     </div>

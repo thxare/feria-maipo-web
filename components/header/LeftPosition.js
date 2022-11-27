@@ -23,7 +23,7 @@ lg:mt-0
           href="#"
         >
           <Image
-            src="/Feria__3_-removebg-preview.png"
+            src="/nuevo_logo.png"
             width="50"
             height="50"
             alt=""
