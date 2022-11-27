@@ -5,6 +5,8 @@ import { Header } from "../../components/header/Header";
 import { Cards } from "../../components/cliente-local/Cards";
 import { ContainerPage } from "../../components/ui/ContainerPage";
 import axios from "axios";
+import dayjs from "dayjs";
+import { Spinner } from "../../components/ui/Spinner";
 
 export default function Index() {
   const funciones = [
@@ -12,7 +14,7 @@ export default function Index() {
     { name: "Productos", link: "/cliente-local/Intancias" },
     /* { name: "Solicitudes", link: "/cliente-local/solicitudes" }, */
   ];
-
+  const [productos, setProductos] = useState();
   const [productosCarrito, setProductosCarrito] = useState([]);
   const [update, setUpdate] = useState(false);
 
@@ -27,8 +29,6 @@ export default function Index() {
   useEffect(() => {
     setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
   }, [update]);
-  
-  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     const getProductos = async () => {
@@ -36,12 +36,42 @@ export default function Index() {
         "https://api-feria-web-production.up.railway.app/api/productos/"
       );
       const datos = res.data;
-      const filteredDatos = datos.filter((x) => x.saldo === 1);
+      const fecha_acutal = dayjs(new Date());
+      const dia_actual = fecha_acutal.$D;
+      const mes_actual = fecha_acutal.$M + 1;
+      const anio_actual = fecha_acutal.$y;
+
+      const filteredDatos = datos.filter(
+        (x) => {
+          const fechaLimite = dayjs(x.fecha_limite);
+          //console.log(fechaLimite);
+          const dia_producto = fechaLimite.$D;
+          const mes_producto = fechaLimite.$M + 1;
+          console.log(mes_producto < mes_actual);
+          const anio_producto = fechaLimite.$y;
+
+          if (
+            (anio_producto >= anio_actual &&
+              mes_producto <= mes_actual &&
+              x.cantidad > 0) ||
+            (anio_producto >= anio_actual &&
+              mes_producto == mes_actual &&
+              dia_actual < dia_producto)
+          ) {
+            return x;
+          }
+          return filteredDatos;
+        }
+
+        //console.log(dayjs(x.fecha_limite).format("DD/MM/YYYY") < fecha_acutal)
+      );
       setProductos(filteredDatos);
     };
     getProductos();
-  }, [productos]);
-  
+  }, []);
+
+  if (!productos) return <Spinner />;
+
   return (
     <>
       <Head>
@@ -55,7 +85,7 @@ export default function Index() {
           cantidad={productosCarrito ? productosCarrito.length : 0}
         />
         <ContainerPage titulo={"Saldos"}>
-          <Cards productos={productos} setUpdate={setUpdate}/>
+          <Cards productos={productos} setUpdate={setUpdate} />
         </ContainerPage>
       </div>
     </>

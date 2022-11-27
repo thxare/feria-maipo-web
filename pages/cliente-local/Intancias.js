@@ -6,6 +6,8 @@ import { Header } from "../../components/header/Header";
 import { CardsIntancia } from "../../components/cliente-local/CardsInstancia";
 import { ContainerPage } from "../../components/ui/ContainerPage";
 import { ProductosCarritoContextProvider } from "../../components/ContextDetalleVenta";
+import dayjs from "dayjs";
+import { Spinner } from "../../components/ui/Spinner";
 
 export default function Compras() {
   const funciones = [
@@ -22,8 +24,8 @@ export default function Compras() {
     }
   }, []);
 
-  const [productos, setProductos] = useState([]);
-  const [productosCarrito, setProductosCarrito] = useState([]);
+  const [productos, setProductos] = useState();
+  const [productosCarrito, setProductosCarrito] = useState();
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
@@ -32,17 +34,45 @@ export default function Compras() {
         "https://api-feria-web-production.up.railway.app/api/productos/"
       );
       const datos = res.data;
-      const filteredDatos = datos.filter(
-        (x) => x.saldo === 0 && x.cantidad > 0
-      );
+      const fecha_acutal = dayjs(new Date());
+      const dia_actual = fecha_acutal.$D;
+      const mes_actual = fecha_acutal.$M + 1;
+      const anio_actual = fecha_acutal.$y;
+
+      const filteredDatos = datos.filter((x) => {
+        const fechaLimite = dayjs(x.fecha_limite);
+
+        const dia_producto = fechaLimite.$D;
+        const mes_producto = fechaLimite.$M + 1;
+        const anio_producto = fechaLimite.$y;
+        if (
+          (anio_producto >= anio_actual &&
+            mes_producto <= mes_actual &&
+            x.cantidad > 0) ||
+          (anio_producto >= anio_actual &&
+            mes_producto == mes_actual &&
+            dia_actual < dia_producto)
+        ) {
+          console.log("saldos");
+        } else {
+          if (x.cantidad > 0) {
+            return x;
+          }
+        }
+
+        return filteredDatos;
+      });
+
       setProductos(filteredDatos);
     };
     getProductos();
-  }, [productos]);
+  }, []);
 
   useEffect(() => {
     setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
   }, [update]);
+
+  if (!productos) return <Spinner />;
 
   return (
     <>
