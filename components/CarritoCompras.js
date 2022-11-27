@@ -86,8 +86,6 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
         sendData
       );
       router.push(paymentResponse.data.init_point)
-      console.log(sendData)
-      console.log(paymentResponse);
     } catch (err) {
       console.log(err);
     }
