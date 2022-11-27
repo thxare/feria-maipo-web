@@ -20,28 +20,28 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
     return amountValue;
   };
 
-  const handleClick = (event, id) => {
+  const handleClick = (event, idProducto) => {
     event.preventDefault();
-    const id_producto = filterProduct(id)[0].id_producto;
-    const nombre = filterProduct(id)[0].nombre;
+    const id = filterProduct(idProducto)[0].id_producto;
+    const title = filterProduct(idProducto)[0].nombre;
     const cantidadInicial = filterProduct(id)[0].cantidad;
-    const precio = filterProduct(id)[0].precio;
-    const imagen = filterProduct(id)[0].imagen;
-    const observaciones = filterProduct(id)[0].observaciones;
-    const id_usuario = filterProduct(id)[0].id_usuario;
-    const cantidad = parseInt(cantidadProducto);
+    const unit_price = filterProduct(idProducto)[0].precio;
+    const imagen = filterProduct(idProducto)[0].imagen;
+    const description = filterProduct(idProducto)[0].observaciones;
+    const id_usuario = filterProduct(idProducto)[0].id_usuario;
+    const quantity = parseInt(cantidadProducto);
     const valuesProductoVenta = {
-      id_producto,
-      cantidad,
-      nombre,
-      precio,
+      id,
+      quantity,
+      title,
+      unit_price,
       id_usuario,
-      observaciones,
+      description,
       imagen,
     };
-    if (cantidad < 0) {
+    if (quantity < 0) {
       alert("La cantidad de kg del producto debe ser mayor a 0 ");
-    } else if (cantidad > cantidadInicial) {
+    } else if (quantity > cantidadInicial) {
       alert(
         "La cantidad de kg del producto debe ser menos de los kg disponibles"
       );
@@ -49,6 +49,7 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
       setProductosCarrito([...productosCarrito, valuesProductoVenta]);
       setUpdate(true);
     }
+    
   };
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { CarritoCompras } from "../../components/CarritoCompras";
 import { ProductosCarritoContextProvider } from "../../components/ContextDetalleVenta";
 import { Header } from "../../components/header/Header";
+import { UserContextProvider } from "../../components/login/ContextUser";
 
 export default function Carrito(props) {
   const funciones = [
@@ -18,20 +19,25 @@ export default function Carrito(props) {
 
   return (
     <>
-      <ProductosCarritoContextProvider>
-        <Head>
-          <title>Maipo Grande - Productor</title>
-        </Head>
-        <div className="h-screen bg-gray-200">
-          <div className="h-max bg-gray-200">
-            <Header funciones={funciones} />
-            <h1 className="mt-10 mb-2 text-center text-3xl font-semibold md:ml-10 md:text-left">
-              Carrito de compras
-            </h1>
-            <CarritoCompras productosCarrito={productosCarrito} setProductosCarrito={setProductosCarrito} />
+      <UserContextProvider>
+        <ProductosCarritoContextProvider>
+          <Head>
+            <title>Maipo Grande - Productor</title>
+          </Head>
+          <div className="h-screen bg-gray-200">
+            <div className="h-max bg-gray-200">
+              <Header funciones={funciones} />
+              <h1 className="mt-10 mb-2 text-center text-3xl font-semibold md:ml-10 md:text-left">
+                Carrito de compras
+              </h1>
+              <CarritoCompras
+                productosCarrito={productosCarrito}
+                setProductosCarrito={setProductosCarrito}
+              />
+            </div>
           </div>
-        </div>
-      </ProductosCarritoContextProvider>
+        </ProductosCarritoContextProvider>
+      </UserContextProvider>
     </>
   );
 }

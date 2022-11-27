@@ -15,6 +15,7 @@ export const Header = (props) => {
   if (change) {
     className += ` hidden`;
   }
+   
 
   return (
     <>
