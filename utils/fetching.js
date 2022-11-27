@@ -36,3 +36,15 @@ export const getTransportes = async (idUsuario) => {
     console.log(error)
   }
 };
+
+export const getOnePerson = async (id) => {
+  const url = `https://api-feria-web-production.up.railway.app/api/persona/`;
+  try {
+    if (id === undefined) return null;
+    const response = await axios.get(url);
+    const foundPerson = response.data.find(persona => persona.id_persona===id)
+    return foundPerson;
+  } catch (error) {
+    return null;
+  }
+};
