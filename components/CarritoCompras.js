@@ -13,7 +13,6 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
 
   const router = useRouter();
   const valoresTotales = [];
-  console.log(productosCarrito)
 
   useEffect(() => {
     axios
