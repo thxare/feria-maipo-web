@@ -3,6 +3,7 @@ import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { ValoresCard } from "../ui/ValoresCard";
 import { CardContainer } from "../ui/CardContainer";
+import dayjs from "dayjs";
 
 export const CardsIntancia = ({ productos, setUpdate }) => {
   const initialState = "";
@@ -28,6 +29,7 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
     const unit_price = filterProduct(idProducto)[0].precio;
     const imagen = filterProduct(idProducto)[0].imagen;
     const description = filterProduct(idProducto)[0].observaciones;
+    const fecha_limite = filterProduct(idProducto)[0].fecha_limite;
     const id_usuario = filterProduct(idProducto)[0].id_usuario;
     const quantity = parseInt(cantidadProducto);
     const valuesProductoVenta = {
@@ -36,6 +38,7 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
       title,
       unit_price,
       id_usuario,
+      fecha_limite,
       description,
       imagen,
     };
@@ -49,7 +52,6 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
       setProductosCarrito([...productosCarrito, valuesProductoVenta]);
       setUpdate(true);
     }
-    
   };
 
   useEffect(() => {
@@ -61,6 +63,10 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
     <>
       <CardContainer>
         {productos.map((products, index) => {
+          
+          const fechaFormato = dayjs(products.fecha_limite)
+            .add(1, "day")
+            .format("DD/MM/YYYY");
           return (
             <Card
               id={products.id_producto}
@@ -88,6 +94,7 @@ export const CardsIntancia = ({ productos, setUpdate }) => {
                     nombre={"Kilogramos Disponibles"}
                     valor={products.cantidad + " kg"}
                   />
+                  <ValoresCard nombre={"Fecha Limite"} valor={fechaFormato} />
                   <ValoresCard
                     nombre={"Observaciones"}
                     valor={products.observaciones}
