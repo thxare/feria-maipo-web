@@ -26,7 +26,7 @@ export default function DetalleSubasta() {
       const data = await getOneSubasta(router.query.id);
       //console.log(data);
       setSubasta(await data);
-      const estado = data.estado.toLowerCase() !== "activa";
+      const estado = data?.estado.toLowerCase() !== "activa";
       setIsActive(estado);
     };
     fetchingSubasta();
@@ -168,7 +168,7 @@ export default function DetalleSubasta() {
             </div>
             <div className="col-span-1 p-3 md:col-span-2">
               <h2 className="text-center text-lg font-bold">Postulación</h2>
-              <Postulacion estado={isActive} />
+              <Postulacion estado={isActive} idSubasta={subasta.id_subasta}/>
             </div>
           </div>
         </div>
