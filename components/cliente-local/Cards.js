@@ -29,6 +29,7 @@ export const Cards = ({ productos, setUpdate }) => {
     const unit_price = filterProduct(idProducto)[0].precio;
     const imagen = filterProduct(idProducto)[0].imagen;
     const description = filterProduct(idProducto)[0].observaciones;
+    const fecha_limite = filterProduct(idProducto)[0].fecha_limite;
     const id_usuario = filterProduct(idProducto)[0].id_usuario;
     const quantity = parseInt(cantidadProducto);
     const valuesProductoVenta = {
@@ -37,6 +38,7 @@ export const Cards = ({ productos, setUpdate }) => {
       title,
       unit_price,
       id_usuario,
+      fecha_limite,
       description,
       imagen,
     };

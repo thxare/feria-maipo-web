@@ -84,7 +84,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
         "https://api-feria-web-production.up.railway.app/api/payment",
         sendData
       );
-      router.push(paymentResponse.data.init_point)
+      router.push(paymentResponse.data.init_point);
     } catch (err) {
       console.log(err);
     }
@@ -115,9 +115,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
         const findUser = [...productores].find(
           (user) => user.id_usuario === producto.id_usuario
         );
-        const formatoFecha = dayjs(producto.fecha_limite)
-          .add(1, "day")
-          .format("DD/MM/YYYY");
+        const formatoFecha = dayjs(producto.fecha_limite).add(1, 'day').format("DD/MM/YYYY");
 
         // let valorTxt = "";
         // if (producto.id_calidad == 1) {
