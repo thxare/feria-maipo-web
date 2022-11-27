@@ -5,7 +5,7 @@ import axios from "axios";
 import { getOnePerson } from "../../utils/fetching";
 
 export const Postulacion = ({ estado, idSubasta }) => {
-  const [name, setName] = useState("");
+
 
   const { tabla } = useContext(TransporteContext);
 
@@ -20,7 +20,7 @@ export const Postulacion = ({ estado, idSubasta }) => {
       precio: parseInt(data.precio),
       nombre: persona?.nombre,
     };
-    console.log(detalle);
+
     try {
       axios.post(
         "https://api-feria-web-production.up.railway.app/api/detalle-subasta/",
@@ -30,7 +30,6 @@ export const Postulacion = ({ estado, idSubasta }) => {
       console.log(error);
     }
 
-    console.log(data);
   };
   const {
     register,
