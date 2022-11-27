@@ -6,44 +6,92 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button } from "./ui/Button";
 
 export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
-  const [users, setUsers] = useState([]);
+  const [productores, setProductores] = useState([]);
+  const [data, setData] = useState([]);
+  const [user, setUser] = useState([]);
   const [change, setChange] = useState(false);
+
+  const router = useRouter();
+  const valoresTotales = [];
+  console.log(productosCarrito)
 
   useEffect(() => {
     axios
       .get("https://api-feria-web-production.up.railway.app/api/usuarios")
       .then((res) => {
-        setUsers(res.data);
+        setProductores(res.data);
       });
+    setData(JSON.parse(localStorage.getItem("loggedNoteAppUser")));
   }, []);
 
-  const valoresTotales = [];
-
+  useEffect(() => {
+    setUser(
+      [...productores].find(
+        (productor) => productor.id_usuario === data.id_usuario
+      )
+    );
+  }, [data]);
   const calcularTotal = (cantidad, precio) => {
     return cantidad * precio;
   };
+
   productosCarrito.map((producto) => {
-    valoresTotales.push(producto.cantidad * producto.precio);
+    valoresTotales.push(producto.quantity * producto.unit_price);
   });
 
   let total = 0;
+
   for (let i = 0; i < valoresTotales.length; i++) {
     total += valoresTotales[i];
   }
-  const router = useRouter();
 
-  const onDelete = (id) => {
+  const onDelete = (idProducto) => {
     setChange(true);
     setProductosCarrito(
-      [...productosCarrito].filter((producto) => producto.id_producto !== id)
+      [...productosCarrito].filter((producto) => producto.id !== idProducto)
     );
   };
+
   useEffect(() => {
     if (change) {
       window.localStorage.setItem("carrito", JSON.stringify(productosCarrito));
     }
     setChange(false);
   }, [change]);
+
+  const onSubmit = async () => {
+    const name = await user?.nombre;
+    const surname = await user?.apellido_p;
+    const street_name = await user?.direccion;
+    const number = await user?.num_identificador;
+
+    const sendData = {
+      user: {
+        name,
+        surname,
+        email: user?.email,
+      },
+      identification: {
+        type: "RUN",
+        number,
+      },
+      address: {
+        street_name,
+      },
+      productos: productosCarrito,
+    };
+    try {
+      const paymentResponse = await axios.post(
+        "https://api-feria-web-production.up.railway.app/api/payment",
+        sendData
+      );
+      router.push(paymentResponse.data.init_point)
+      console.log(sendData)
+      console.log(paymentResponse);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="mx-auto mt-8 h-auto w-10/12 max-w-4xl">
@@ -67,7 +115,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
         </svg>
       </div>
       {productosCarrito.map((producto) => {
-        const findUser = [...users].find(
+        const findUser = [...productores].find(
           (user) => user.id_usuario === producto.id_usuario
         );
         const formatoFecha = dayjs(producto.fecha_limite)
@@ -125,13 +173,13 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
                     text={"Eliminar"}
                     colorBtn={"bg-red"}
                     hoverBtn={"hover:bg-bordeaux"}
-                    onClickBtn={() => onDelete(producto.id_producto)}
+                    onClickBtn={() => onDelete(producto.id)}
                   />
                 </div>
                 <div className="infoProducto">
                   <div>
                     <span className="font-bold">Precio:</span> $
-                    {producto.precio} x kg
+                    {producto.unit_price} x kg
                   </div>
                   {/* <div>
                     <span className="font-bold">Calidad:</span> {valorTxt}
@@ -142,13 +190,13 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
                   </div>
                   <div>
                     <span className="font-bold">Descripción:</span>{" "}
-                    {producto.observaciones}
+                    {producto.description}
                   </div>
                 </div>
 
                 <div className="mx-auto inline-block">
                   <label className="font-semibold">Cantidad: </label>
-                  {producto.cantidad} kg
+                  {producto.quantity} kg
                 </div>
               </div>
             </div>
@@ -169,11 +217,11 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
             {productosCarrito.map((producto) => {
               return (
                 <div className="grid grid-cols-4 gap-2">
-                  <div className="inline-block">{producto.nombre}</div>
-                  <div className="inline-block">{producto.cantidad} kg</div>
-                  <div className="inline-block">${producto.precio}</div>
+                  <div className="inline-block">{producto.title}</div>
+                  <div className="inline-block">{producto.quantity} kg</div>
+                  <div className="inline-block">${producto.unit_price}</div>
                   <div className="inline-block">
-                    ${calcularTotal(producto.cantidad, producto.precio)}
+                    ${calcularTotal(producto.quantity, producto.unit_price)}
                   </div>
                 </div>
               );
@@ -188,6 +236,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
                   text={"Pagar"}
                   colorBtn={"bg-green"}
                   hoverBtn={"hover:bg-darkGreen"}
+                  onClickBtn={() => onSubmit()}
                 />
               </div>
             </div>

@@ -39,7 +39,7 @@ export default function Index() {
     };
     getProductos();
   }, [productos]);
-
+ 
   return (
     <>
       <Head>
