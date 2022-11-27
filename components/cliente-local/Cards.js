@@ -13,36 +13,35 @@ export const Cards = ({ productos, setUpdate }) => {
     setCantidadProducto(e.target.value);
   };
 
-  const addAmount = (id) => {
+  const filterProduct = (id) => {
     const amountValue = productos.filter(
       (producto) => producto.id_producto == id
     );
     return amountValue;
   };
 
-  const handleClick = (event, id) => {
+  const handleClick = (event, idProducto) => {
     event.preventDefault();
-    const id_producto = addAmount(id)[0].id_producto;
-    const nombre = addAmount(id)[0].nombre;
-    const cantidadInicial = addAmount(id)[0].cantidad;
-
-    const precio = addAmount(id)[0].precio;
-    const imagen = addAmount(id)[0].imagen;
-    const observaciones = addAmount(id)[0].observaciones;
-    const id_usuario = addAmount(id)[0].id_usuario;
-    const cantidad = parseInt(cantidadProducto);
+    const id = filterProduct(idProducto)[0].id_producto;
+    const title = filterProduct(idProducto)[0].nombre;
+    const cantidadInicial = filterProduct(id)[0].cantidad;
+    const unit_price = filterProduct(idProducto)[0].precio;
+    const imagen = filterProduct(idProducto)[0].imagen;
+    const description = filterProduct(idProducto)[0].observaciones;
+    const id_usuario = filterProduct(idProducto)[0].id_usuario;
+    const quantity = parseInt(cantidadProducto);
     const valuesProductoVenta = {
-      id_producto,
-      cantidad,
-      nombre,
-      precio,
+      id,
+      quantity,
+      title,
+      unit_price,
       id_usuario,
-      observaciones,
+      description,
       imagen,
     };
-    if (cantidad < 0) {
+    if (quantity < 0) {
       alert("La cantidad de kg del producto debe ser mayor a 0 ");
-    } else if (cantidad > cantidadInicial) {
+    } else if (quantity > cantidadInicial) {
       alert(
         "La cantidad de kg del producto debe ser menos de los kg disponibles"
       );

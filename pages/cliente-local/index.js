@@ -26,7 +26,8 @@ export default function Index() {
   }, []);
   useEffect(() => {
     setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
-  }, []);
+  }, [update]);
+  
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
