@@ -22,7 +22,7 @@ export default function Carrito(props) {
       <UserContextProvider>
         <ProductosCarritoContextProvider>
           <Head>
-            <title>Maipo Grande - Productor</title>
+            <title>Maipo Grande - Carrito</title>
           </Head>
           <div className="h-screen bg-gray-200">
             <div className="h-max bg-gray-200">
