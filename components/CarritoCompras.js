@@ -165,7 +165,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
               </div>
               <div className="w-3/4">
                 <div className="flex justify-between">
-                  <div className="text-2xl font-medium">{producto.nombre}</div>
+                  <div className="text-2xl font-medium">{producto.title}</div>
                   <Button
                     text={"Eliminar"}
                     colorBtn={"bg-red"}

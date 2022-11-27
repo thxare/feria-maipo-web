@@ -35,7 +35,7 @@ export default function Index() {
         "https://api-feria-web-production.up.railway.app/api/productos/"
       );
       const datos = res.data;
-      const filteredDatos = datos.filter((x) => x.saldo === 0);
+      const filteredDatos = datos.filter((x) => x.saldo === 0 && x.cantidad > 0);
       setProductos(filteredDatos);
     };
     getProductos();
