@@ -14,6 +14,7 @@ export default function Index() {
   ];
 
   const [productosCarrito, setProductosCarrito] = useState([]);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     const dato = JSON.parse(localStorage.getItem("loggedNoteAppUser"));
@@ -40,6 +41,10 @@ export default function Index() {
     getProductos();
   }, [productos]);
 
+  useEffect(() => {
+    setProductosCarrito(JSON.parse(localStorage.getItem("carrito")));
+  }, [update]);
+
   return (
     <>
       <Head>
@@ -53,7 +58,7 @@ export default function Index() {
           cantidad={productosCarrito.length}
         />
         <ContainerPage titulo={"Saldos"}>
-          <Cards productos={productos} />
+          <Cards productos={productos} setUpdate={setUpdate}/>
         </ContainerPage>
       </div>
     </>

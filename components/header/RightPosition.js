@@ -28,7 +28,7 @@ export const RightPosition = ({ carrito, tipoCliente, cantidad }) => {
           className={`dropdown-toggle hidden-arrow mr-4 items-center text-green hover:text-darkGreen focus:text-darkGreen ${
             carrito ? "flex" : "hidden"
           }`}
-          href={`http://localhost:3001/${tipoCliente}/carrito`}
+          href={`http://localhost:3000/${tipoCliente}/carrito`}
           id="dropdownMenuButton1"
           role="button"
           data-bs-toggle="dropdown"
