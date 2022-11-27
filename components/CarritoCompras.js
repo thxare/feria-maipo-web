@@ -126,7 +126,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
         //   valorTxt = "Segunda";
         // }
         return (
-          <div className="mb-3 rounded-sm bg-white shadow-sm">
+          <div className="mb-3 rounded-sm bg-white shadow-sm" key={producto.id}>
             <div className="border-b-[1px] border-gray-200 p-2">
               <div className="flex">
                 <svg
@@ -211,7 +211,7 @@ export const CarritoCompras = ({ productosCarrito, setProductosCarrito }) => {
             </div>
             {productosCarrito.map((producto) => {
               return (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-2" key={producto.title + producto.id}>
                   <div className="inline-block">{producto.title}</div>
                   <div className="inline-block">{producto.quantity} kg</div>
                   <div className="inline-block">${producto.unit_price}</div>
